@@ -4,6 +4,7 @@ objs_server/
 server
 cmake-build-debug/cmake_install.cmake
 cmake-build-debug/libft.a
+cmake-build-debug/IRC.cbp
 libft/libft.a
 libft/libft_i386.a
 libft/libft_x86_64.a

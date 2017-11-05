@@ -1,5 +1,5 @@
 
-#include "bircd.h"
+#include "ft_irc.h"
 
 void	main_loop(t_env *e)
 {

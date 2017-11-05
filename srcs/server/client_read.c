@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/socket.h>
-#include "bircd.h"
+#include "ft_irc.h"
 
 void	client_read(t_env *e, int cs)
 {

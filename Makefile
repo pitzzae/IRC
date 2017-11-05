@@ -39,20 +39,23 @@ CLIENT_OBJECTS	= $(patsubst %.c, $(OBJS_DIR_CLI)/%.o, $(CLIENT_SRCS))
 .PHONY: all
 
 all: ${SERVER} ${CLIENT}
+	@echo "\nAll Done"
 
 $(SERVER): makelib $(SERVER_OBJECTS)
 	@$(CC) $(SERVER_OBJECTS) -o $@ $(CFLAGS) $(INCL_DIR)
 
 $(OBJS_DIR_SER)/%.o: $(addprefix $(SERVER_SRCS_DIR)/,%.c)
 	@mkdir -p $(OBJS_DIR_SER)
-	$(CC) -c -o $@ $(CFLAGS) $^ $(INCL_DIR)
+	@$(CC) -c -o $@ $(CFLAGS) $^ $(INCL_DIR)
+	@printf "."
 
 $(CLIENT): makelib $(CLIENT_OBJECTS)
 	@$(CC) $(CLIENT_OBJECTS) -o $@ $(CFLAGS) $(INCL_DIR)
 
 $(OBJS_DIR_CLI)/%.o: $(addprefix $(CLIENT_SRCS_DIR)/,%.c)
 	@mkdir -p $(OBJS_DIR_CLI)
-	$(CC) -c -o $@ $(CFLAGS) $^ $(INCL_DIR)
+	@$(CC) -c -o $@ $(CFLAGS) $^ $(INCL_DIR)
+	@printf "."
 
 makelib: 
 	@echo "Make libft"

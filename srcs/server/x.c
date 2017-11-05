@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "bircd.h"
+#include "ft_irc.h"
 
 int	x_int(int err, int res, char *str, char *file, int line)
 {

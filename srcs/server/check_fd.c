@@ -1,5 +1,5 @@
 
-#include "bircd.h"
+#include "ft_irc.h"
 
 void	check_fd(t_env *e)
 {
