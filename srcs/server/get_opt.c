@@ -1,15 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_opt.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/11/06 00:04:34 by gtorresa          #+#    #+#             */
+/*   Updated: 2017/11/06 00:05:16 by gtorresa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "ft_irc.h"
 
 void	get_opt(t_env *e, int ac, char **av)
 {
-  if (ac != 2)
-    {
-      fprintf(stderr, USAGE, av[0]);
-      exit(1);
-    }
-  e->port = atoi(av[1]);
+	if (ac != 2)
+	{
+		fprintf(stderr, USAGE, av[0]);
+		exit(1);
+	}
+	e->port = atoi(av[1]);
 }
 

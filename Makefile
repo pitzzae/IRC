@@ -19,6 +19,7 @@ CFLAGS			= -g3 -Wall -Werror
 LIBFT_DIR		= ./libft
 LIBFT_NAME		= $(LIBFT_DIR)/libft.a
 INCL_DIR		= -I./includes -I$(LIBFT_DIR)/includes
+INCL_LIB		= -L./libft -lft
 
 OBJS_DIR_SER	= objs_server
 OBJS_DIR_CLI	= objs_client
@@ -50,7 +51,7 @@ $(OBJS_DIR_SER)/%.o: $(addprefix $(SERVER_SRCS_DIR)/,%.c)
 	@printf "."
 
 $(CLIENT): makelib $(CLIENT_OBJECTS)
-	@$(CC) $(CLIENT_OBJECTS) -o $@ $(CFLAGS) $(INCL_DIR)
+	@$(CC) $(CLIENT_OBJECTS) -o $@ $(CFLAGS) $(INCL_DIR) $(INCL_LIB)
 
 $(OBJS_DIR_CLI)/%.o: $(addprefix $(CLIENT_SRCS_DIR)/,%.c)
 	@mkdir -p $(OBJS_DIR_CLI)
