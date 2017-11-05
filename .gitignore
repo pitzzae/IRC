@@ -1,3 +1,7 @@
+client
+objs_client/
+objs_server/
+server
 cmake-build-debug/cmake_install.cmake
 cmake-build-debug/libft.a
 libft/libft.a
@@ -5,7 +9,6 @@ libft/libft_i386.a
 libft/libft_x86_64.a
 libft/obj_32/
 libft/obj_64/
-objs/
 .idea/
 cmake-build-debug/CMakeFiles/
 cmake-build-debug/libft.a
