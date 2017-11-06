@@ -25,7 +25,7 @@ void	check_fd(t_env *e)
 			e->fds[i].fct_write(e, i);
 		if (FD_ISSET(i, &e->fd_read) ||
 			FD_ISSET(i, &e->fd_write))
-		e->r--;
+			e->r--;
 		i++;
 	}
 }
