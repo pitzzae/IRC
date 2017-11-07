@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/07 22:51:31 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/07 23:36:35 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define STX_ERR " :Syntax error"
 # define WEL_MSG " :Welcome to the Internet Relay Network"
 # define ALLRD_REGIS " :Connection already registered"
+# define ERROR_CONN "ERROR :Closing connection\n"
 
 # define INVALID_SOCKET -1
 # define SOCKET_ERROR -1
@@ -74,6 +75,8 @@ typedef struct		s_fd
 	t_irc_user			user;
 	int					connect;
 	char				*ipv4;
+	int					b_send;
+	int					b_recive;
 }						t_fd;
 
 typedef struct		s_sock
@@ -111,6 +114,7 @@ void				*x_void(void *err, void *res, char *str, char *file,
 void				init_fd(t_env *e);
 void				do_select(t_env *e);
 void				check_fd(t_env *e);
+size_t				ft_send(int cs, void *buff, size_t len, t_env *e);
 int					ft_parse_irc_cmd(t_env *e, int cs);
 int					ft_irc_cmd_user(t_env *e, int cs);
 int					ft_irc_cmd_nick(t_env *e, int cs);
@@ -118,5 +122,6 @@ int					ft_irc_motd(t_env *e, int cs);
 int					ft_irc_error(t_env *e, int cs, int code, char *msg);
 void				ft_irc_print(char *buff, t_env *e, int cs, int code);
 int					ft_irc_cmd_who(t_env *e, int cs);
+int					ft_irc_cmd_quit(t_env *e, int cs);
 
 #endif /* !FT_IRC_H_ */

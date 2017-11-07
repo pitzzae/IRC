@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/06 00:04:12 by gtorresa          #+#     #+#             *//*   Updated: 2017/11/07 21:39:21 by gtorresa         ###   ########.fr       */
+/*   Created: 2017/11/06 00:04:12 by gtorresa          #+#     #+#             *//*   Updated: 2017/11/07 22:16:17 by gtorresa         ###   ########.fr       */
 
 /*                                                                            */
 /* ************************************************************************** */
@@ -25,7 +25,7 @@ void	client_write(t_env *e, int cs)
 		{
 			if ((e->fds[i].type == FD_CLIENT) && (i != cs))
 			{
-				send(i, e->fds[cs].buffer, e->fds[cs].buff_len, 0);
+				ft_send(i, e->fds[cs].buffer, e->fds[cs].buff_len, e);
 			}
 			i++;
 		}

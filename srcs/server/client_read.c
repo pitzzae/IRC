@@ -53,6 +53,7 @@ void		client_read(t_env *e, int cs)
 		{
 			if ((e->fds[i].type == FD_CLIENT) && (i == cs))
 			{
+				e->fds[cs].b_send += r;
 				ft_packet_agreg(e, cs, r);
 			}
 			i++;

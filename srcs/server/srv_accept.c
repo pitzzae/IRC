@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:00:25 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/07 22:55:13 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/07 22:56:38 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,6 @@ void			srv_accept(t_env *e, int s)
 	ft_bzero(&e->fds[cs].user, sizeof(e->fds[cs].user));
 	e->fds[cs].connect = 0;
 	e->fds[cs].argv = NULL;
+	e->fds[cs].b_send = 0;
+	e->fds[cs].b_recive = 0;
 }

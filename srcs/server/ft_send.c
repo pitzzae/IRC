@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_irc_motd.c                                      :+:      :+:    :+:   */
+/*   ft_send.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gtorresa <null>                            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/07 19:11:18 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/07 20:11:02 by gtorresa         ###   ########.fr       */
+/*   Created: 2017/11/07 23:31:07 by gtorresa          #+#    #+#             */
+/*   Updated: 2017/11/07 23:36:35 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc.h"
 
-int	ft_irc_motd(t_env *e, int cs)
+size_t			ft_send(int cs, void *buff, size_t len, t_env *e)
 {
-	char				buff[1024];
+	size_t		r;
 
-	e->fds[cs].connect = 1;
-	ft_irc_print(&buff[0], e, cs, 1);
-	ft_strcat(&buff[0], WEL_MSG);
-	ft_strcat(&buff[0], "\n");
-	ft_send(cs, &buff[0], ft_strlen(&buff[0]), e);
-	return (0);
+	r = send(cs, buff, len, 0);
+	e->fds[cs].b_recive += len;
+	return (r);
 }

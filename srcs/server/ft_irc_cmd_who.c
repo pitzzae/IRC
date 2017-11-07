@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 19:06:28 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/07 22:57:12 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/07 23:05:09 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	ft_irc_cmd_return(t_env *e, int cs, char *who, char *buff)
 	ft_irc_print(buff, e, cs, 315);
 	ft_strcat(buff, "* :End of WHO list\n");
 	who = ft_strjoin_free(who, buff, 1);
-	send(cs, who, ft_strlen(who), 0);
+	ft_send(cs, who, ft_strlen(who), e);
 	free(who);
 }
 

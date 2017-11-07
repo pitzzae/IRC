@@ -65,7 +65,7 @@ set(SOURCE_SERVER
         srcs/server/main_loop.c
         srcs/server/srv_accept.c
         srcs/server/srv_create.c
-        srcs/server/x.c srcs/server/ft_parse_irc_cmd.c srcs/server/ft_irc_cmd_user.c srcs/server/ft_irc_cmd_nick.c srcs/server/ft_irc_cmd_who.c srcs/server/ft_irc_motd.c srcs/server/ft_irc_error.c srcs/server/ft_irc_print.c)
+        srcs/server/x.c srcs/server/ft_parse_irc_cmd.c srcs/server/ft_irc_cmd_user.c srcs/server/ft_irc_cmd_nick.c srcs/server/ft_irc_cmd_who.c srcs/server/ft_irc_motd.c srcs/server/ft_irc_error.c srcs/server/ft_irc_print.c srcs/server/ft_irc_cmd_quit.c srcs/server/ft_send.c)
 
 set(SOURCE_CLIENT srcs/client/main.c)
 

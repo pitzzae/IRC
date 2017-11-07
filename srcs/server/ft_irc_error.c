@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 19:12:56 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/07 20:06:34 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/07 20:21:10 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ int	ft_irc_error(t_env *e, int cs, int code, char *msg)
 		ft_strcat(&buff[0], STX_ERR);
 	ft_strcat(&buff[0], msg);
 	ft_strcat(&buff[0], "\n");
-	send(cs, &buff[0], ft_strlen(&buff[0]), 0);
+	ft_send(cs, &buff[0], ft_strlen(&buff[0]), e);
 	return (0);
 }
