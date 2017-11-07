@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 19:06:28 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/07 19:07:25 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/07 19:49:49 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	ft_irc_cmd_who(t_env *e, int cs)
 {
-	int			i;
-
 	if (e->fds[cs].buff_len == 3 &&
 		ft_strncmp(e->fds[cs].buffer, "WHO\n", 4) == 0)
 	{

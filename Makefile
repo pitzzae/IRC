@@ -29,7 +29,9 @@ CLIENT_SRCS_DIR	= srcs/client
 
 SERVER_SRCS		= main.c init_env.c clean_fd.c get_opt.c x.c main_loop.c \
 				init_fd.c do_select.c check_fd.c srv_create.c srv_accept.c \
-				client_read.c client_write.c
+				client_read.c client_write.c ft_irc_cmd_nick.c \
+				ft_irc_cmd_user.c ft_irc_cmd_who.c ft_irc_error.c \
+				ft_irc_print.c ft_irc_motd.c ft_parse_irc_cmd.c
 
 CLIENT_SRCS		= main.c
 
@@ -43,7 +45,7 @@ all: ${SERVER} ${CLIENT}
 	@echo "\nAll Done"
 
 $(SERVER): makelib $(SERVER_OBJECTS)
-	@$(CC) $(SERVER_OBJECTS) -o $@ $(CFLAGS) $(INCL_DIR)
+	@$(CC) $(SERVER_OBJECTS) -o $@ $(CFLAGS) $(INCL_DIR) $(INCL_LIB)
 
 $(OBJS_DIR_SER)/%.o: $(addprefix $(SERVER_SRCS_DIR)/,%.c)
 	@mkdir -p $(OBJS_DIR_SER)
