@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:00:25 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/07 19:18:53 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/07 22:55:13 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void			srv_accept(t_env *e, int s)
 	printf("New client #%d from %s:%d\n", cs,
 	inet_ntoa(csin.sin_addr), ntohs(csin.sin_port));
 	clean_fd(&e->fds[cs]);
+	e->fds[cs].ipv4 = inet_ntoa(csin.sin_addr);
 	e->fds[cs].type = FD_CLIENT;
 	e->fds[cs].fct_read = client_read;
 	e->fds[cs].fct_write = client_write;

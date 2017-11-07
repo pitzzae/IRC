@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/07 20:28:58 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/07 22:51:31 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct		s_irc_user
 
 typedef struct		s_fd
 {
+	int					cs;
 	int					type;
 	void				(*fct_read)();
 	void				(*fct_write)();
@@ -72,6 +73,7 @@ typedef struct		s_fd
 	char				username[10];
 	t_irc_user			user;
 	int					connect;
+	char				*ipv4;
 }						t_fd;
 
 typedef struct		s_sock
