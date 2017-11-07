@@ -16,6 +16,7 @@ int	main(int ac, char **av)
 {
 	t_env	e;
 
+	e.hostname = "localhost";
 	init_env(&e);
 	get_opt(&e, ac, av);
 	srv_create(&e, e.port);

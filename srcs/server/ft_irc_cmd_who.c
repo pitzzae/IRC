@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_write.c                                     :+:      :+:    :+:   */
+/*   ft_irc_cmd_who.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/06 00:04:12 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/07 18:41:17 by gtorresa         ###   ########.fr       */
+/*   Created: 2017/11/07 19:06:28 by gtorresa          #+#    #+#             */
+/*   Updated: 2017/11/07 19:07:25 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc.h"
 
-void	client_write(t_env *e, int cs)
+int	ft_irc_cmd_who(t_env *e, int cs)
 {
-	int	i;
-	int	type;
+	int			i;
 
-	type = ft_parse_irc_cmd(e, cs);
-	if (type)
+	if (e->fds[cs].buff_len == 3 &&
+		ft_strncmp(e->fds[cs].buffer, "WHO\n", 4) == 0)
 	{
-		i = 0;
-		while (i < e->maxfd)
-		{
-			if ((e->fds[i].type == FD_CLIENT) && (i != cs))
-			{
-				send(i, e->fds[cs].buffer, e->fds[cs].buff_len, 0);
-			}
-			i++;
-		}
+		e->fds[cs].argv = &e->fds[cs].buffer[4];
+		return (1);
 	}
-	free(e->fds[cs].buffer);
-	e->fds[cs].buffer = ft_strnew(0);
-	e->fds[cs].buff_len = 0;
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:00:25 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/07 14:30:08 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/07 19:18:53 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,8 @@ void			srv_accept(t_env *e, int s)
 	e->fds[cs].fct_write = client_write;
 	e->fds[cs].buffer = ft_strnew(0);
 	e->fds[cs].buff_len = 0;
+	ft_bzero(e->fds[cs].username, 10);
+	ft_bzero(&e->fds[cs].user, sizeof(e->fds[cs].user));
+	e->fds[cs].connect = 0;
+	e->fds[cs].argv = NULL;
 }

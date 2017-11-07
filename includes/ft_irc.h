@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/07 14:34:35 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/07 20:28:58 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,18 @@
 # define FD_FREE	0
 # define FD_SERV	1
 # define FD_CLIENT	2
+# define MAX_CMD_SIZE 4096
 
 # define Xv(err,res,str)	(x_void(err,res,str,__FILE__,__LINE__))
 # define X(err,res,str)		(x_int(err,res,str,__FILE__,__LINE__))
 # define MAX(a,b)	((a > b) ? a : b)
 
 # define USAGE		"Usage: %s port\n"
+
+# define NICK_ERR " :Erroneous nickname"
+# define STX_ERR " :Syntax error"
+# define WEL_MSG " :Welcome to the Internet Relay Network"
+# define ALLRD_REGIS " :Connection already registered"
 
 # define INVALID_SOCKET -1
 # define SOCKET_ERROR -1
@@ -45,6 +51,14 @@ typedef struct sockaddr_in SOCKADDR_IN;
 typedef struct sockaddr SOCKADDR;
 typedef struct in_addr IN_ADDR;
 
+typedef struct		s_irc_user
+{
+	char				*user;
+	char				*host;
+	char				*srv_name;
+	char				*real_user;
+}					t_irc_user;
+
 typedef struct		s_fd
 {
 	int					type;
@@ -53,7 +67,11 @@ typedef struct		s_fd
 	char				buf_read[BUF_SIZE + 1];
 	char				buf_write[BUF_SIZE + 1];
 	char				*buffer;
+	char				*argv;
 	int					buff_len;
+	char				username[10];
+	t_irc_user			user;
+	int					connect;
 }						t_fd;
 
 typedef struct		s_sock
@@ -65,6 +83,7 @@ typedef struct		s_sock
 
 typedef struct		s_env
 {
+	char				*hostname;
 	t_fd				*fds;
 	t_sock				sock;
 	int					port;
@@ -90,5 +109,12 @@ void				*x_void(void *err, void *res, char *str, char *file,
 void				init_fd(t_env *e);
 void				do_select(t_env *e);
 void				check_fd(t_env *e);
+int					ft_parse_irc_cmd(t_env *e, int cs);
+int					ft_irc_cmd_user(t_env *e, int cs);
+int					ft_irc_cmd_nick(t_env *e, int cs);
+int					ft_irc_motd(t_env *e, int cs);
+int					ft_irc_error(t_env *e, int cs, int code, char *msg);
+void				ft_irc_print(char *buff, t_env *e, int cs, int code);
+int					ft_irc_cmd_who(t_env *e, int cs);
 
 #endif /* !FT_IRC_H_ */

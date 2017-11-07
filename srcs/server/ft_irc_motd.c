@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_write.c                                     :+:      :+:    :+:   */
+/*   ft_irc_motd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/06 00:04:12 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/07 18:41:17 by gtorresa         ###   ########.fr       */
+/*   Created: 2017/11/07 19:11:18 by gtorresa          #+#    #+#             */
+/*   Updated: 2017/11/07 20:11:02 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc.h"
 
-void	client_write(t_env *e, int cs)
+int	ft_irc_motd(t_env *e, int cs)
 {
-	int	i;
-	int	type;
+	char				buff[1024];
 
-	type = ft_parse_irc_cmd(e, cs);
-	if (type)
-	{
-		i = 0;
-		while (i < e->maxfd)
-		{
-			if ((e->fds[i].type == FD_CLIENT) && (i != cs))
-			{
-				send(i, e->fds[cs].buffer, e->fds[cs].buff_len, 0);
-			}
-			i++;
-		}
-	}
-	free(e->fds[cs].buffer);
-	e->fds[cs].buffer = ft_strnew(0);
-	e->fds[cs].buff_len = 0;
+	e->fds[cs].connect = 1;
+	ft_irc_print(&buff[0], e, cs, 1);
+	ft_strcat(&buff[0], WEL_MSG);
+	ft_strcat(&buff[0], "\n");
+	send(cs, &buff[0], ft_strlen(&buff[0]), 0);
+	return (0);
 }

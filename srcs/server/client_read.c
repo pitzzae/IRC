@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:03:25 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/07 15:14:13 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/07 15:14:38 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	ft_packet_agreg(t_env *e, int cs, int len)
 	e->fds[cs].buff_len = e->fds[cs].buff_len + len;
 	if (ft_strocur(e->fds[cs].buffer, '\n') > 0)
 		FD_COPY(&e->fd_read, &e->fd_write);
-	if (e->fds[cs].buff_len > BUF_SIZE)
+	if (e->fds[cs].buff_len > MAX_CMD_SIZE)
 	{
 		free(e->fds[cs].buffer);
 		e->fds[cs].buffer = ft_strnew(0);
