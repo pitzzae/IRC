@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   clean_fd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtorresa <null>                            +#+  +:+       +#+        */
+/*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:01:39 by gtorresa          #+#    #+#             */
 /*   Updated: 2017/11/06 00:01:41 by gtorresa         ###   ########.fr       */

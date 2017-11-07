@@ -3,28 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_irc.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtorresa <null>                            +#+  +:+       +#+        */
+/*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/06 00:07:50 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/07 14:34:35 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_IRC_H_
 # define FT_IRC_H_
 
-# include <sys/select.h>
+# include <signal.h>
 # include <stdio.h>
-# include <netinet/in.h>
-# include <arpa/inet.h>
 # include <stdlib.h>
+# include <unistd.h>
+# include <string.h>
+# include <arpa/inet.h>
 # include <netdb.h>
 # include <netinet/in.h>
-# include <unistd.h>
+# include <sys/select.h>
 # include <sys/socket.h>
 # include <sys/resource.h>
-# include <string.h>
-# include <sys/select.h>
 # include <errno.h>
 # include "libft.h"
 # define FD_FREE	0
@@ -48,23 +47,33 @@ typedef struct in_addr IN_ADDR;
 
 typedef struct		s_fd
 {
-	int				type;
-	void			(*fct_read)();
-	void			(*fct_write)();
-	char			buf_read[BUF_SIZE + 1];
-	char			buf_write[BUF_SIZE + 1];
-}					t_fd;
+	int					type;
+	void				(*fct_read)();
+	void				(*fct_write)();
+	char				buf_read[BUF_SIZE + 1];
+	char				buf_write[BUF_SIZE + 1];
+	char				*buffer;
+	int					buff_len;
+}						t_fd;
+
+typedef struct		s_sock
+{
+	int					s;
+	struct sockaddr_in	sin;
+	struct protoent		*pe;
+}					t_sock;
 
 typedef struct		s_env
 {
-	t_fd			*fds;
-	int				port;
-	int				maxfd;
-	int				max;
-	int				r;
-	fd_set			fd_read;
-	fd_set			fd_write;
-	struct timeval	timeout;
+	t_fd				*fds;
+	t_sock				sock;
+	int					port;
+	int					maxfd;
+	int					max;
+	int					r;
+	fd_set				fd_read;
+	fd_set				fd_write;
+	struct timeval		timeout;
 }					t_env;
 
 void				init_env(t_env *e);

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   init_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtorresa <null>                            +#+  +:+       +#+        */
+/*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:05:22 by gtorresa          #+#    #+#             */
 /*   Updated: 2017/11/06 00:05:59 by gtorresa         ###   ########.fr       */

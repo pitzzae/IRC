@@ -12,7 +12,7 @@
 
 #ifndef FT_LIBFT_H
 # define FT_LIBFT_H
-# define BUF_SIZE 6400
+# define BUF_SIZE 4096
 # define FD_SIZE 10
 
 # include <unistd.h>

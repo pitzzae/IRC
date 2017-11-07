@@ -6,16 +6,38 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:03:25 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/06 00:03:57 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/07 15:14:13 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc.h"
 
-void	client_read(t_env *e, int cs)
+static void	ft_packet_agreg(t_env *e, int cs, int len)
 {
-	int	r;
-	int	i;
+	char		*tmp;
+
+	tmp = malloc(e->fds[cs].buff_len + len + 1);
+	ft_bzero(tmp, e->fds[cs].buff_len + len + 1);
+	ft_memcpy(tmp, e->fds[cs].buffer, e->fds[cs].buff_len);
+	ft_memcpy(&tmp[e->fds[cs].buff_len], e->fds[cs].buf_read, len);
+	free(e->fds[cs].buffer);
+	e->fds[cs].buffer = tmp;
+	e->fds[cs].buff_len = e->fds[cs].buff_len + len;
+	if (ft_strocur(e->fds[cs].buffer, '\n') > 0)
+		FD_COPY(&e->fd_read, &e->fd_write);
+	if (e->fds[cs].buff_len > BUF_SIZE)
+	{
+		free(e->fds[cs].buffer);
+		e->fds[cs].buffer = ft_strnew(0);
+		e->fds[cs].buff_len = 0;
+	}
+	FD_ZERO(&e->fds[cs].buf_read);
+}
+
+void		client_read(t_env *e, int cs)
+{
+	int			r;
+	int			i;
 
 	r = recv(cs, e->fds[cs].buf_read, BUF_SIZE, 0);
 	if (r <= 0)
@@ -29,8 +51,10 @@ void	client_read(t_env *e, int cs)
 		i = 0;
 		while (i < e->maxfd)
 		{
-			if ((e->fds[i].type == FD_CLIENT) && (i != cs))
-				send(i, e->fds[cs].buf_read, r, 0);
+			if ((e->fds[i].type == FD_CLIENT) && (i == cs))
+			{
+				ft_packet_agreg(e, cs, r);
+			}
 			i++;
 		}
 	}

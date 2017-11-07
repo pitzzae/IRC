@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtorresa <null>                            +#+  +:+       +#+        */
+/*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:57:53 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/06 00:20:02 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/07 13:12:51 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,19 @@ int		main()
 		exit(errno);
 	}
 
-	char buffer[1024];
+	char buffer[4096];
 	ft_strcat(buffer, "coucou c'esxt moi");
 	if(send(sock, buffer, strlen(buffer), 0) < 0)
 	{
 		perror("send()");
 		exit(errno);
 	}
+	if(recv(sock, buffer, strlen(buffer), 0) < 0)
+	{
+		perror("recv()");
+		exit(errno);
+	}
+	printf("%s\n", buffer);
 	closesocket(sock);
 	return (0);
 }
