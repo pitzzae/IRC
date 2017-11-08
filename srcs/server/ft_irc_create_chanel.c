@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 01:08:07 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/08 03:30:42 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/08 04:50:58 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_chanel		*ft_irc_create_chanel(t_env *e, int cs, char *name)
 	i = ft_strfocur(c->name, '\n');
 	c->name[i] = '\0';
 	c->owner = e->fds[cs].user.real_user;
-	c->s = ft_lstnew(NULL, sizeof(int));
+	c->s = ft_lstnew(NULL, 0);
 	c->s->valid = cs;
 	return (c);
 }

@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:04:44 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/08 02:45:08 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/08 04:47:11 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,18 @@
 static void	ft_irc_join_chanel(t_chanel *c, int cs)
 {
 	t_list		*l;
+	t_list		*tmp;
 
 	l = c->s;
 	while (l)
 	{
-		if ((int)l->content == cs)
+		if (l->valid == cs)
 			return ;
 		l = l->next;
 	}
-	ft_lstaddend(&c->s, ft_lstnew(&cs, sizeof(int)));
+	tmp = ft_lstnew(NULL, 0);
+	tmp->valid = cs;
+	ft_lstaddend(&c->s, tmp);
 }
 
 static void	ft_irc_join(t_env *e, int cs, char *name)
@@ -43,6 +46,7 @@ static void	ft_irc_join(t_env *e, int cs, char *name)
 	if (e->fds[cs].chanel)
 		free(e->fds[cs].chanel);
 	e->fds[cs].chanel = ft_strdup(c->name);
+	ft_irc_debug_show_chanel(e->chanel);
 }
 
 int	ft_irc_cmd_join(t_env *e, int cs)

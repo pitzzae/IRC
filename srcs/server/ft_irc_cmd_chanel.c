@@ -6,7 +6,7 @@
 /*   By: gtorresa <null>                            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 03:08:33 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/08 03:48:22 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/08 05:01:51 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,19 @@ static void	ft_irc_debug_put_chanel(t_chanel *c)
 	ft_putstr("' owner: '");
 	ft_putstr(c->owner);
 	ft_putstr("' fds:[");
-	while (l->next)
+	while (l)
 	{
-		tmp = ft_itoa(l->valid);
+		tmp = ft_itoa((long)l->valid);
 		ft_putstr(tmp);
 		free(tmp);
 		l = l->next;
-		if (l->next)
+		if (l)
 			ft_putstr(", ");
 	}
 	ft_putendl("]");
 }
 
-static void	ft_irc_debug_show_chanel(t_list *lst)
+void	ft_irc_debug_show_chanel(t_list *lst)
 {
 	t_chanel	*c;
 	t_list		*l;

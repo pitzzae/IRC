@@ -23,5 +23,6 @@ void	ft_lstaddend(t_list **alst, t_list *newlst)
 			tmp = tmp->next;
 		tmp->next = ft_lstnew(newlst->content, newlst->content_size);
 		tmp->next->select = newlst->select;
+		tmp->next->valid = newlst->valid;
 	}
 }
