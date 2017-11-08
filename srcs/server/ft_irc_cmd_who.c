@@ -16,6 +16,8 @@ static char	*ft_irc_who_chan(t_env *e, int cs)
 {
 	char		*tmp = "*";
 
+	(void)e;
+	(void)cs;
 	return (tmp);
 }
 

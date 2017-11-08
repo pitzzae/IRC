@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 23:10:12 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/08 02:08:08 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/08 18:45:45 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static char	*ft_format_bsr(int b)
 			ft_strcat(tmp, "0");
 		if (b < 10)
 			ft_strcat(tmp, "0");
+
 		tmp = ft_strjoin_free(tmp, ft_itoa(b), 3);
 		tmp = ft_strjoin_free(tmp, " kb", 1);
 	}
@@ -56,15 +57,17 @@ static void	ft_irc_cmd_quit_stats(t_env *e, int cs, char *buff)
 
 static void	ft_irc_quit_clean_chanel(t_env *e, int cs)
 {
+	ft_irc_cmd_leave(e, cs);
 	free(e->fds[cs].chanel);
+	e->fds[cs].chanel = NULL;
 }
 
-int			ft_irc_cmd_quit(t_env *e, int cs)
+int			ft_irc_cmd_quit(t_env *e, int cs, int force)
 {
 	char		buff[1024];
 
-	if (e->fds[cs].buff_len == 5 &&
-		ft_strncmp(e->fds[cs].buffer, "QUIT", 4) == 0)
+	if (force == 1 || (e->fds[cs].buff_len == 5 &&
+		ft_strncmp(e->fds[cs].buffer, "QUIT", 4) == 0))
 	{
 		if (e->fds[cs].connect == 1)
 			ft_irc_cmd_quit_stats(e, cs, &buff[0]);
@@ -78,7 +81,8 @@ int			ft_irc_cmd_quit(t_env *e, int cs)
 		free(e->fds[cs].user.srv_name);
 		if (e->fds[cs].chanel)
 			ft_irc_quit_clean_chanel(e, cs);
-		close(cs);
+		close(cs
+		);
 		clean_fd(&e->fds[cs]);
 		printf("client #%d quit\n", cs);
 		return (1);

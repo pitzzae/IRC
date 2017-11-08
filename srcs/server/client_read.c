@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:03:25 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/07 15:14:38 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/08 18:25:16 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ void		client_read(t_env *e, int cs)
 	r = recv(cs, e->fds[cs].buf_read, BUF_SIZE, 0);
 	if (r <= 0)
 	{
-		close(cs);
-		clean_fd(&e->fds[cs]);
-		printf("client #%d gone away\n", cs);
+		ft_irc_cmd_quit(e, cs, 1);
 	}
 	else
 	{

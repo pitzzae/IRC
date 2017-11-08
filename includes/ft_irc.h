@@ -133,7 +133,7 @@ int					ft_irc_motd(t_env *e, int cs);
 int					ft_irc_error(t_env *e, int cs, int code, char *msg);
 void				ft_irc_print(char *buff, t_env *e, int cs, int code);
 int					ft_irc_cmd_who(t_env *e, int cs);
-int					ft_irc_cmd_quit(t_env *e, int cs);
+int					ft_irc_cmd_quit(t_env *e, int cs, int force);
 int					ft_irc_cmd_join(t_env *e, int cs);
 int					ft_irc_cmd_leave(t_env *e, int cs);
 t_chanel			*ft_irc_get_chanel(t_list *lst, char *name);

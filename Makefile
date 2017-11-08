@@ -14,7 +14,7 @@ SERVER			= server
 CLIENT			= client
 CC				= gcc
 
-CFLAGS			= -g3 -Wall -Werror
+CFLAGS			= -g3 -Wall -Werror -fsanitize=address -fsanitize=undefined
 
 LIBFT_DIR		= ./libft
 LIBFT_NAME		= $(LIBFT_DIR)/libft.a
@@ -44,7 +44,7 @@ CLIENT_OBJECTS	= $(patsubst %.c, $(OBJS_DIR_CLI)/%.o, $(CLIENT_SRCS))
 
 .PHONY: all
 
-all: ${SERVER} ${CLIENT}
+all: ${SERVER}
 	@echo "\nAll Done"
 
 $(SERVER): makelib $(SERVER_OBJECTS)
