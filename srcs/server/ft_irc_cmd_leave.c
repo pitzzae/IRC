@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:16:36 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/08 18:09:36 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/08 19:58:39 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ int				ft_irc_cmd_leave(t_env *e, int cs)
 		ft_irc_cmd_leave_find_chan(&c, e, cs);
 		l = l->next;
 	}
+	e->chanel = ft_irc_clear_empty_chanel(e->chanel);
 	return (0);
 }
