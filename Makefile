@@ -6,7 +6,7 @@
 #    By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/05 22:20:23 by gtorresa          #+#    #+#              #
-#*   Updated: 2017/11/07 23:39:26 by gtorresa         ###   ########.fr       *#
+#*   Updated: 2017/11/08 04:06:53 by gtorresa         ###   ########.fr       *#
 #                                                                              #
 #******************************************************************************#
 
@@ -33,7 +33,8 @@ SERVER_SRCS		= main.c init_env.c clean_fd.c get_opt.c x.c main_loop.c \
 				ft_irc_cmd_user.c ft_irc_cmd_who.c ft_irc_error.c \
 				ft_irc_print.c ft_irc_motd.c ft_parse_irc_cmd.c \
 				ft_irc_cmd_quit.c ft_send.c ft_irc_cmd_join.c \
-				ft_irc_cmd_leave.c ft_irc_create_chanel.c ft_irc_get_chanel.c
+				ft_irc_cmd_leave.c ft_irc_create_chanel.c ft_irc_get_chanel.c \
+				ft_irc_cmd_chanel.c
 
 CLIENT_SRCS		= main.c
 

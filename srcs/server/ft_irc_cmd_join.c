@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:04:44 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/08 02:43:42 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/08 02:45:08 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ int	ft_irc_cmd_join(t_env *e, int cs)
 			if (ft_strcmp(cmd , "0\n") == 0)
 				ft_irc_cmd_leave(e, cs, cmd);
 			else if (cmd[0] == '#')
+			{
 				ft_irc_join(e, cs, cmd);
+				return (1);
+			}
 			else
 				ft_irc_error(e, cs, 403, NOT_CHAN);
 		}

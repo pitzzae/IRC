@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 15:44:59 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/08 02:41:01 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/08 04:06:40 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,22 @@ static void	ft_split_buff_multi_cmd(t_env *e, int cs)
 	e->fds[cs].buffer = buff_tmp;
 }
 
+static void	ft_replace_return_char(unsigned int i, char *s)
+{
+	if (s[i] == '\r')
+	{
+		if (s[i + 1] == '\n')
+			s[i + 1] = '\0';
+		s[i] = '\n';
+	}
+}
+
 int			ft_parse_irc_cmd(t_env *e, int cs)
 {
+	t_fd		*f;
+
+	f = &e->fds[cs];
+	ft_striteri(e->fds[cs].buffer, ft_replace_return_char);
 	if (ft_strocur(e->fds[cs].buffer, '\n') > 1)
 	{
 		ft_split_buff_multi_cmd(e, cs);
@@ -49,6 +63,8 @@ int			ft_parse_irc_cmd(t_env *e, int cs)
 	else if (ft_irc_cmd_quit(e, cs))
 		return (0);
 	else if (ft_irc_cmd_join(e, cs))
+		return (0);
+	else if (ft_irc_cmd_chanel(e, cs))
 		return (0);
 	return (1);
 }
