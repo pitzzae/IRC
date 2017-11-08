@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 23:10:12 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/08 18:45:45 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/08 18:46:56 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	ft_irc_cmd_quit_stats(t_env *e, int cs, char *buff)
 
 static void	ft_irc_quit_clean_chanel(t_env *e, int cs)
 {
-	ft_irc_cmd_leave(e, cs);
+	ft_irc_cmd_leave(e, cs, e->fds[cs].chanel);
 	free(e->fds[cs].chanel);
 	e->fds[cs].chanel = NULL;
 }
