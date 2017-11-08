@@ -6,24 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 19:54:18 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/08 20:28:39 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/08 20:30:52 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc.h"
-
-static void		u_del_chanel(void *ptr, size_t size)
-{
-	t_chanel	*c;
-
-	c = ptr;
-	if (c->s)
-	{
-		ft_lstdel(&c->s, u_del);
-	}
-	free(ptr);
-	(void)size;
-}
 
 static t_list	*ft_irc_clean_empty_chanel(t_list *lst)
 {
@@ -44,7 +31,7 @@ static t_list	*ft_irc_clean_empty_chanel(t_list *lst)
 		}
 		l = l->next;
 	}
-	ft_lstdel(&lst, u_del_chanel);
+	ft_lstdel(&lst, u_del);
 	return (tmp);
 }
 
