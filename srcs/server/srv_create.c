@@ -29,4 +29,5 @@ void			srv_create(t_env *e, int port)
 	e->fds[e->sock.s].type = FD_SERV;
 	e->fds[e->sock.s].fct_read = srv_accept;
 	e->fds[e->sock.s].fct_write = NULL;
+	e->chanel = NULL;
 }

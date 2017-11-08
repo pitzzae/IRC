@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/07 23:36:35 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/08 01:24:57 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 # define STX_ERR " :Syntax error"
 # define WEL_MSG " :Welcome to the Internet Relay Network"
 # define ALLRD_REGIS " :Connection already registered"
+# define NOT_REGIS " :Connection not registered"
+# define NOT_CHAN " :No such channel"
 # define ERROR_CONN "ERROR :Closing connection\n"
 
 # define INVALID_SOCKET -1
@@ -77,6 +79,7 @@ typedef struct		s_fd
 	char				*ipv4;
 	int					b_send;
 	int					b_recive;
+	char				*chanel;
 }						t_fd;
 
 typedef struct		s_sock
@@ -85,6 +88,13 @@ typedef struct		s_sock
 	struct sockaddr_in	sin;
 	struct protoent		*pe;
 }					t_sock;
+
+typedef struct		s_chanel
+{
+	char			*name;
+	char			*owner;
+	t_list			*s;
+}					t_chanel;
 
 typedef struct		s_env
 {
@@ -97,6 +107,7 @@ typedef struct		s_env
 	int					r;
 	fd_set				fd_read;
 	fd_set				fd_write;
+	t_list				*chanel;
 	struct timeval		timeout;
 }					t_env;
 
@@ -123,5 +134,9 @@ int					ft_irc_error(t_env *e, int cs, int code, char *msg);
 void				ft_irc_print(char *buff, t_env *e, int cs, int code);
 int					ft_irc_cmd_who(t_env *e, int cs);
 int					ft_irc_cmd_quit(t_env *e, int cs);
+int					ft_irc_cmd_join(t_env *e, int cs);
+int					ft_irc_cmd_leave(t_env *e, int cs, char *name);
+t_chanel			*ft_irc_get_chanel(t_list *lst, char *name);
+t_chanel			*ft_irc_create_chanel(t_env *e, int cs, char *name);
 
 #endif /* !FT_IRC_H_ */

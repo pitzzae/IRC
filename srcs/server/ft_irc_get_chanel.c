@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_fd.c                                          :+:      :+:    :+:   */
+/*   ft_irc_get_chanel.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/06 00:05:22 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/06 00:05:59 by gtorresa         ###   ########.fr       */
+/*   Created: 2017/11/08 00:56:51 by gtorresa          #+#    #+#             */
+/*   Updated: 2017/11/08 01:03:26 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc.h"
 
-void	init_fd(t_env *e)
+t_chanel		*ft_irc_get_chanel(t_list *lst, char *name)
 {
-	int	i;
+	t_chanel		*c;
+	t_list			*l;
 
-	i = 0;
-	e->max = 0;
-	FD_ZERO(&e->fd_read);
-	FD_ZERO(&e->fd_write);
-	while (i < e->maxfd)
+	l = lst;
+	c = NULL;
+	while (l)
 	{
-		if (e->fds[i].type != FD_FREE)
-		{
-			FD_SET(i, &e->fd_read);
-			if (ft_strlen(e->fds[i].buf_write) > 0)
-			{
-				FD_SET(i, &e->fd_write);
-			}
-			e->max = MAX(e->max, i);
-		}
-		i++;
+		c = l->content;
+		if (ft_strcmp(c->name, name) == 0)
+			break ;
+		l = l->next;
+		c = NULL;
 	}
+	return (c);
 }

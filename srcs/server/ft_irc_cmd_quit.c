@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 23:10:12 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/07 23:53:15 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/08 02:08:08 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ static void	ft_irc_cmd_quit_stats(t_env *e, int cs, char *buff)
 	ft_strcat(buff, ".\n");
 }
 
+static void	ft_irc_quit_clean_chanel(t_env *e, int cs)
+{
+	free(e->fds[cs].chanel);
+}
+
 int			ft_irc_cmd_quit(t_env *e, int cs)
 {
 	char		buff[1024];
@@ -71,6 +76,8 @@ int			ft_irc_cmd_quit(t_env *e, int cs)
 		free(e->fds[cs].user.host);
 		free(e->fds[cs].user.real_user);
 		free(e->fds[cs].user.srv_name);
+		if (e->fds[cs].chanel)
+			ft_irc_quit_clean_chanel(e, cs);
 		close(cs);
 		clean_fd(&e->fds[cs]);
 		printf("client #%d quit\n", cs);
