@@ -35,6 +35,7 @@ t_list		*ft_lstnew(void const *c, size_t cz)
 			list->valid = 0;
 		}
 		list->next = NULL;
+		list->prev = NULL;
 		return (list);
 	}
 	return (NULL);

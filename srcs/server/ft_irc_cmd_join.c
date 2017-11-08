@@ -6,18 +6,24 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:04:44 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/08 04:47:11 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/08 17:15:25 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc.h"
 
-static void	ft_irc_join_chanel(t_chanel *c, int cs)
+static void	ft_irc_join_chanel(t_chanel **c, int cs)
 {
 	t_list		*l;
 	t_list		*tmp;
 
-	l = c->s;
+	l = (*c)->s;
+	if (!l)
+	{
+		(*c)->s = ft_lstnew(NULL, 0);
+		(*c)->s->valid = cs;
+		return ;
+	}
 	while (l)
 	{
 		if (l->valid == cs)
@@ -26,7 +32,7 @@ static void	ft_irc_join_chanel(t_chanel *c, int cs)
 	}
 	tmp = ft_lstnew(NULL, 0);
 	tmp->valid = cs;
-	ft_lstaddend(&c->s, tmp);
+	ft_lstaddend_free(&(*c)->s, tmp, u_del);
 }
 
 static void	ft_irc_join(t_env *e, int cs, char *name)
@@ -42,7 +48,7 @@ static void	ft_irc_join(t_env *e, int cs, char *name)
 		else
 			ft_lstaddend(&e->chanel, ft_lstnew(c, sizeof(t_chanel)));
 	}
-	ft_irc_join_chanel(c, cs);
+	ft_irc_join_chanel(&c, cs);
 	if (e->fds[cs].chanel)
 		free(e->fds[cs].chanel);
 	e->fds[cs].chanel = ft_strdup(c->name);
@@ -62,7 +68,7 @@ int	ft_irc_cmd_join(t_env *e, int cs)
 		{
 			cmd = &e->fds[cs].buffer[5];
 			if (ft_strcmp(cmd , "0\n") == 0)
-				ft_irc_cmd_leave(e, cs, cmd);
+				ft_irc_cmd_leave(e, cs);
 			else if (cmd[0] == '#')
 			{
 				ft_irc_join(e, cs, cmd);

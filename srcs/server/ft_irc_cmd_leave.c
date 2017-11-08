@@ -6,44 +6,58 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:16:36 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/08 02:49:10 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/08 18:09:36 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc.h"
 
-static void	ft_free_chan_fd(void *ptr, size_t len)
-{
-	free(ptr);
-	(void)len;
-}
-
-
-static void	ft_irc_leave_chan(t_chanel *c, int cs)
+static t_list	*ft_irc_remove_fd_chanle(t_list **c, int cs)
 {
 	t_list		*l;
-	t_list		*prev;
-	t_list		*next;
+	t_list		*new;
+	t_list		*tmp;
 
-	l = c->s;
-	prev = NULL;
+	l = (*c);
+	new = NULL;
 	while (l)
 	{
-		next = l->next;
-		if ((int)l->content == cs)
+		if (l->valid != cs)
 		{
-			ft_lstdelone(&l, ft_free_chan_fd);
-			if (prev == NULL)
-				c->s = next;
+			tmp = ft_lstnew(NULL, 0);
+			tmp->valid = l->valid;
+			ft_lstdelone(&l, u_del);
+			if (new)
+				ft_lstaddend_free(&new, tmp, u_del);
 			else
-				prev->next = next;
+				new = tmp;
 		}
-		prev = l;
-		l = l->next;
+		if (l)
+			l = l->next;
+	}
+	return (new);
+}
+
+static void		ft_irc_cmd_leave_find_chan(t_chanel **c, t_env *e, int cs)
+{
+	int			fd_chan;
+	t_list		*l;
+
+	l = (*c)->s;
+	while (l)
+	{
+		fd_chan = l->valid;
+		if (fd_chan == cs && ft_strcmp(e->fds[cs].chanel, (*c)->name) == 0)
+		{
+			(*c)->s = ft_irc_remove_fd_chanle(&(*c)->s, cs);
+			return ;
+		}
+		if (l)
+			l = l->next;
 	}
 }
 
-int		ft_irc_cmd_leave(t_env *e, int cs, char *name)
+int				ft_irc_cmd_leave(t_env *e, int cs)
 {
 	t_chanel	*c;
 	t_list		*l;
@@ -52,10 +66,7 @@ int		ft_irc_cmd_leave(t_env *e, int cs, char *name)
 	while (l)
 	{
 		c = l->content;
-		if (ft_strcmp(c->name, name) == 0)
-		{
-			ft_irc_leave_chan(c, cs);
-		}
+		ft_irc_cmd_leave_find_chan(&c, e, cs);
 		l = l->next;
 	}
 	return (0);

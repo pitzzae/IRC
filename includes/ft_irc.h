@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/08 03:10:32 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/08 04:45:15 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void				ft_irc_print(char *buff, t_env *e, int cs, int code);
 int					ft_irc_cmd_who(t_env *e, int cs);
 int					ft_irc_cmd_quit(t_env *e, int cs);
 int					ft_irc_cmd_join(t_env *e, int cs);
-int					ft_irc_cmd_leave(t_env *e, int cs, char *name);
+int					ft_irc_cmd_leave(t_env *e, int cs);
 t_chanel			*ft_irc_get_chanel(t_list *lst, char *name);
 t_chanel			*ft_irc_create_chanel(t_env *e, int cs, char *name);
 int					ft_irc_cmd_chanel(t_env *e, int cs);

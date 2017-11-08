@@ -26,6 +26,7 @@ typedef struct		s_list
 	char			select;
 	int				valid;
 	struct s_list	*next;
+	struct s_list	*prev;
 }					t_list;
 
 typedef struct		s_lstenv

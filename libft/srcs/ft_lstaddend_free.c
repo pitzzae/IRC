@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/29 15:36:03 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/10/23 19:03:23 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/08 17:27:03 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	ft_lstaddend_free(t_list **alst, t_list *newlst,
 			tmp = tmp->next;
 		tmp->next = ft_lstnew(newlst->content, newlst->content_size);
 		tmp->next->select = newlst->select;
+		tmp->next->valid = newlst->valid;
+		tmp->next->prev = tmp;
 		ft_lstdelone(&newlst, del);
 	}
 }
