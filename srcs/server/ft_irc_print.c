@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 20:03:35 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 18:10:44 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 21:23:21 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,17 @@ void		ft_irc_print_header(char *buff, t_env *e, char *code)
 	ft_strcat(buff, e->hostname);
 	ft_strcat(buff, " ");
 	ft_strcat(buff, code);
+	ft_strcat(buff, " ");
+}
+
+void 		ft_irc_print_header_msg(char *buff, t_env *e, int cs)
+{
+	ft_strcat(buff, ":");
+	ft_strcat(buff, e->fds[cs].username);
+	ft_strcat(buff, "~!");
+	ft_strcat(buff, e->fds[cs].user.user);
+	ft_strcat(buff, "@");
+	ft_strcat(buff, e->fds[cs].ipv4);
 	ft_strcat(buff, " ");
 }
 

@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 19:28:20 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 20:58:24 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 # define WEL_MSG		" :Welcome to the Internet Relay Network"
 # define ALLRD_REGIS	" :Connection already registered"
 # define NOT_REGIS		" :Connection not registered"
+# define NO_RECIP		" :No recipient given (PRIVMSG)"
+# define NO_TEXT_FOUND	" :No text to send"
 # define NOT_CHAN		" :No such channel"
 # define END_NAME_LIST	" :End of NAMES list\n"
 # define ERROR_CONN		"ERROR :Closing connection\n"
@@ -53,6 +55,12 @@ typedef int SOCKET;
 typedef struct sockaddr_in SOCKADDR_IN;
 typedef struct sockaddr SOCKADDR;
 typedef struct in_addr IN_ADDR;
+
+typedef struct		s_privmsg
+{
+	char				*dest;
+	char				*msg;
+}					t_privmsg;
 
 typedef struct		s_irc_user
 {
@@ -134,6 +142,7 @@ int					ft_irc_motd(t_env *e, int cs);
 int					ft_irc_error(t_env *e, int cs, char *code, char *msg);
 void				ft_irc_print(char *buff, t_env *e, int cs, char *code);
 void				ft_irc_print_header(char *buff, t_env *e, char *code);
+void 				ft_irc_print_header_msg(char *buff, t_env *e, int cs);
 int					ft_irc_cmd_who(t_env *e, int cs);
 int					ft_irc_cmd_quit(t_env *e, int cs, int force);
 int					ft_irc_cmd_join(t_env *e, int cs);
@@ -141,6 +150,9 @@ void				ft_irc_cmd_join_print(t_env *e, int cs, char *name);
 int					ft_irc_cmd_leave(t_env *e, int cs);
 void				ft_irc_cmd_leave_print(t_env *e, int cs, char *name);
 void				ft_irc_leave(t_env *e, int cs, char *chan);
+int					ft_irc_cmd_msgpriv(t_env *e, int cs, t_privmsg *msg);
+int					ft_irc_cmd_msgchanel(t_env *e, int cs, t_privmsg *msg);
+t_privmsg			*ft_irc_parse_privmsg(t_env *e, int cs);
 t_chanel			*ft_irc_get_chanel(t_list *lst, char *name);
 t_chanel			*ft_irc_create_chanel(t_env *e, int cs, char *name);
 int					ft_irc_cmd_chanel(t_env *e, int cs);

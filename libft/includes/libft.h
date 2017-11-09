@@ -73,6 +73,7 @@ size_t				ft_stradd_slash(char **str, char c);
 size_t				ft_strocur(char *str, char c);
 int					ft_strfocur(char *str, char c);
 int					ft_strlocur(char *str, char c);
+int					ft_strnocur(char *str, char c, int ocur);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t length);
 char				*ft_strcpy(char *s1, const char *s2);

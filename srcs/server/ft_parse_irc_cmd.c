@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 15:44:59 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 12:11:06 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 21:03:32 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,26 @@ static void	ft_replace_return_char(unsigned int i, char *s)
 	}
 }
 
+static int	ft_irc_cmd_msg(t_env *e, int cs)
+{
+	t_privmsg	*msg;
+
+	if ((e->fds[cs].buff_len >= 7 &&
+		ft_strncmp(e->fds[cs].buffer, "PRIVMSG", 7) == 0))
+	{
+		msg = ft_irc_parse_privmsg(e, cs);
+		if (msg)
+		{
+			if (msg->dest[0] == '#')
+				ft_irc_cmd_msgchanel(e, cs, msg);
+			else
+				ft_irc_cmd_msgpriv(e, cs, msg);
+			return (1);
+		}
+	}
+	return (0);
+}
+
 int			ft_parse_irc_cmd(t_env *e, int cs)
 {
 	ft_striteri(e->fds[cs].buffer, ft_replace_return_char);
@@ -52,7 +72,9 @@ int			ft_parse_irc_cmd(t_env *e, int cs)
 		ft_split_buff_multi_cmd(e, cs);
 		return (0);
 	}
-	if (ft_irc_cmd_nick(e, cs))
+	if (ft_irc_cmd_msg(e, cs))
+		return (0);
+	else if (ft_irc_cmd_nick(e, cs))
 		return (0);
 	else if (ft_irc_cmd_user(e, cs))
 		return (0);

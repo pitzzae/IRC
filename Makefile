@@ -36,7 +36,9 @@ SERVER_SRCS		= main.c init_env.c clean_fd.c get_opt.c x.c main_loop.c \
 				ft_irc_cmd_leave.c ft_irc_create_chanel.c ft_irc_get_chanel.c \
 				ft_irc_cmd_chanel.c ft_irc_clear_empty_chanel.c \
 				ft_irc_chan_user.c ft_irc_leave_all_chan.c \
-				ft_irc_cmd_join_print.c ft_irc_cmd_leave_print.c
+				ft_irc_cmd_join_print.c ft_irc_cmd_leave_print.c \
+				ft_irc_cmd_msgchanel.c ft_irc_cmd_msgpriv.c \
+				ft_irc_parse_privmsg.c
 
 CLIENT_SRCS		= main.c
 
