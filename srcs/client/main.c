@@ -6,11 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:57:53 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/07 13:12:51 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 23:13:43 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc.h"
+#include "ft_irc_client.h"
 
 int		main()
 {
@@ -42,7 +42,12 @@ int		main()
 	}
 
 	char buffer[4096];
-	ft_strcat(buffer, "coucou c'esxt moi");
+	ft_strcat(buffer, "NICK kkk\n"
+			"USER yyy 1 1 iii\n"
+			"WHO\n"
+			"JOIN #test\n"
+			"PRIVMSG #test coucou\n"
+			"QUIT\n");
 	if(send(sock, buffer, strlen(buffer), 0) < 0)
 	{
 		perror("send()");
@@ -54,6 +59,6 @@ int		main()
 		exit(errno);
 	}
 	printf("%s\n", buffer);
-	closesocket(sock);
+	close(sock);
 	return (0);
 }

@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/06 00:04:12 by gtorresa          #+#     #+#             *//*   Updated: 2017/11/07 22:16:17 by gtorresa         ###   ########.fr       */
+/*   Created: 2017/11/06 00:04:12 by gtorresa          #+#     #+#             *//*   Updated: 2017/11/09 22:28:06 by gtorresa         ###   ########.fr       */
 
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc.h"
+#include "ft_irc_server.h"
 
 void	client_write(t_env *e, int cs)
 {

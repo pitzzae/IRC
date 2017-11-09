@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc.h"
+#include "ft_irc_server.h"
 
 static void		ft_irc_cmd_user_set(t_env *e, int cs)
 {

@@ -6,11 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:02:40 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/06 23:57:48 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 23:11:31 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc.h"
+#include "ft_irc_server.h"
 
 void sig_handler(int signo, void *ptr)
 {
@@ -25,10 +25,10 @@ void sig_handler(int signo, void *ptr)
 		i = 0;
 		while (i < saved->maxfd)
 		{
-			closesocket(i);
+			close(i);
 			i++;
 		}
-		closesocket(saved->sock.s);
+		close(saved->sock.s);
 		exit(0);
 	}
 }

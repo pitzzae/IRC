@@ -6,11 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 15:44:59 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 22:56:33 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 23:00:14 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_irc.h"
+# include "ft_irc_server.h"
 
 static void	ft_split_buff_multi_cmd(t_env *e, int cs)
 {

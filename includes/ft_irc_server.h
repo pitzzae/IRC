@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_irc.h                                           :+:      :+:    :+:   */
+/*   ft_irc_server.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 22:22:39 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 22:28:57 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_IRC_H_
-# define FT_IRC_H_
+#ifndef FT_IRC_SERVER_H_
+# define FT_IRC_SERVER_H_
 
 # include <signal.h>
 # include <stdio.h>
@@ -49,15 +49,6 @@
 # define UNK_COMMAND	" :Unknown command"
 # define END_NAME_LIST	" :End of NAMES list\n"
 # define ERROR_CONN		"ERROR :Closing connection\n"
-
-# define INVALID_SOCKET	-1
-# define SOCKET_ERROR	-1
-# define closesocket(s) close(s)
-
-typedef int SOCKET;
-typedef struct sockaddr_in SOCKADDR_IN;
-typedef struct sockaddr SOCKADDR;
-typedef struct in_addr IN_ADDR;
 
 typedef struct		s_privmsg
 {
@@ -167,4 +158,4 @@ int					ft_irc_cmd_file(t_env *e, int cs);
 
 void	ft_irc_debug_show_chanel(t_list *lst);
 
-#endif /* !FT_IRC_H_ */
+#endif /* !FT_IRC_SERVER_H_ */

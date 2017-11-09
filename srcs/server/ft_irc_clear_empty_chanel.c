@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc.h"
+#include "ft_irc_server.h"
 
 static t_list	*ft_irc_clean_empty_chanel(t_list *lst)
 {

@@ -6,11 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 23:31:07 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/07 23:36:35 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 19:50:20 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc.h"
+#include "ft_irc_server.h"
 
 size_t			ft_send(int cs, void *buff, size_t len, t_env *e)
 {

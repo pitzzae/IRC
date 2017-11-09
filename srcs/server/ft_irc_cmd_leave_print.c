@@ -6,11 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 19:33:47 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 19:40:17 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 19:46:08 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc.h"
+#include "ft_irc_server.h"
 
 static void	ft_irc_cmd_leave_broadcast(t_env *e, char *buff, char *cname)
 {

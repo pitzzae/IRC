@@ -6,11 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 20:03:35 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 21:23:52 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 21:59:23 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc.h"
+#include "ft_irc_server.h"
 
 void		ft_irc_print_header(char *buff, t_env *e, char *code)
 {

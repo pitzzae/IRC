@@ -6,11 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:04:44 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 18:03:39 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 23:11:31 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc.h"
+#include "ft_irc_server.h"
 
 static void	ft_irc_join_chanel(t_chanel **c, int cs)
 {
@@ -54,7 +54,6 @@ static void	ft_irc_join(t_env *e, int cs, char *name)
 		free(e->fds[cs].chanel);
 	e->fds[cs].chanel = ft_strdup(c->name);
 	e->fds[cs].chan_user = ft_irc_chan_user_add(e->fds[cs].chan_user, c->name);
-	ft_irc_debug_show_chanel(e->chanel);
 	ft_irc_cmd_join_print(e, cs, name);
 }
 

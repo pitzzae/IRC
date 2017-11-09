@@ -6,11 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 20:06:23 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 22:04:58 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 22:09:19 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc.h"
+#include "ft_irc_server.h"
 
 static void	ft_irc_cmd_msgpriv_fd(t_env *e, int cs, t_privmsg *msg)
 {

@@ -6,11 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:04:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/06 00:05:16 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 18:57:38 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc.h"
+#include "ft_irc_server.h"
 
 void	get_opt(t_env *e, int ac, char **av)
 {

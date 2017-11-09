@@ -6,11 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 03:08:33 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 18:54:08 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 18:54:49 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc.h"
+#include "ft_irc_server.h"
 
 static void	ft_irc_debug_put_chanel(t_chanel *c)
 {

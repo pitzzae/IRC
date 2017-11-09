@@ -6,11 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:03:11 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 18:58:43 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 18:59:41 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc.h"
+#include "ft_irc_server.h"
 
 void			srv_create(t_env *e, int port)
 {

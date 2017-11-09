@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 include_directories(includes)
 include_directories(libft/includes)
-set(HEADER_FILES libft/includes/libft.h includes/ft_irc.h)
+set(HEADER_FILES libft/includes/libft.h includes/ft_irc_server.h)
 
 set(SOURCE_LIBFT libft/srcs/ft_atoi.c libft/srcs/ft_bzero.c
         libft/srcs/ft_isalnum.c libft/srcs/ft_isalpha.c
@@ -52,7 +52,7 @@ set(SOURCE_LIBFT libft/srcs/ft_atoi.c libft/srcs/ft_bzero.c
 add_library(ft ${SOURCE_LIBFT} ${HEADER_FILES})
 
 set(SOURCE_SERVER
-        includes/ft_irc.h
+        includes/ft_irc_server.h
         srcs/server/check_fd.c
         srcs/server/clean_fd.c
         srcs/server/client_read.c

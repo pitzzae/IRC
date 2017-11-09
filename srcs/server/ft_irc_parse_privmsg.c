@@ -6,11 +6,11 @@
 /*   By: gtorresa <null>                            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 20:17:36 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 21:00:29 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 21:06:15 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc.h"
+#include "ft_irc_server.h"
 
 t_privmsg			*ft_irc_parse_privmsg(t_env *e, int cs)
 {

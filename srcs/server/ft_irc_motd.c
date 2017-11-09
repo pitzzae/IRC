@@ -6,11 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 19:11:18 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 17:23:02 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 18:56:48 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc.h"
+#include "ft_irc_server.h"
 
 int	ft_irc_motd(t_env *e, int cs)
 {

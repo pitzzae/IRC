@@ -6,11 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:56:51 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/08 04:27:28 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 18:56:39 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc.h"
+#include "ft_irc_server.h"
 
 t_chanel		*ft_irc_get_chanel(t_list *lst, char *name)
 {

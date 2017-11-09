@@ -6,11 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 12:43:48 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 15:01:56 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 18:56:43 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc.h"
+#include "ft_irc_server.h"
 
 int			ft_irc_leave_all_chan(t_env *e, int cs)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc.h"
+#include "ft_irc_server.h"
 
 static char	*ft_irc_cmd_join_user_chanel_print(char *owner, char *s1, char *s2)
 {

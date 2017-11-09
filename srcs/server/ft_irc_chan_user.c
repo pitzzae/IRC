@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc.h"
+#include "ft_irc_server.h"
 
 t_list			*ft_irc_chan_user_del(t_list *l, char *cname)
 {
