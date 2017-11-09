@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 18:11:31 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 19:28:20 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,27 @@
 # include <sys/resource.h>
 # include <errno.h>
 # include "libft.h"
-# define FD_FREE	0
-# define FD_SERV	1
-# define FD_CLIENT	2
-# define MAX_CMD_SIZE 4096
+# define FD_FREE		0
+# define FD_SERV		1
+# define FD_CLIENT		2
+# define MAX_CMD_SIZE	4096
 
 # define Xv(err,res,str)	(x_void(err,res,str,__FILE__,__LINE__))
 # define X(err,res,str)		(x_int(err,res,str,__FILE__,__LINE__))
 # define MAX(a,b)	((a > b) ? a : b)
 
-# define USAGE		"Usage: %s port\n"
+# define USAGE			"Usage: %s port\n"
+# define NICK_ERR		" :Erroneous nickname"
+# define STX_ERR		" :Syntax error"
+# define WEL_MSG		" :Welcome to the Internet Relay Network"
+# define ALLRD_REGIS	" :Connection already registered"
+# define NOT_REGIS		" :Connection not registered"
+# define NOT_CHAN		" :No such channel"
+# define END_NAME_LIST	" :End of NAMES list\n"
+# define ERROR_CONN		"ERROR :Closing connection\n"
 
-# define NICK_ERR " :Erroneous nickname"
-# define STX_ERR " :Syntax error"
-# define WEL_MSG " :Welcome to the Internet Relay Network"
-# define ALLRD_REGIS " :Connection already registered"
-# define NOT_REGIS " :Connection not registered"
-# define NOT_CHAN " :No such channel"
-# define END_NAME_LIST " :End of NAMES list\n"
-# define ERROR_CONN "ERROR :Closing connection\n"
-
-# define INVALID_SOCKET -1
-# define SOCKET_ERROR -1
+# define INVALID_SOCKET	-1
+# define SOCKET_ERROR	-1
 # define closesocket(s) close(s)
 
 typedef int SOCKET;
@@ -140,6 +139,7 @@ int					ft_irc_cmd_quit(t_env *e, int cs, int force);
 int					ft_irc_cmd_join(t_env *e, int cs);
 void				ft_irc_cmd_join_print(t_env *e, int cs, char *name);
 int					ft_irc_cmd_leave(t_env *e, int cs);
+void				ft_irc_cmd_leave_print(t_env *e, int cs, char *name);
 void				ft_irc_leave(t_env *e, int cs, char *chan);
 t_chanel			*ft_irc_get_chanel(t_list *lst, char *name);
 t_chanel			*ft_irc_create_chanel(t_env *e, int cs, char *name);

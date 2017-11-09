@@ -65,7 +65,7 @@ set(SOURCE_SERVER
         srcs/server/main_loop.c
         srcs/server/srv_accept.c
         srcs/server/srv_create.c
-        srcs/server/x.c srcs/server/ft_parse_irc_cmd.c srcs/server/ft_irc_cmd_user.c srcs/server/ft_irc_cmd_nick.c srcs/server/ft_irc_cmd_who.c srcs/server/ft_irc_motd.c srcs/server/ft_irc_error.c srcs/server/ft_irc_print.c srcs/server/ft_irc_cmd_quit.c srcs/server/ft_send.c srcs/server/ft_irc_cmd_join.c srcs/server/ft_irc_cmd_leave.c srcs/server/ft_irc_get_chanel.c srcs/server/ft_irc_create_chanel.c srcs/server/ft_irc_cmd_chanel.c srcs/server/ft_irc_clear_empty_chanel.c srcs/server/ft_irc_chan_user.c srcs/server/ft_irc_leave_all_chan.c srcs/server/ft_irc_cmd_join_print.c)
+        srcs/server/x.c srcs/server/ft_parse_irc_cmd.c srcs/server/ft_irc_cmd_user.c srcs/server/ft_irc_cmd_nick.c srcs/server/ft_irc_cmd_who.c srcs/server/ft_irc_motd.c srcs/server/ft_irc_error.c srcs/server/ft_irc_print.c srcs/server/ft_irc_cmd_quit.c srcs/server/ft_send.c srcs/server/ft_irc_cmd_join.c srcs/server/ft_irc_cmd_leave.c srcs/server/ft_irc_get_chanel.c srcs/server/ft_irc_create_chanel.c srcs/server/ft_irc_cmd_chanel.c srcs/server/ft_irc_clear_empty_chanel.c srcs/server/ft_irc_chan_user.c srcs/server/ft_irc_leave_all_chan.c srcs/server/ft_irc_cmd_join_print.c srcs/server/ft_irc_cmd_leave_print.c)
 
 set(SOURCE_CLIENT srcs/client/main.c)
 
