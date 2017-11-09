@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 17:57:49 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 18:52:16 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 18:54:53 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	ft_irc_cmd_join_print_chanel(t_env *e, int cs, char *name, char *b)
 	ft_strcat(b, "\n");
 }
 
-static void	ft_irc_cmd_join_broadcast(t_env *e, char *buff, char *cname)
+static void	ft_irc_cmd_join_broadcast(t_env *e, char *buff, int cs, char *cname)
 {
 	t_list			*l;
 	t_chanel		*c;
@@ -78,7 +78,8 @@ static void	ft_irc_cmd_join_broadcast(t_env *e, char *buff, char *cname)
 			l = c->s;
 			while (l)
 			{
-				ft_send(l->valid, buff, ft_strlen(buff), e);
+				if (cs != l->valid)
+					ft_send(l->valid, buff, ft_strlen(buff), e);
 				l = l->next;
 			}
 			return ;
@@ -109,5 +110,5 @@ void		ft_irc_cmd_join_print(t_env *e, int cs, char *name)
 	ft_strcat(buff, END_NAME_LIST);
 	ft_send(cs, buff, ft_strlen(buff), e);
 	buff[ft_strfocur(buff, '\n') + 1] = '\0';
-	ft_irc_cmd_join_broadcast(e, buff, name);
+	ft_irc_cmd_join_broadcast(e, buff, cs, name);
 }

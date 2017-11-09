@@ -16,7 +16,11 @@ size_t			ft_send(int cs, void *buff, size_t len, t_env *e)
 {
 	size_t		r;
 
-	r = send(cs, buff, len, 0);
-	e->fds[cs].b_recive += len;
+	r = 0;
+	if (e->fds[cs].type == FD_CLIENT)
+	{
+		r = send(cs, buff, len, 0);
+		e->fds[cs].b_recive += len;
+	}
 	return (r);
 }
