@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:16:36 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 12:51:32 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 14:48:44 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,7 @@ void			ft_irc_leave(t_env *e, int cs, char *chan)
 int				ft_irc_cmd_leave(t_env *e, int cs)
 {
 	char		*cmd;
-	t_fd		f;
 
-	f = e->fds[cs];
 	if (e->fds[cs].buff_len > 4 &&
 		ft_strncmp(e->fds[cs].buffer, "PART", 4) == 0)
 	{

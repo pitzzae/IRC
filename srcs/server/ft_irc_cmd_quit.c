@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 23:10:12 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 12:19:17 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 15:00:59 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@ static char	*ft_format_bsr(int b)
 static void	ft_irc_cmd_quit_stats(t_env *e, int cs, char *buff)
 {
 	char		*tmp;
-	t_fd		f;
 
-	f = e->fds[cs];
 	ft_irc_print(buff, e, cs, 0);
 	ft_strcat(buff, ":Connection statistics: client ");
 	tmp = ft_format_bsr(e->fds[cs].b_send);
@@ -57,7 +55,7 @@ static void	ft_irc_cmd_quit_stats(t_env *e, int cs, char *buff)
 
 static void	ft_irc_quit_clean_chanel(t_env *e, int cs)
 {
-	ft_irc_leave(e, cs, e->fds[cs].chanel);
+	ft_irc_leave_all_chan(e, cs);
 	free(e->fds[cs].chanel);
 	e->fds[cs].chanel = NULL;
 }

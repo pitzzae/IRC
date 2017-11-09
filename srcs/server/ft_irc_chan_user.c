@@ -6,17 +6,17 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 11:45:41 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 14:24:54 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 14:58:06 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc.h"
 
-t_list	*ft_irc_chan_user_del(t_list **l, char *cname)
+t_list			*ft_irc_chan_user_del(t_list **l, char *cname)
 {
-	t_list		*c;
-	t_list		*new;
-	t_list		*tmp;
+	t_list			*c;
+	t_list			*new;
+	t_list			*tmp;
 
 	c = (*l);
 	new = NULL;
@@ -24,7 +24,8 @@ t_list	*ft_irc_chan_user_del(t_list **l, char *cname)
 	{
 		if (ft_strcmp(cname, (char*)c->content) != 0)
 		{
-			tmp = ft_lstnew((char*)c->content, ft_strlen((char*)c->content));
+			tmp = ft_lstnew((char*)c->content,
+					ft_strlen((char*)c->content) + 1);
 			ft_lstdelone(&c, u_del);
 			if (new)
 				ft_lstaddend_free(&new, tmp, u_del);

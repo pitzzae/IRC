@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 12:43:48 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 14:29:21 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 14:34:15 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@ int			ft_irc_leave_all_chan(t_env *e, int cs)
 	l = e->fds[cs].chan_user;
 	while (l)
 	{
-		printf("%zu\n", l->content_size);
-		printf("%s\n", (char*)(l->content));
-		//ft_irc_leave(e, cs, (char*)(l->content));
-		l = l->next;
+		ft_irc_leave(e, cs, (char*)(l->content));
+		l = e->fds[cs].chan_user;
 	}
 	return (0);
 }
