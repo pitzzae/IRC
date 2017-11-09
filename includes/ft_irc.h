@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 21:59:23 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 22:22:39 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define NO_NICK		" :No such nick or channel name"
 # define NO_TEXT_FOUND	" :No text to send"
 # define NOT_CHAN		" :No such channel"
+# define UNK_COMMAND	" :Unknown command"
 # define END_NAME_LIST	" :End of NAMES list\n"
 # define ERROR_CONN		"ERROR :Closing connection\n"
 
@@ -162,6 +163,7 @@ int					ft_irc_leave_all_chan(t_env *e, int cs);
 t_list				*ft_irc_clear_empty_chanel(t_list *c);
 t_list				*ft_irc_chan_user_add(t_list *c, char *cname);
 t_list				*ft_irc_chan_user_del(t_list *c, char *cname);
+int					ft_irc_cmd_file(t_env *e, int cs);
 
 void	ft_irc_debug_show_chanel(t_list *lst);
 

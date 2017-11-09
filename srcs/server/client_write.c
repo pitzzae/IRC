@@ -20,6 +20,7 @@ void	client_write(t_env *e, int cs)
 	type = ft_parse_irc_cmd(e, cs);
 	if (type)
 	{
+		ft_irc_error(e, cs, "421", UNK_COMMAND);
 		i = 0;
 		while (i < e->maxfd)
 		{
