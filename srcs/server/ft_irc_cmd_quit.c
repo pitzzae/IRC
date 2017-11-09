@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 23:10:12 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/08 18:46:56 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 12:19:17 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	ft_irc_cmd_quit_stats(t_env *e, int cs, char *buff)
 
 static void	ft_irc_quit_clean_chanel(t_env *e, int cs)
 {
-	ft_irc_cmd_leave(e, cs, e->fds[cs].chanel);
+	ft_irc_leave(e, cs, e->fds[cs].chanel);
 	free(e->fds[cs].chanel);
 	e->fds[cs].chanel = NULL;
 }
@@ -75,14 +75,13 @@ int			ft_irc_cmd_quit(t_env *e, int cs, int force)
 			ft_bzero(buff, ft_strlen(ERROR_CONN) + 1);
 		ft_strcat(buff, ERROR_CONN);
 		ft_send(cs, buff, ft_strlen(buff), e);
+		if (e->fds[cs].chanel)
+			ft_irc_quit_clean_chanel(e, cs);
 		free(e->fds[cs].user.user);
 		free(e->fds[cs].user.host);
 		free(e->fds[cs].user.real_user);
 		free(e->fds[cs].user.srv_name);
-		if (e->fds[cs].chanel)
-			ft_irc_quit_clean_chanel(e, cs);
-		close(cs
-		);
+		close(cs);
 		clean_fd(&e->fds[cs]);
 		printf("client #%d quit\n", cs);
 		return (1);

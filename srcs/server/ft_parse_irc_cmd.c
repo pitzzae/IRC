@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 15:44:59 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/08 19:44:45 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 12:05:21 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	ft_replace_return_char(unsigned int i, char *s)
 	(void)i;
 	if (s[0] == '\r')
 	{
-		if (s[0] == '\n')
+		if (s[1] == '\n')
 			s[0] = '\0';
 		s[0] = '\n';
 	}
@@ -64,6 +64,8 @@ int			ft_parse_irc_cmd(t_env *e, int cs)
 	else if (ft_irc_cmd_quit(e, cs, 0))
 		return (0);
 	else if (ft_irc_cmd_join(e, cs))
+		return (0);
+	else if (ft_irc_cmd_leave(e, cs))
 		return (0);
 	else if (ft_irc_cmd_chanel(e, cs))
 		return (0);

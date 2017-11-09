@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:16:36 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/08 21:21:43 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 12:51:32 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void		ft_irc_cmd_leave_find_chan(t_chanel **c, char *chan, int cs)
 	}
 }
 
-int				ft_irc_cmd_leave(t_env *e, int cs, char *chan)
+void			ft_irc_leave(t_env *e, int cs, char *chan)
 {
 	t_chanel	*c;
 	t_list		*l;
@@ -70,5 +70,33 @@ int				ft_irc_cmd_leave(t_env *e, int cs, char *chan)
 		l = l->next;
 	}
 	e->chanel = ft_irc_clear_empty_chanel(e->chanel);
+	e->fds[cs].chan_user = ft_irc_chan_user_del(&e->fds[cs].chan_user, chan);
+}
+
+int				ft_irc_cmd_leave(t_env *e, int cs)
+{
+	char		*cmd;
+	t_fd		f;
+
+	f = e->fds[cs];
+	if (e->fds[cs].buff_len > 4 &&
+		ft_strncmp(e->fds[cs].buffer, "PART", 4) == 0)
+	{
+		if (ft_strlen(e->fds[cs].buffer) >= 7 && e->fds[cs].connect == 1)
+		{
+			cmd = &e->fds[cs].buffer[5];
+			if (cmd[0] == '#')
+			{
+				ft_irc_leave(e, cs, cmd);
+				return (1);
+			}
+			else
+				ft_irc_error(e, cs, 403, NOT_CHAN);
+		}
+		else if (e->fds[cs].connect == 0)
+			ft_irc_error(e, cs, 451, NOT_REGIS);
+		else
+			ft_irc_error(e, cs, 461, STX_ERR);
+	}
 	return (0);
 }

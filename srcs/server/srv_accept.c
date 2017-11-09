@@ -36,4 +36,5 @@ void			srv_accept(t_env *e, int s)
 	e->fds[cs].b_send = 0;
 	e->fds[cs].b_recive = 0;
 	e->fds[cs].chanel = NULL;
+	e->fds[cs].chan_user = NULL;
 }

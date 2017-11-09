@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/08 19:59:39 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 14:20:14 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct		s_fd
 	int					b_send;
 	int					b_recive;
 	char				*chanel;
+	t_list				*chan_user;
 }						t_fd;
 
 typedef struct		s_sock
@@ -135,11 +136,15 @@ void				ft_irc_print(char *buff, t_env *e, int cs, int code);
 int					ft_irc_cmd_who(t_env *e, int cs);
 int					ft_irc_cmd_quit(t_env *e, int cs, int force);
 int					ft_irc_cmd_join(t_env *e, int cs);
-int					ft_irc_cmd_leave(t_env *e, int cs, char *chan);
+int					ft_irc_cmd_leave(t_env *e, int cs);
+void				ft_irc_leave(t_env *e, int cs, char *chan);
 t_chanel			*ft_irc_get_chanel(t_list *lst, char *name);
 t_chanel			*ft_irc_create_chanel(t_env *e, int cs, char *name);
 int					ft_irc_cmd_chanel(t_env *e, int cs);
+int					ft_irc_leave_all_chan(t_env *e, int cs);
 t_list				*ft_irc_clear_empty_chanel(t_list *c);
+t_list				*ft_irc_chan_user_add(t_list *c, char *cname);
+t_list				*ft_irc_chan_user_del(t_list **c, char *cname);
 
 void	ft_irc_debug_show_chanel(t_list *lst);
 
