@@ -23,7 +23,7 @@ static char	*ft_irc_who_chan(t_env *e, int cs)
 
 static char	*ft_irc_who_user(t_env *e, int cs, char *buff)
 {
-	ft_irc_print(buff, e, cs, 352);
+	ft_irc_print(buff, e, cs, "352");
 	ft_strcat(buff, ft_irc_who_chan(e, cs));
 	ft_strcat(buff, " ~");
 	ft_strcat(buff, e->fds[cs].user.user);
@@ -41,7 +41,7 @@ static char	*ft_irc_who_user(t_env *e, int cs, char *buff)
 
 static void	ft_irc_cmd_return(t_env *e, int cs, char *who, char *buff)
 {
-	ft_irc_print(buff, e, cs, 315);
+	ft_irc_print(buff, e, cs, "315");
 	ft_strcat(buff, "* :End of WHO list\n");
 	who = ft_strjoin_free(who, buff, 1);
 	ft_send(cs, who, ft_strlen(who), e);

@@ -12,7 +12,7 @@
 
 #include "ft_irc.h"
 
-int	ft_irc_error(t_env *e, int cs, int code, char *msg)
+int	ft_irc_error(t_env *e, int cs, char *code, char *msg)
 {
 	char				buff[1024];
 

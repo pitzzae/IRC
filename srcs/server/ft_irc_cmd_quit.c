@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 23:10:12 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 15:28:05 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 17:25:53 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	ft_irc_cmd_quit_stats(t_env *e, int cs, char *buff)
 {
 	char		*tmp;
 
-	ft_irc_print(buff, e, cs, 0);
+	ft_irc_print(buff, e, cs, "NOTICE");
 	ft_strcat(buff, ":Connection statistics: client ");
 	tmp = ft_format_bsr(e->fds[cs].b_send);
 	ft_strcat(buff, tmp);

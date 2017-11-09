@@ -12,21 +12,17 @@
 
 #include "ft_irc.h"
 
-void		ft_irc_print(char *buff, t_env *e, int cs, int code)
+void		ft_irc_print(char *buff, t_env *e, int cs, char *code)
 {
-	char				*tmp;
-
 	ft_bzero(buff, 1024);
 	ft_strcat(buff, ":");
 	ft_strcat(buff, e->hostname);
 	ft_strcat(buff, " ");
-	tmp = ft_itoa((long)code);
-	ft_strcat(buff, tmp);
+	ft_strcat(buff, code);
 	ft_strcat(buff, " ");
 	if (e->fds[cs].username[0] != '\0')
 		ft_strcat(buff, e->fds[cs].username);
 	else
 		ft_strcat(buff, "*");
 	ft_strcat(buff, " ");
-	free(tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:04:44 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 16:00:13 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 17:07:05 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ int			ft_irc_cmd_join(t_env *e, int cs)
 				return (1);
 			}
 			else
-				ft_irc_error(e, cs, 403, NOT_CHAN);
+				ft_irc_error(e, cs, "403", NOT_CHAN);
 		}
 		else if (e->fds[cs].connect == 0)
-			ft_irc_error(e, cs, 451, NOT_REGIS);
+			ft_irc_error(e, cs, "451", NOT_REGIS);
 		else
-			ft_irc_error(e, cs, 461, STX_ERR);
+			ft_irc_error(e, cs, "461", STX_ERR);
 	}
 	return (0);
 }
