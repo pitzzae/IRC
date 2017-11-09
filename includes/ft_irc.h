@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 20:58:24 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 21:59:23 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@
 # define ALLRD_REGIS	" :Connection already registered"
 # define NOT_REGIS		" :Connection not registered"
 # define NO_RECIP		" :No recipient given (PRIVMSG)"
+# define NO_CHANEL		" :Cannot send to channel"
+# define NO_NICK		" :No such nick or channel name"
 # define NO_TEXT_FOUND	" :No text to send"
 # define NOT_CHAN		" :No such channel"
 # define END_NAME_LIST	" :End of NAMES list\n"

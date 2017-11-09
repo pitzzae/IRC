@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 20:07:16 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 21:36:09 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 21:47:23 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int			ft_irc_cmd_msgchanel(t_env *e, int cs, t_privmsg *msg)
 		}
 		l = l->next;
 	}
+	ft_irc_error(e, cs, "404", NO_CHANEL);
 	free(msg);
 	return (0);
 }

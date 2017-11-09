@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 15:44:59 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 21:03:32 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 21:06:15 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	ft_irc_cmd_msg(t_env *e, int cs)
 {
 	t_privmsg	*msg;
 
-	if ((e->fds[cs].buff_len >= 7 &&
+	if ((e->fds[cs].buff_len >= 7 && e->fds[cs].connect &&
 		ft_strncmp(e->fds[cs].buffer, "PRIVMSG", 7) == 0))
 	{
 		msg = ft_irc_parse_privmsg(e, cs);
@@ -61,6 +61,8 @@ static int	ft_irc_cmd_msg(t_env *e, int cs)
 			return (1);
 		}
 	}
+	else if (ft_strncmp(e->fds[cs].buffer, "PRIVMSG", 7) == 0)
+		ft_irc_error(e, cs, "451", NOT_REGIS);
 	return (0);
 }
 
