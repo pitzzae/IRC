@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 14:20:14 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 14:28:10 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ int					ft_irc_cmd_chanel(t_env *e, int cs);
 int					ft_irc_leave_all_chan(t_env *e, int cs);
 t_list				*ft_irc_clear_empty_chanel(t_list *c);
 t_list				*ft_irc_chan_user_add(t_list *c, char *cname);
-t_list				*ft_irc_chan_user_del(t_list **c, char *cname);
+t_list				*ft_irc_chan_user_del(t_list *c, char *cname);
 
 void	ft_irc_debug_show_chanel(t_list *lst);
 

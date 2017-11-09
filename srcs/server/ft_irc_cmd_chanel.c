@@ -6,7 +6,7 @@
 /*   By: gtorresa <null>                            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 03:08:33 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/08 06:13:50 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 15:06:49 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	ft_irc_debug_show_chanel(t_list *lst)
 	t_list		*l;
 
 	l = lst;
+	ft_putstr("***********************DEBUG-CHANEL*************************\n");
 	if (!l)
 		ft_putendl("No chanel found");
 	while (l)
@@ -49,13 +50,11 @@ void	ft_irc_debug_show_chanel(t_list *lst)
 		ft_irc_debug_put_chanel(c);
 		l = l->next;
 	}
+	ft_putstr("***************************END******************************\n");
 }
 
 int		ft_irc_cmd_chanel(t_env *e, int cs)
 {
-	t_fd			f;
-
-	f = e->fds[cs];
 	if (e->fds[cs].buff_len == 7 &&
 		ft_strncmp(e->fds[cs].buffer, "CHANEL", 6) == 0)
 	{

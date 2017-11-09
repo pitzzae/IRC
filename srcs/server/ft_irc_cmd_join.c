@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:04:44 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 14:24:54 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 16:00:13 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,18 @@ static void	ft_irc_join_chanel(t_chanel **c, int cs)
 	ft_lstaddend_free(&(*c)->s, tmp, u_del);
 }
 
+static void	test(t_list *l, char *user)
+{
+	while (l)
+	{
+		printf("%s chanel: %s\n", user, (char*)(l->content));
+		l = l->next;
+	}
+}
+
 static void	ft_irc_join(t_env *e, int cs, char *name)
 {
-	t_chanel		*c;
+	t_chanel	*c;
 
 	c = ft_irc_get_chanel(e->chanel, name);
 	if (!c)
@@ -46,7 +55,8 @@ static void	ft_irc_join(t_env *e, int cs, char *name)
 		if (!e->chanel)
 			e->chanel = ft_lstnew(c, sizeof(t_chanel));
 		else
-			ft_lstaddend_free(&e->chanel, ft_lstnew(c, sizeof(t_chanel)), u_del);
+			ft_lstaddend_free(&e->chanel,
+				ft_lstnew(c, sizeof(t_chanel)), u_del);
 	}
 	ft_irc_join_chanel(&c, cs);
 	if (e->fds[cs].chanel)
@@ -54,14 +64,13 @@ static void	ft_irc_join(t_env *e, int cs, char *name)
 	e->fds[cs].chanel = ft_strdup(c->name);
 	e->fds[cs].chan_user = ft_irc_chan_user_add(e->fds[cs].chan_user, c->name);
 	ft_irc_debug_show_chanel(e->chanel);
+	test(e->fds[cs].chan_user, e->fds[cs].username);
 }
 
-int	ft_irc_cmd_join(t_env *e, int cs)
+int			ft_irc_cmd_join(t_env *e, int cs)
 {
 	char		*cmd;
-	t_fd		f;
 
-	f = e->fds[cs];
 	if (e->fds[cs].buff_len > 4 &&
 		ft_strncmp(e->fds[cs].buffer, "JOIN", 4) == 0)
 	{
