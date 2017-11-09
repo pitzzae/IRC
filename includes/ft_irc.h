@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 17:17:20 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 18:11:31 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 # define ALLRD_REGIS " :Connection already registered"
 # define NOT_REGIS " :Connection not registered"
 # define NOT_CHAN " :No such channel"
+# define END_NAME_LIST " :End of NAMES list\n"
 # define ERROR_CONN "ERROR :Closing connection\n"
 
 # define INVALID_SOCKET -1
@@ -133,9 +134,11 @@ int					ft_irc_cmd_nick(t_env *e, int cs);
 int					ft_irc_motd(t_env *e, int cs);
 int					ft_irc_error(t_env *e, int cs, char *code, char *msg);
 void				ft_irc_print(char *buff, t_env *e, int cs, char *code);
+void				ft_irc_print_header(char *buff, t_env *e, char *code);
 int					ft_irc_cmd_who(t_env *e, int cs);
 int					ft_irc_cmd_quit(t_env *e, int cs, int force);
 int					ft_irc_cmd_join(t_env *e, int cs);
+void				ft_irc_cmd_join_print(t_env *e, int cs, char *name);
 int					ft_irc_cmd_leave(t_env *e, int cs);
 void				ft_irc_leave(t_env *e, int cs, char *chan);
 t_chanel			*ft_irc_get_chanel(t_list *lst, char *name);

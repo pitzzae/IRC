@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 15:44:59 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 12:05:21 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 12:11:06 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,6 @@ static void	ft_replace_return_char(unsigned int i, char *s)
 
 int			ft_parse_irc_cmd(t_env *e, int cs)
 {
-	t_fd		*f;
-
-	f = &e->fds[cs];
 	ft_striteri(e->fds[cs].buffer, ft_replace_return_char);
 	if (ft_strocur(e->fds[cs].buffer, '\n') > 1)
 	{

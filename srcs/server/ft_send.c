@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_send.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtorresa <null>                            +#+  +:+       +#+        */
+/*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 23:31:07 by gtorresa          #+#    #+#             */
 /*   Updated: 2017/11/07 23:36:35 by gtorresa         ###   ########.fr       */

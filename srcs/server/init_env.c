@@ -10,12 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "ft_irc.h"
 
 void		init_env(t_env *e)
 {
-	int		i;
+	int				i;
 	struct rlimit	rlp;
 
 	X(-1, getrlimit(RLIMIT_NOFILE, &rlp), "getrlimit");

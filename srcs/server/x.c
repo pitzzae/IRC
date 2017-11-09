@@ -12,7 +12,7 @@
 
 #include "ft_irc.h"
 
-int	x_int(int err, int res, char *str, char *file, int line)
+int		x_int(int err, int res, char *str, char *file, int line)
 {
 	if (res == err)
 	{

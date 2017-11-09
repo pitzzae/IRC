@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_irc_cmd_chanel.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtorresa <null>                            +#+  +:+       +#+        */
+/*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 03:08:33 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 15:06:49 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 18:54:08 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	ft_irc_debug_put_chanel(t_chanel *c)
 	ft_putendl("]");
 }
 
-void	ft_irc_debug_show_chanel(t_list *lst)
+void		ft_irc_debug_show_chanel(t_list *lst)
 {
 	t_chanel	*c;
 	t_list		*l;
@@ -53,7 +53,7 @@ void	ft_irc_debug_show_chanel(t_list *lst)
 	ft_putstr("***************************END******************************\n");
 }
 
-int		ft_irc_cmd_chanel(t_env *e, int cs)
+int			ft_irc_cmd_chanel(t_env *e, int cs)
 {
 	if (e->fds[cs].buff_len == 7 &&
 		ft_strncmp(e->fds[cs].buffer, "CHANEL", 6) == 0)

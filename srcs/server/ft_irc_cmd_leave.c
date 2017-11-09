@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:16:36 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 17:06:34 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/09 17:18:24 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static t_list	*ft_irc_remove_fd_chanle(t_list **c, int cs)
 {
-	t_list		*l;
-	t_list		*new;
-	t_list		*tmp;
+	t_list			*l;
+	t_list			*new;
+	t_list			*tmp;
 
 	l = (*c);
 	new = NULL;
@@ -40,8 +40,8 @@ static t_list	*ft_irc_remove_fd_chanle(t_list **c, int cs)
 
 static int		ft_irc_cmd_leave_find_chan(t_chanel **c, char *chan, int cs)
 {
-	int			fd_chan;
-	t_list		*l;
+	int				fd_chan;
+	t_list			*l;
 
 	l = (*c)->s;
 	while (l)
@@ -60,9 +60,9 @@ static int		ft_irc_cmd_leave_find_chan(t_chanel **c, char *chan, int cs)
 
 void			ft_irc_leave(t_env *e, int cs, char *chan)
 {
-	t_chanel	*c;
-	t_list		*l;
-	int			loop;
+	t_chanel		*c;
+	t_list			*l;
+	int				loop;
 
 	l = e->chanel;
 	if (ft_strfocur(chan, '\n') > 0)
@@ -81,7 +81,7 @@ void			ft_irc_leave(t_env *e, int cs, char *chan)
 
 int				ft_irc_cmd_leave(t_env *e, int cs)
 {
-	char		*cmd;
+	char			*cmd;
 
 	if (e->fds[cs].buff_len > 4 &&
 		ft_strncmp(e->fds[cs].buffer, "PART", 4) == 0)

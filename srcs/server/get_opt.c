@@ -21,4 +21,3 @@ void	get_opt(t_env *e, int ac, char **av)
 	}
 	e->port = atoi(av[1]);
 }
-
