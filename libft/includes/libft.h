@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:08:25 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/10 21:44:10 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/10 22:35:31 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,4 +174,4 @@ uint32_t			ft_swapuint32(uint32_t u);
 uint8_t				ft_swapuint8(uint8_t u);
 void				ft_putadd(void const *p, char *buf);
 
-#endif
+#endif /* !FT_LIBFT_H */
