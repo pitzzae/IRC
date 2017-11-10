@@ -14,11 +14,12 @@
 # define FT_IRC_SERVER_H_
 
 
+#ifndef FD_ZERO
+# define	FD_ZERO(p)	ft_bzero(p, sizeof(*(p)))
+#endif /* FD_ZERO */
 
 # include <signal.h>
 # include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
 # include <string.h>
 # include <arpa/inet.h>
 # include <netdb.h>
@@ -26,6 +27,8 @@
 # include <sys/select.h>
 # include <sys/socket.h>
 # include <sys/resource.h>
+# include <sys/time.h>
+# include <sys/types.h>
 # include <errno.h>
 # include "libft.h"
 # define FD_FREE		0

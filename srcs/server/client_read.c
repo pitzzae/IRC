@@ -31,7 +31,7 @@ static void	ft_packet_agreg(t_env *e, int cs, int len)
 		e->fds[cs].buffer = ft_strnew(0);
 		e->fds[cs].buff_len = 0;
 	}
-	FD_ZERO(&e->fds[cs].buf_read);
+	FT_FD_ZERO(&e->fds[cs].buf_read);
 }
 
 void		client_read(t_env *e, int cs)

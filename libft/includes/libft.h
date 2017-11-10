@@ -29,17 +29,13 @@ typedef unsigned int uint32_t;
 typedef unsigned char uint8_t;
 #endif /* _UINT8_T */
 
-#ifndef FD_ZERO
-# define	FD_ZERO(p)	ft_bzero(p, sizeof(*(p)))
-#endif /* FD_ZERO */
-
-#ifndef FD_SET
-# define	FD_SET(n, p)	do { int __fd = (n); ((p)->fds_bits[(unsigned long)__fd/__DARWIN_NFDBITS] |= ((__int32_t)(((unsigned long)1)<<((unsigned long)__fd % __DARWIN_NFDBITS)))); } while(0)
-#endif /* FD_SET */
-
 #ifndef FD_COPY
-# define	FD_COPY(n, p)	ft_memcpy(n, p, sizeof(*(n)))
-#endif /* FD_COPY */
+# define FD_COPY(n, p)	ft_memcpy(n, p, sizeof(*(n)))
+#endif /* FT_FD_COPY */
+
+#ifndef FT_FD_ZERO
+# define FT_FD_ZERO(p)	ft_bzero(p, sizeof(*(p)))
+#endif /* FT_FD_ZERO */
 
 typedef struct		s_list
 {
