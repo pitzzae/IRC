@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:04:12 by gtorresa          #+#     #+#            */
-/*   Updated: 2017/11/10 13:14:20 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/10 16:04:36 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	client_buffered_command(t_env *e, int cs)
 {
-	if (ft_strocur(e->fds[cs].buffer, '\n') <= 1)
+	if (e->fds[cs].buffer && ft_strocur(e->fds[cs].buffer, '\n') <= 1)
 	{
 		free(e->fds[cs].buffer);
 		e->fds[cs].buffer = ft_strnew(0);

@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 23:10:12 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 19:56:35 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/10 17:28:19 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,17 @@ static void	ft_irc_quit_clean_chanel(t_env *e, int cs)
 	e->fds[cs].chanel = NULL;
 }
 
+static void	ft_irc_cmd_free(t_env *e, int cs)
+{
+	free(e->fds[cs].user.user);
+	free(e->fds[cs].user.host);
+	free(e->fds[cs].user.real_user);
+	free(e->fds[cs].user.srv_name);
+	free(e->fds[cs].buffer);
+	e->fds[cs].buff_len = 0;
+	e->fds[cs].buffer = NULL;
+}
+
 int			ft_irc_cmd_quit(t_env *e, int cs, int force)
 {
 	char		buff[1024];
@@ -76,11 +87,7 @@ int			ft_irc_cmd_quit(t_env *e, int cs, int force)
 		clean_fd(&e->fds[cs]);
 		if (e->fds[cs].chan_user)
 			ft_irc_quit_clean_chanel(e, cs);
-		free(e->fds[cs].user.user);
-		free(e->fds[cs].user.host);
-		free(e->fds[cs].user.real_user);
-		free(e->fds[cs].user.srv_name);
-		free(e->fds[cs].buffer);
+		ft_irc_cmd_free(e, cs);
 		close(cs);
 		printf("client #%d quit\n", cs);
 		return (1);
