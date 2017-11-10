@@ -6,12 +6,14 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/10 14:16:07 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/10 14:16:53 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_IRC_SERVER_H_
 # define FT_IRC_SERVER_H_
+
+
 
 # include <signal.h>
 # include <stdio.h>
