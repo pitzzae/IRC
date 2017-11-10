@@ -14,6 +14,19 @@ NAME = libft.a
 NAME32 = libft_i386.a
 NAME64 = libft_x86_64.a
 
+LIPO_LIB = lipo -create -output $@ $^
+STD_LIB = mv $(NAME64) $(NAME)
+
+ifeq ($(HOSTTYPE),)
+	HOSTTYPE := $(shell uname -s)
+endif
+
+ifeq ($(HOSTTYPE),Darwin)
+	MAKE_LIB=$(LIPO_LIB)
+else
+	MAKE_LIB=$(STD_LIB)
+endif
+
 SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c\
 	ft_isdigit.c ft_isprint.c ft_memalloc.c ft_memccpy.c ft_memchr.c\
 	ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_strcat.c ft_strchr.c\
@@ -52,7 +65,7 @@ all: $(NAME)
 
 $(NAME): $(NAME32) $(NAME64)
 	@echo "\nCreating fat library."
-	@lipo -create -output $@ $^
+	$(MAKE_LIB)
 
 $(NAME32): $(OBJS32)
 	@ar rc $@ $^
