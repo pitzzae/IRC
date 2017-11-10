@@ -35,7 +35,7 @@ void sig_handler(int signo, void *ptr)
 
 void	main_loop(t_env *e)
 {
-	e->timeout.tv_sec = 10;
+	e->timeout.tv_sec = 1;
 	e->timeout.tv_usec = 0;
 	if (signal(SIGTERM, (void (*)(int))sig_handler) == SIG_ERR)
 		printf("\ncan't catch SIGTERM\n");

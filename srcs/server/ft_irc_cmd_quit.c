@@ -80,6 +80,7 @@ int			ft_irc_cmd_quit(t_env *e, int cs, int force)
 		free(e->fds[cs].user.host);
 		free(e->fds[cs].user.real_user);
 		free(e->fds[cs].user.srv_name);
+		free(e->fds[cs].buffer);
 		close(cs);
 		printf("client #%d quit\n", cs);
 		return (1);

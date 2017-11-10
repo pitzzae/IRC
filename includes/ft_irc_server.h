@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 22:28:57 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/10 13:18:37 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct		s_fd
 	int					type;
 	void				(*fct_read)();
 	void				(*fct_write)();
+	void				(*fct_buffer)();
 	char				buf_read[BUF_SIZE + 1];
 	char				buf_write[BUF_SIZE + 1];
 	char				*buffer;
@@ -81,6 +82,7 @@ typedef struct		s_fd
 	char				*ipv4;
 	int					b_send;
 	int					b_recive;
+	int					recive;
 	char				*chanel;
 	t_list				*chan_user;
 }						t_fd;
@@ -121,6 +123,7 @@ void				srv_create(t_env *e, int port);
 void				srv_accept(t_env *e, int s);
 void				client_read(t_env *e, int cs);
 void				client_write(t_env *e, int cs);
+void				client_buffer(t_env *e, int cs);
 void				clean_fd(t_fd *fd);
 int					x_int(int err, int res, char *str, char *file, int line);
 void				*x_void(void *err, void *res, char *str, char *file,

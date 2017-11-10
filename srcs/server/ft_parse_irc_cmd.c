@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 15:44:59 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 23:00:14 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/10 02:01:25 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,30 @@ static void	ft_split_buff_multi_cmd(t_env *e, int cs)
 {
 	char		**tmp;
 	char		*buff_tmp;
+	int			len;
 	int			i;
 
 	i = 0;
 	buff_tmp = e->fds[cs].buffer;
+	len = e->fds[cs].buff_len;
 	tmp = ft_strsplit(e->fds[cs].buffer, '\n');
 	while (tmp[i])
 	{
-		e->fds[cs].buffer = ft_strjoin_free(tmp[i], "\n", 1);
-		e->fds[cs].buff_len = ft_strlen(e->fds[cs].buffer);
-		ft_parse_irc_cmd(e, cs);
-		free(e->fds[cs].buffer);
+		if (i == 0)
+		{
+			e->fds[cs].buffer = ft_strjoin_free(tmp[i], "\n", 1);
+			e->fds[cs].buff_len = ft_strlen(e->fds[cs].buffer);
+			ft_parse_irc_cmd(e, cs);
+			e->fds[cs].buff_len = len - ft_strlen(e->fds[cs].buffer);
+			free(e->fds[cs].buffer);
+			e->fds[cs].buffer = ft_strdup(&buff_tmp[len - e->fds[cs].buff_len]);
+			free(buff_tmp);
+		}
+		else
+			free(tmp[i]);
 		i++;
 	}
 	free(tmp);
-	e->fds[cs].buffer = buff_tmp;
 }
 
 static void	ft_replace_return_char(unsigned int i, char *s)

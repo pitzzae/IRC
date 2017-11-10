@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:03:25 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/08 18:25:16 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/10 13:39:48 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void		client_read(t_env *e, int cs)
 	int			i;
 
 	r = recv(cs, e->fds[cs].buf_read, BUF_SIZE, 0);
+	e->fds[cs].recive = r;
 	if (r <= 0)
 	{
 		ft_irc_cmd_quit(e, cs, 1);

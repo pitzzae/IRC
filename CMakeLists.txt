@@ -5,7 +5,8 @@ set(CMAKE_CXX_STANDARD 11)
 
 include_directories(includes)
 include_directories(libft/includes)
-set(HEADER_FILES libft/includes/libft.h includes/ft_irc_server.h)
+set(HEADER_FILES libft/includes/libft.h includes/ft_irc_server.h
+        includes/ft_irc_client.h)
 
 set(SOURCE_LIBFT libft/srcs/ft_atoi.c libft/srcs/ft_bzero.c
         libft/srcs/ft_isalnum.c libft/srcs/ft_isalpha.c
@@ -47,7 +48,8 @@ set(SOURCE_LIBFT libft/srcs/ft_atoi.c libft/srcs/ft_bzero.c
         libft/srcs/ft_stradd_slash.c libft/srcs/ft_tabdup.c
         libft/srcs/ft_putbase.c libft/srcs/ft_puthex.c
         libft/srcs/ft_swapuint32.c libft/srcs/ft_swapuint8.c
-        libft/srcs/ft_putstr_whsp.c libft/srcs/ft_pow.c libft/srcs/ft_putadd.c libft/srcs/ft_strnocur.c)
+        libft/srcs/ft_putstr_whsp.c libft/srcs/ft_pow.c libft/srcs/ft_putadd.c
+        libft/srcs/ft_strnocur.c)
 
 add_library(ft ${SOURCE_LIBFT} ${HEADER_FILES})
 
@@ -65,7 +67,18 @@ set(SOURCE_SERVER
         srcs/server/main_loop.c
         srcs/server/srv_accept.c
         srcs/server/srv_create.c
-        srcs/server/x.c srcs/server/ft_parse_irc_cmd.c srcs/server/ft_irc_cmd_user.c srcs/server/ft_irc_cmd_nick.c srcs/server/ft_irc_cmd_who.c srcs/server/ft_irc_motd.c srcs/server/ft_irc_error.c srcs/server/ft_irc_print.c srcs/server/ft_irc_cmd_quit.c srcs/server/ft_send.c srcs/server/ft_irc_cmd_join.c srcs/server/ft_irc_cmd_leave.c srcs/server/ft_irc_get_chanel.c srcs/server/ft_irc_create_chanel.c srcs/server/ft_irc_cmd_chanel.c srcs/server/ft_irc_clear_empty_chanel.c srcs/server/ft_irc_chan_user.c srcs/server/ft_irc_leave_all_chan.c srcs/server/ft_irc_cmd_join_print.c srcs/server/ft_irc_cmd_leave_print.c srcs/server/ft_irc_cmd_msgpriv.c srcs/server/ft_irc_cmd_msgchanel.c srcs/server/ft_irc_parse_privmsg.c srcs/server/ft_irc_cmd_file.c)
+        srcs/server/x.c srcs/server/ft_parse_irc_cmd.c
+        srcs/server/ft_irc_cmd_user.c srcs/server/ft_irc_cmd_nick.c
+        srcs/server/ft_irc_cmd_who.c srcs/server/ft_irc_motd.c
+        srcs/server/ft_irc_error.c srcs/server/ft_irc_print.c
+        srcs/server/ft_irc_cmd_quit.c srcs/server/ft_send.c
+        srcs/server/ft_irc_cmd_join.c srcs/server/ft_irc_cmd_leave.c
+        srcs/server/ft_irc_get_chanel.c srcs/server/ft_irc_create_chanel.c
+        srcs/server/ft_irc_cmd_chanel.c srcs/server/ft_irc_clear_empty_chanel.c
+        srcs/server/ft_irc_chan_user.c srcs/server/ft_irc_leave_all_chan.c
+        srcs/server/ft_irc_cmd_join_print.c srcs/server/ft_irc_cmd_leave_print.c
+        srcs/server/ft_irc_cmd_msgpriv.c srcs/server/ft_irc_cmd_msgchanel.c
+        srcs/server/ft_irc_parse_privmsg.c srcs/server/ft_irc_cmd_file.c srcs/server/client_buffer.c)
 
 set(SOURCE_CLIENT srcs/client/main.c)
 

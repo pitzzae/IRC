@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 23:31:07 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 19:50:20 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/10 01:06:07 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 size_t			ft_send(int cs, void *buff, size_t len, t_env *e)
 {
 	size_t		r;
+	t_fd		*f;
 
 	r = 0;
-	if (e->fds[cs].type == FD_CLIENT)
+	f = &e->fds[cs];
+	if (f->type == FD_CLIENT)
 	{
 		r = send(cs, buff, len, 0);
-		e->fds[cs].b_recive += len;
+		f->b_recive += len;
 	}
 	return (r);
 }

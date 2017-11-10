@@ -1,34 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_fd.c                                         :+:      :+:    :+:   */
+/*   client_buffer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/06 00:01:45 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/10 13:34:16 by gtorresa         ###   ########.fr       */
+/*   Created: 2017/11/10 13:17:52 by gtorresa          #+#    #+#             */
+/*   Updated: 2017/11/10 14:08:48 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_server.h"
 
-void	check_fd(t_env *e)
+void			client_buffer(t_env *e, int cs)
 {
-	int	i;
-
-	i = 0;
-	while ((i < e->maxfd) && (e->r > 0))
-	{
-		e->fds[i].recive = 0;
-		if (FD_ISSET(i, &e->fd_read))
-			e->fds[i].fct_read(e, i);
-		if (FD_ISSET(i, &e->fd_write) && e->fds[i].fct_write)
-			e->fds[i].fct_write(e, i);
-		if (e->fds[i].buff_len > 0 && e->fds[i].fct_write)
-			e->fds[i].fct_buffer(e, i);
-		if (FD_ISSET(i, &e->fd_read) ||
-			FD_ISSET(i, &e->fd_write))
-			e->r--;
-		i++;
-	}
+	if (e->fds[cs].recive > 0)
+		client_write(e, cs);
 }

@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:57:53 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 23:13:43 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/10 13:53:37 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int		main()
 	}
 
 	char buffer[4096];
+	ft_bzero(buffer, 4096);
 	ft_strcat(buffer, "NICK kkk\n"
 			"USER yyy 1 1 iii\n"
 			"WHO\n"
@@ -53,12 +54,14 @@ int		main()
 		perror("send()");
 		exit(errno);
 	}
+
 	if(recv(sock, buffer, strlen(buffer), 0) < 0)
 	{
 		perror("recv()");
 		exit(errno);
 	}
 	printf("%s\n", buffer);
+
 	close(sock);
 	return (0);
 }
