@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:08:25 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/03 16:42:24 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/10 20:54:36 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,17 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+
+#ifndef _UINT32_T
+# define _UINT32_T
+typedef unsigned int uint32_t;
+#endif /* _UINT32_T */
+
+#ifndef _UINT8_T
+# define _UINT8_T
+typedef unsigned char uint8_t;
+#endif /* _UINT8_T */
+
 
 typedef struct		s_list
 {
