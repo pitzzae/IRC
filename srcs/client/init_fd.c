@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/10 15:42:46 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/10 15:55:03 by gtorresa         ###   ########.fr       */
+/*   Created: 2017/11/10 15:41:25 by gtorresa          #+#    #+#             */
+/*   Updated: 2017/11/10 16:31:22 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
 
-int	main(int ac, char **av)
+void	init_fd(t_env *e)
 {
-	t_env	e;
+	int	i;
 
-	init_env(&e);
-	get_opt(&e, ac, av);
-	client_create(&e, "127.0.0.1", e.port);
-	main_loop(&e);
-	return (0);
+	i = 0;
+	e->max = 0;
+	FD_ZERO(&e->fd_read);
+	FD_ZERO(&e->fd_write);
+	while (i < e->maxfd)
+	{
+		if (e->fds[i].type != FD_FREE)
+		{
+			FD_SET(i, &e->fd_read);
+			if (strlen(e->fds[i].buf_write) > 0)
+			{
+				FD_SET(i, &e->fd_write);
+			}
+			e->max = MAX(e->max, i);
+		}
+		i++;
+	}
 }

@@ -32,7 +32,7 @@ void		client_write(t_env *e, int cs)
 	{
 		ft_irc_error(e, cs, "421", UNK_COMMAND);
 		i = 0;
-		/*while (i < e->maxfd)
+		while (i < e->maxfd)
 		{
 			if ((e->fds[i].type == FD_CLIENT) && (i != cs))
 			{
@@ -40,7 +40,6 @@ void		client_write(t_env *e, int cs)
 			}
 			i++;
 		}
-		*/
 	}
 	client_buffered_command(e, cs);
 	e->fds[cs].argv = NULL;

@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   client_write.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/10 15:42:46 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/10 15:55:03 by gtorresa         ###   ########.fr       */
+/*   Created: 2017/11/10 15:42:10 by gtorresa          #+#    #+#             */
+/*   Updated: 2017/11/10 16:49:39 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
 
-int	main(int ac, char **av)
+void	client_write(t_env *e, int cs)
 {
-	t_env	e;
+	char		*tmp;
+	char		buff[2];
+	char		c;
 
-	init_env(&e);
-	get_opt(&e, ac, av);
-	client_create(&e, "127.0.0.1", e.port);
-	main_loop(&e);
-	return (0);
+	(void)cs;
+	tmp = ft_strnew(0);
+	while (read(0, &c, 1) != 0)
+	{
+		ft_bzero(buff, 2);
+		ft_strncat(buff, &c, 1);
+		tmp = ft_strjoin_free(tmp, &buff[0], 1);
+		if (c == '\n')
+			break ;
+	}
+	send(e->sock.s, tmp, ft_strlen(tmp), 0);
 }

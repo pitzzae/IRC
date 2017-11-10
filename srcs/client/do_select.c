@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   do_select.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/10 15:42:46 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/10 15:55:03 by gtorresa         ###   ########.fr       */
+/*   Created: 2017/11/10 15:42:00 by gtorresa          #+#    #+#             */
+/*   Updated: 2017/11/10 15:42:04 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
 
-int	main(int ac, char **av)
+void	do_select(t_env *e)
 {
-	t_env	e;
-
-	init_env(&e);
-	get_opt(&e, ac, av);
-	client_create(&e, "127.0.0.1", e.port);
-	main_loop(&e);
-	return (0);
+	e->r = select(e->max + 1, &e->fd_read, &e->fd_write, NULL, NULL);
 }

@@ -1,24 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   client_read.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/10 15:42:46 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/10 15:55:03 by gtorresa         ###   ########.fr       */
+/*   Created: 2017/11/10 15:42:22 by gtorresa          #+#    #+#             */
+/*   Updated: 2017/11/10 16:27:59 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
 
-int	main(int ac, char **av)
+void	client_read(t_env *e, int cs)
 {
-	t_env	e;
+	int	r;
+	int	i;
 
-	init_env(&e);
-	get_opt(&e, ac, av);
-	client_create(&e, "127.0.0.1", e.port);
-	main_loop(&e);
-	return (0);
+	r = recv(cs, e->fds[cs].buf_read, BUF_SIZE, 0);
+	if (r <= 0)
+	{
+		close(cs);
+		clean_fd(&e->fds[cs]);
+		printf("server #%d gone away\n", cs);
+		exit (1);
+	}
+	else
+	{
+		i = 0;
+		while (i < e->maxfd)
+		{
+			if (e->fds[i].type == FD_CLIENT)
+			{
+				write(1, e->fds[cs].buf_read, r);
+				FD_SET(1, &e->fd_write);
+			}
+			i++;
+		}
+	}
 }

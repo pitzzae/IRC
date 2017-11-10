@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/10 15:42:46 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/10 15:55:03 by gtorresa         ###   ########.fr       */
+/*   Created: 2017/11/10 15:46:25 by gtorresa          #+#    #+#             */
+/*   Updated: 2017/11/10 15:46:25 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
 
-int	main(int ac, char **av)
+void	main_loop(t_env *e)
 {
-	t_env	e;
-
-	init_env(&e);
-	get_opt(&e, ac, av);
-	client_create(&e, "127.0.0.1", e.port);
-	main_loop(&e);
-	return (0);
+	while (1)
+	{
+		init_fd(e);
+		do_select(e);
+		check_fd(e);
+	}
 }

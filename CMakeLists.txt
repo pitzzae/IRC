@@ -5,8 +5,9 @@ set(CMAKE_CXX_STANDARD 11)
 
 include_directories(includes)
 include_directories(libft/includes)
-set(HEADER_FILES libft/includes/libft.h includes/ft_irc_server.h
-        includes/ft_irc_client.h)
+set(HEADER_FILES_CLIENT libft/includes/libft.h includes/ft_irc_client.h)
+
+set(HEADER_FILES_SERVER libft/includes/libft.h includes/ft_irc_server.h)
 
 set(SOURCE_LIBFT libft/srcs/ft_atoi.c libft/srcs/ft_bzero.c
         libft/srcs/ft_isalnum.c libft/srcs/ft_isalpha.c
@@ -54,7 +55,6 @@ set(SOURCE_LIBFT libft/srcs/ft_atoi.c libft/srcs/ft_bzero.c
 add_library(ft ${SOURCE_LIBFT} ${HEADER_FILES})
 
 set(SOURCE_SERVER
-        includes/ft_irc_server.h
         srcs/server/check_fd.c
         srcs/server/clean_fd.c
         srcs/server/client_read.c
@@ -80,8 +80,20 @@ set(SOURCE_SERVER
         srcs/server/ft_irc_cmd_msgpriv.c srcs/server/ft_irc_cmd_msgchanel.c
         srcs/server/ft_irc_parse_privmsg.c srcs/server/ft_irc_cmd_file.c srcs/server/client_buffer.c)
 
-set(SOURCE_CLIENT srcs/client/main.c)
+set(SOURCE_CLIENT
+        srcs/client/check_fd.c
+        srcs/client/clean_fd.c
+        srcs/client/client_read.c
+        srcs/client/client_write.c
+        srcs/client/do_select.c
+        srcs/client/get_opt.c
+        srcs/client/init_env.c
+        srcs/client/init_fd.c
+        srcs/client/main.c
+        srcs/client/main_loop.c
+        srcs/client/client_create.c
+        srcs/client/x.c)
 
-add_executable(server ${SOURCE_SERVER} ${SOURCE_LIBFT} ${HEADER_FILES})
+add_executable(server ${SOURCE_SERVER} ${SOURCE_LIBFT} ${HEADER_FILES_SERVER})
 
-add_executable(client ${SOURCE_CLIENT} ${SOURCE_LIBFT} ${HEADER_FILES})
+add_executable(client ${SOURCE_CLIENT} ${SOURCE_LIBFT} ${HEADER_FILES_CLIENT})
