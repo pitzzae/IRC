@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/10 16:41:11 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/10 18:57:56 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@
 # include <sys/socket.h>
 # include <sys/resource.h>
 # include <errno.h>
+# include <termios.h>
+# include <term.h>
+# include <sys/ioctl.h>
+
 # include "libft.h"
 # define FD_FREE		0
 # define FD_LOCAL		1
@@ -34,6 +38,14 @@
 # define MAX(a,b)			((a > b) ? a : b)
 
 # define USAGE				"Usage: %s <machine> <port> | [machine [port]]\n"
+
+typedef struct		s_term
+{
+	struct termios	term;
+	struct termios	bterm;
+	int				nb_col;
+	int				nb_row;
+}					t_term;
 
 typedef struct		s_privmsg
 {
@@ -93,6 +105,7 @@ typedef struct		s_env
 	fd_set				fd_write;
 	t_list				*chanel;
 	struct timeval		timeout;
+	t_term				t;
 }					t_env;
 
 int					x_int(int err, int res, char *str, char *file, int line);
@@ -108,5 +121,7 @@ void				clean_fd(t_fd *fd);
 void				init_fd(t_env *e);
 void				do_select(t_env *e);
 void				check_fd(t_env *e);
+int					ft_init_termios(t_env *e, int i);
+int					ft_reset_termios(t_env *e);
 
 #endif /* !FT_IRC_CLIENT_H_ */

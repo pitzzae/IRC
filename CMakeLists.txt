@@ -52,7 +52,11 @@ set(SOURCE_LIBFT libft/srcs/ft_atoi.c libft/srcs/ft_bzero.c
         libft/srcs/ft_putstr_whsp.c libft/srcs/ft_pow.c libft/srcs/ft_putadd.c
         libft/srcs/ft_strnocur.c)
 
-add_library(ft ${SOURCE_LIBFT} ${HEADER_FILES})
+add_library(ft STATIC ${SOURCE_LIBFT} ${HEADER_FILES})
+
+set(APP_SERVER server)
+
+set(APP_CLIENT client)
 
 set(SOURCE_SERVER
         srcs/server/check_fd.c
@@ -92,8 +96,10 @@ set(SOURCE_CLIENT
         srcs/client/main.c
         srcs/client/main_loop.c
         srcs/client/client_create.c
-        srcs/client/x.c)
+        srcs/client/x.c srcs/client/ft_terminos.c)
 
-add_executable(server ${SOURCE_SERVER} ${SOURCE_LIBFT} ${HEADER_FILES_SERVER})
+add_executable( ${APP_SERVER} ${HEADER_FILES_SERVER} ${SOURCE_SERVER} ${SOURCE_LIBFT} )
+target_link_libraries( ${APP_SERVER} ft)
 
-add_executable(client ${SOURCE_CLIENT} ${SOURCE_LIBFT} ${HEADER_FILES_CLIENT})
+add_executable( ${APP_CLIENT} ${HEADER_FILES_CLIENT} ${SOURCE_CLIENT} ${SOURCE_LIBFT} )
+target_link_libraries( ${APP_CLIENT} ft ncurses)

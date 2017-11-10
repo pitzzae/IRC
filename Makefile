@@ -42,7 +42,7 @@ SERVER_SRCS		= main.c init_env.c clean_fd.c get_opt.c x.c main_loop.c \
 
 CLIENT_SRCS		= main.c init_env.c clean_fd.c get_opt.c x.c main_loop.c \
 				init_fd.c do_select.c check_fd.c client_create.c \
-				client_read.c client_write.c
+				client_read.c client_write.c ft_terminos.c
 
 SERVER_OBJECTS	= $(patsubst %.c, $(OBJS_DIR_SER)/%.o, $(SERVER_SRCS))
 CLIENT_OBJECTS	= $(patsubst %.c, $(OBJS_DIR_CLI)/%.o, $(CLIENT_SRCS))
@@ -62,7 +62,7 @@ $(OBJS_DIR_SER)/%.o: $(addprefix $(SERVER_SRCS_DIR)/,%.c)
 	@printf "."
 
 $(CLIENT): makelib $(CLIENT_OBJECTS)
-	@$(CC) $(CLIENT_OBJECTS) -o $@ $(CFLAGS) $(INCL_DIR) $(INCL_LIB)
+	@$(CC) $(CLIENT_OBJECTS) -o $@ $(CFLAGS) $(INCL_DIR) $(INCL_LIB) -lncurses
 
 $(OBJS_DIR_CLI)/%.o: $(addprefix $(CLIENT_SRCS_DIR)/,%.c)
 	@mkdir -p $(OBJS_DIR_CLI)

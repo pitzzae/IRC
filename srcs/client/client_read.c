@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 15:42:22 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/10 16:27:59 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/10 18:37:30 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	client_read(t_env *e, int cs)
 		close(cs);
 		clean_fd(&e->fds[cs]);
 		printf("server #%d gone away\n", cs);
+		ft_reset_termios(e);
 		exit (1);
 	}
 	else

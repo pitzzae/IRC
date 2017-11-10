@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 14:20:06 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/10 16:41:11 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/10 19:45:28 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 void			client_create(t_env *e, char *ip, int port)
 {
-	e->sock.s = X(-1, socket(AF_INET, SOCK_STREAM, 0), "socket");
+	e->sock.pe = (struct protoent*)Xv(NULL, getprotobyname("tcp"),
+									"getprotoname");
+	e->sock.s = X(-1, socket(PF_INET, SOCK_STREAM, e->sock.pe->p_proto),
+									"socket");
 	e->sock.hi = (struct hostent*)Xv(NULL, gethostbyname(ip),
-									 "gethostbyname");
-	e->sock.sin.sin_addr = *(struct in_addr*)e->sock.hi->h_addr;
-	e->sock.sin.sin_port = htons(port);
+									"gethostbyname");
 	e->sock.sin.sin_family = AF_INET;
+	e->sock.sin.sin_addr.s_addr = inet_addr(e->sock.hi->h_name);
+	e->sock.sin.sin_port = htons(port);
 	X(-1, connect(e->sock.s,(struct sockaddr*)&e->sock.sin,
-				  sizeof(e->sock.sin)), "connect");
+				sizeof(e->sock.sin)), "connect");
 	e->fds[0].type = FD_LOCAL;
 	e->fds[0].fct_read = client_write;
 	e->fds[e->sock.s].type = FD_CLIENT;
