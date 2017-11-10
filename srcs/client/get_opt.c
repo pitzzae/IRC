@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 15:41:50 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/10 16:59:50 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/10 17:01:39 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void	get_opt(t_env *e, int ac, char **av)
 {
-	if (ac != 2)
+	if (ac != 3)
 	{
 		fprintf(stderr, USAGE, av[0]);
 		exit(1);
 	}
-	e->port = atoi(av[1]);
+	e->port = atoi(av[2]);
+	e->host = av[1];
 }

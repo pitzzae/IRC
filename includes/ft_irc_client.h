@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/10 18:57:56 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 00:08:26 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct		s_env
 	t_fd				*fds;
 	t_sock				sock;
 	int					port;
+	char				*host;
 	int					maxfd;
 	int					max;
 	int					r;
