@@ -18,7 +18,6 @@ int	ft_irc_cmd_nick(t_env *e, int cs)
 
 	if (e->fds[cs].buff_len > 4 && ft_strncmp(e->fds[cs].buffer, "NICK", 4) == 0)
 	{
-
 		if (e->fds[cs].buff_len > 6 && e->fds[cs].buff_len < 15)
 		{
 			e->fds[cs].argv = &e->fds[cs].buffer[5];

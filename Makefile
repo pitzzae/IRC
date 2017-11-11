@@ -43,7 +43,12 @@ SERVER_SRCS		= main.c init_env.c clean_fd.c get_opt.c x.c main_loop.c \
 CLIENT_SRCS		= main.c init_env.c clean_fd.c get_opt.c x.c main_loop.c \
 				init_fd.c do_select.c check_fd.c client_create.c \
 				client_read.c client_write.c ft_terminos.c ft_terms_read.c \
-				ft_terminos_move.c ft_client_prompt.c ft_history_cmd.c
+				ft_terminos_move.c ft_client_prompt.c ft_history_cmd.c \
+				ft_parse_irc_cmd.c ft_irc_cmd_file.c ft_irc_cmd_who.c \
+				ft_irc_cmd_join.c ft_irc_cmd_leave.c ft_irc_cmd_msg.c \
+				ft_irc_cmd_nick.c ft_irc_cmd_quit.c ft_irc_cmd_user.c \
+				ft_irc_print.c ft_irc_cmd_help.c ft_send.c
+
 
 SERVER_OBJECTS	= $(patsubst %.c, $(OBJS_DIR_SER)/%.o, $(SERVER_SRCS))
 CLIENT_OBJECTS	= $(patsubst %.c, $(OBJS_DIR_CLI)/%.o, $(CLIENT_SRCS))

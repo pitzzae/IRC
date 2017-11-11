@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 18:21:10 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 21:34:55 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,11 @@
 # define X(err,res,str)		(x_int(err,res,str,__FILE__,__LINE__))
 # define MAX(a,b)			((a > b) ? a : b)
 # define RB(a)				(e->fds[a].r_buffer)
+# define BL(a)				(e->fds[a].buff_len)
 
 # define USAGE				"Usage: %s <machine> <port> | [machine [port]]\n"
+# define UND_CMD			"Undefined command: \""
+# define UND_CMD_TRY		"\".  Try \"/help\".\n"
 
 typedef struct		s_term
 {
@@ -148,5 +151,18 @@ void				ft_terminos_right_arrow(t_env *e, int fd);
 void				ft_history_cmd(t_env *e, int fd, char c);
 void				ft_history_cmd_add(t_env *e, char *cmd);
 void				ft_history_cmd_clear(t_env *e);
+int					ft_parse_irc_cmd(t_env *e, int cs);
+int					ft_irc_cmd_msg(t_env *e, int cs);
+int					ft_irc_cmd_join(t_env *e, int cs);
+int					ft_irc_cmd_leave(t_env *e, int cs);
+int					ft_irc_cmd_file(t_env *e, int cs);
+int					ft_irc_cmd_nick(t_env *e, int cs);
+int					ft_irc_cmd_user(t_env *e, int cs);
+int					ft_irc_cmd_who(t_env *e, int cs);
+int					ft_irc_cmd_quit(t_env *e, int cs, int force);
+void				ft_irc_print(t_env *e, char *msg, int len, int prompt);
+int					ft_irc_cmd_help(t_env *e, int cs);
+size_t				ft_send(int cs, void *buff, size_t len, t_env *e);
+char				*ft_parse_irc_cmd_convert(char *s, int len);
 
 #endif /* !FT_IRC_CLIENT_H_ */

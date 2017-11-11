@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 17:02:13 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 19:08:26 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 19:10:04 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,9 @@ void			ft_history_cmd_add(t_env *e, char *cmd)
 
 void			ft_history_cmd_clear(t_env *e)
 {
-	ft_lstdel(&e->history, u_del);
+	if (e->history)
+	{
+		ft_lstdel(&e->history, u_del);
+		e->history = NULL;
+	}
 }

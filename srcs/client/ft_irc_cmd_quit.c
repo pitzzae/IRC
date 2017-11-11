@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_write.c                                     :+:      :+:    :+:   */
+/*   ft_irc_cmd_quit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/10 15:42:10 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 19:45:44 by gtorresa         ###   ########.fr       */
+/*   Created: 2017/11/11 19:54:28 by gtorresa          #+#    #+#             */
+/*   Updated: 2017/11/11 21:29:40 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
 
-void	client_write(t_env *e, int cs)
+static void	client_close(t_env *e, int cs)
 {
-	if (cs == 0)
+	close(cs);
+	clean_fd(&e->fds[cs]);
+	printf("connection #%d close\n", cs);
+	ft_history_cmd_clear(e);
+	ft_reset_termios(e);
+	exit (1);
+}
+
+int			ft_irc_cmd_quit(t_env *e, int cs, int force)
+{
+	if ((BL(cs) > 5 && ft_strncmp(RB(cs), "/quit", 4) == 0) || force == 1)
 	{
-		ft_terms_read(e, cs);
-		if (ft_strocur(e->fds[cs].r_buffer, '\n') > 0)
-		{
-			ft_parse_irc_cmd(e, cs);
-			free(e->fds[cs].r_buffer);
-			RB(cs) = ft_strnew(0);
-			e->t.cur = ft_strlen(e->t.prompt);
-			ft_client_prompt(e, 0);
-		}
+		if (force == 1)
+			client_close(e, cs);
+		else
+			ft_send(e->sock.s, "QUIT\n", 5, e);
+		return (1);
 	}
+	return (0);
 }

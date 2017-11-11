@@ -57,7 +57,7 @@ static void	ft_terms_buffer_char(t_env *e, int fd, char *buff)
 			c = '\n';
 		if (c == 127 && e->t.cur > e->t.p_len)
 			ft_terminos_del_char(e, fd);
-		else if (c != 127)
+		else if (c != 127 && c != 9)
 			ft_terminos_add_char(e, fd, c);
 	}
 	else if (buff[0] == ARROW_1 && buff[1] == ARROW_2)

@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_write.c                                     :+:      :+:    :+:   */
+/*   ft_irc_print.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/10 15:42:10 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 19:45:44 by gtorresa         ###   ########.fr       */
+/*   Created: 2017/11/11 20:46:50 by gtorresa          #+#    #+#             */
+/*   Updated: 2017/11/11 21:14:05 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
 
-void	client_write(t_env *e, int cs)
+void			ft_irc_print(t_env *e, char *msg, int len, int prompt)
 {
-	if (cs == 0)
+	ft_terminos_clean_line(e);
+	write(1, msg, len);
+	if (prompt == 1)
 	{
-		ft_terms_read(e, cs);
-		if (ft_strocur(e->fds[cs].r_buffer, '\n') > 0)
-		{
-			ft_parse_irc_cmd(e, cs);
-			free(e->fds[cs].r_buffer);
-			RB(cs) = ft_strnew(0);
-			e->t.cur = ft_strlen(e->t.prompt);
-			ft_client_prompt(e, 0);
-		}
+		ft_client_prompt(e, e->t.cur);
+		e->t.cur -= ft_strlen(e->t.prompt);
 	}
 }
