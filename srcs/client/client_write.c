@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 15:42:10 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 14:51:50 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 14:53:23 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	client_write(t_env *e, int cs)
 		}
 		else
 		{
-			ft_putendl_fd(" -> no \\n", 2);
+			ft_putendl_fd(" -> no \\n", 7);
 		}
 	}
 }
