@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 15:42:22 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 14:25:11 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 15:37:50 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	client_read(t_env *e, int cs)
 				ft_terminos_clean_line(e);
 				write(1, e->fds[cs].buf_read, r);
 				ft_client_prompt(e, e->t.cur);
+				e->t.cur -= ft_strlen(e->t.prompt);
 				FD_SET(1, &e->fd_write);
 			}
 			i++;

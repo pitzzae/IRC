@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 14:30:19 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 15:00:32 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 15:29:41 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,5 @@ char		*ft_addchar_intstr(char *s, char c, int p)
 		i++;
 	}
 	free(s);
-	i = 0;
-	while (i < len)
-	{
-		ft_putchar_fd(tmp[i], 7);
-		i++;
-	}
-	ft_putendl_fd("", 7);
 	return (tmp);
 }
