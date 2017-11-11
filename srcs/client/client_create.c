@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 14:20:06 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 12:31:41 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 14:19:23 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,7 @@ void			client_create(t_env *e, char *ip, int port)
 	e->fds[0].r_buffer = ft_strnew(0);
 	e->fds[e->sock.s].type = FD_CLIENT;
 	e->fds[e->sock.s].fct_read = client_read;
+	e->t.prompt = ft_strdup("IRC$>");
+	e->t.cur = ft_strlen(e->t.prompt);
+	ft_client_prompt(e, ft_strlen(e->fds[0].r_buffer));
 }

@@ -47,7 +47,7 @@ SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c\
 	ft_strsub_free.c ft_myputchar.c ft_lstaddend_free.c ft_udel.c \
 	ft_strocur_slash.c ft_stradd_slash.c ft_tabdup.c ft_putbase.c \
 	ft_puthex.c ft_swapuint32.c ft_swapuint8.c ft_putstr_whsp.c ft_pow.c \
-	ft_putadd.c ft_strnocur.c
+	ft_putadd.c ft_strnocur.c ft_addchar_intstr.c
 
 CFLAGS = -Wall -Wextra -Werror
 

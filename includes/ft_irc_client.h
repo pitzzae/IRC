@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 12:31:55 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 14:03:29 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct		s_term
 	struct termios	bterm;
 	int				nb_col;
 	int				nb_row;
+	char			*prompt;
+	int				cur;
 }					t_term;
 
 typedef struct		s_privmsg
@@ -126,5 +128,7 @@ void				check_fd(t_env *e);
 int					ft_init_termios(t_env *e, int i);
 int					ft_reset_termios(t_env *e);
 void				ft_terms_read(t_env *e, int fd);
+void				ft_terminos_clean_line(t_env *e);
+void				ft_client_prompt(t_env *e, int curs);
 
 #endif /* !FT_IRC_CLIENT_H_ */

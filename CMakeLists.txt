@@ -50,7 +50,7 @@ set(SOURCE_LIBFT libft/srcs/ft_atoi.c libft/srcs/ft_bzero.c
         libft/srcs/ft_putbase.c libft/srcs/ft_puthex.c
         libft/srcs/ft_swapuint32.c libft/srcs/ft_swapuint8.c
         libft/srcs/ft_putstr_whsp.c libft/srcs/ft_pow.c libft/srcs/ft_putadd.c
-        libft/srcs/ft_strnocur.c)
+        libft/srcs/ft_strnocur.c libft/srcs/ft_addchar_intstr.c)
 
 add_library(ft STATIC ${SOURCE_LIBFT} ${HEADER_FILES})
 
@@ -96,7 +96,7 @@ set(SOURCE_CLIENT
         srcs/client/main.c
         srcs/client/main_loop.c
         srcs/client/client_create.c
-        srcs/client/x.c srcs/client/ft_terminos.c srcs/client/ft_terms_read.c)
+        srcs/client/x.c srcs/client/ft_terminos.c srcs/client/ft_terms_read.c srcs/client/ft_terminos_move.c srcs/client/ft_client_prompt.c)
 
 add_executable( ${APP_SERVER} ${HEADER_FILES_SERVER} ${SOURCE_SERVER} ${SOURCE_LIBFT} )
 target_link_libraries( ${APP_SERVER} ft)
