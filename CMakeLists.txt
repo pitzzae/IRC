@@ -96,7 +96,7 @@ set(SOURCE_CLIENT
         srcs/client/main.c
         srcs/client/main_loop.c
         srcs/client/client_create.c
-        srcs/client/x.c srcs/client/ft_terminos.c)
+        srcs/client/x.c srcs/client/ft_terminos.c srcs/client/ft_terms_read.c)
 
 add_executable( ${APP_SERVER} ${HEADER_FILES_SERVER} ${SOURCE_SERVER} ${SOURCE_LIBFT} )
 target_link_libraries( ${APP_SERVER} ft)

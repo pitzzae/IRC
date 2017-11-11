@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 00:08:26 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 12:31:55 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct		s_fd
 	char				buf_read[BUF_SIZE + 1];
 	char				buf_write[BUF_SIZE + 1];
 	char				*buffer;
+	char				*r_buffer;
 	char				*argv;
 	int					buff_len;
 	char				username[10];
@@ -124,5 +125,6 @@ void				do_select(t_env *e);
 void				check_fd(t_env *e);
 int					ft_init_termios(t_env *e, int i);
 int					ft_reset_termios(t_env *e);
+void				ft_terms_read(t_env *e, int fd);
 
 #endif /* !FT_IRC_CLIENT_H_ */

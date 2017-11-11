@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 14:20:06 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/10 19:45:28 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 13:00:38 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void			client_create(t_env *e, char *ip, int port)
 				sizeof(e->sock.sin)), "connect");
 	e->fds[0].type = FD_LOCAL;
 	e->fds[0].fct_read = client_write;
+	e->fds[0].r_buffer = ft_strnew(0);
 	e->fds[e->sock.s].type = FD_CLIENT;
-	e->fds[e->sock.s].fct_read = client_read;
+	e->fds[e->sock.s].fct_write = client_read;
 }

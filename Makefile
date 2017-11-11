@@ -42,7 +42,8 @@ SERVER_SRCS		= main.c init_env.c clean_fd.c get_opt.c x.c main_loop.c \
 
 CLIENT_SRCS		= main.c init_env.c clean_fd.c get_opt.c x.c main_loop.c \
 				init_fd.c do_select.c check_fd.c client_create.c \
-				client_read.c client_write.c ft_terminos.c
+				client_read.c client_write.c ft_terminos.c ft_terms_read.c \
+
 
 SERVER_OBJECTS	= $(patsubst %.c, $(OBJS_DIR_SER)/%.o, $(SERVER_SRCS))
 CLIENT_OBJECTS	= $(patsubst %.c, $(OBJS_DIR_CLI)/%.o, $(CLIENT_SRCS))
