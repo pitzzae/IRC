@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:43:46 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 21:41:36 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 21:47:22 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int			ft_parse_irc_cmd(t_env *e, int cs)
 	else if (ft_irc_cmd_file(e, cs))
 		return (0);
 	else if (ft_irc_cmd_help(e, cs))
+		return (0);
+	else if (ft_irc_cmd_connect(e, cs, 0))
 		return (0);
 	ft_print_usage(e, RB(cs));
 	return (1);

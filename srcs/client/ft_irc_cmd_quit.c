@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:28 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 21:29:40 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 22:47:37 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int			ft_irc_cmd_quit(t_env *e, int cs, int force)
 {
 	if ((BL(cs) > 5 && ft_strncmp(RB(cs), "/quit", 4) == 0) || force == 1)
 	{
-		if (force == 1)
+		if (force == 1 || e->sock.s == 0)
 			client_close(e, cs);
 		else
 			ft_send(e->sock.s, "QUIT\n", 5, e);

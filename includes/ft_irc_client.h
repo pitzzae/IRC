@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 21:34:55 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 23:06:23 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@
 # define ARROW_LEFT		68
 # define ARROW_RIGHT	67
 
-# define Xv(err,res,str)	(x_void(err,res,str,__FILE__,__LINE__))
-# define X(err,res,str)		(x_int(err,res,str,__FILE__,__LINE__))
+# define Xv(err,res,e)		(x_void(err,res,e,__FILE__,__LINE__))
+# define X(err,res,e)		(x_int(err,res,e,__FILE__,__LINE__))
 # define MAX(a,b)			((a > b) ? a : b)
 # define RB(a)				(e->fds[a].r_buffer)
 # define BL(a)				(e->fds[a].buff_len)
@@ -124,10 +124,13 @@ typedef struct		s_env
 	t_list				*history;
 	t_list				*h_pos;
 	t_term				t;
+	int					is_init;
+	char				*state;
+	int					connect;
 }					t_env;
 
-int					x_int(int err, int res, char *str, char *file, int line);
-void				*x_void(void *err, void *res, char *str, char *file,
+int					x_int(int err, int res, t_env *e, char *file, int line);
+void				*x_void(void *err, void *res, t_env *e, char *file,
 							int line);
 void				init_env(t_env *e);
 void				get_opt(t_env *e, int ac, char **av);
@@ -164,5 +167,6 @@ void				ft_irc_print(t_env *e, char *msg, int len, int prompt);
 int					ft_irc_cmd_help(t_env *e, int cs);
 size_t				ft_send(int cs, void *buff, size_t len, t_env *e);
 char				*ft_parse_irc_cmd_convert(char *s, int len);
+int					ft_irc_cmd_connect(t_env *e, int cs, int force);
 
 #endif /* !FT_IRC_CLIENT_H_ */

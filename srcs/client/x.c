@@ -12,24 +12,26 @@
 
 #include "ft_irc_client.h"
 
-int		x_int(int err, int res, char *str, char *file, int line)
+int		x_int(int err, int res, t_env *e, char *file, int line)
 {
 	if (res == err)
 	{
 		fprintf(stderr, "%s error (%s, %d): %s\n",
-				str, file, line, strerror(errno));
-		exit (1);
+				e->state, file, line, strerror(errno));
+		if (e->is_init != 1)
+			exit (1);
 	}
 	return (res);
 }
 
-void	*x_void(void *err, void *res, char *str, char *file, int line)
+void	*x_void(void *err, void *res, t_env *e, char *file, int line)
 {
 	if (res == err)
 	{
 		fprintf(stderr, "%s error (%s, %d): %s\n",
-				str, file, line, strerror(errno));
-		exit (1);
+				e->state, file, line, strerror(errno));
+		if (e->is_init != 1)
+			exit (1);
 	}
 	return (res);
 }
