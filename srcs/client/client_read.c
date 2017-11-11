@@ -22,7 +22,7 @@ void	client_read(t_env *e, int cs)
 	{
 		close(cs);
 		clean_fd(&e->fds[cs]);
-		printf("server #%d gone away\n", cs);
+		printf("connection #%d close\n", cs);
 		ft_reset_termios(e);
 		exit (1);
 	}

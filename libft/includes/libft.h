@@ -174,6 +174,6 @@ uint32_t			ft_swapuint32(uint32_t u);
 uint8_t				ft_swapuint8(uint8_t u);
 void				ft_putadd(void const *p, char *buf);
 char				*ft_addchar_intstr(char *s, char c, int p);
-char				*ft_delchar_intstr(char *s, char c, int p);
+char				*ft_delchar_intstr(char *s, int p);
 
 #endif /* !FT_LIBFT_H */

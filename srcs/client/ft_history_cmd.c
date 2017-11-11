@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_client_prompt.c                                 :+:      :+:    :+:   */
+/*   ft_history_cmd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/11 13:58:39 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 14:18:53 by gtorresa         ###   ########.fr       */
+/*   Created: 2017/11/11 17:02:13 by gtorresa          #+#    #+#             */
+/*   Updated: 2017/11/11 17:05:26 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
 
-void			ft_client_prompt(t_env *e, int curs)
+static void		ft_history_cmd_up(t_env *e, int fd)
 {
-	int				len;
+	(void)e;
+	(void)fd;
+}
 
-	ft_putstr(e->t.prompt);
-	ft_putstr(e->fds[0].r_buffer);
-	e->t.cur = ft_strlen(e->t.prompt) + curs;
-	len = ft_strlen(e->t.prompt) + ft_strlen(e->fds[0].r_buffer);
-	if (e->t.cur != len)
-	{
-		while (len > e->t.cur)
-		{
-			tputs(tgetstr("le", NULL), 1, ft_myputchar);
-			len--;
-		}
-	}
+static void		ft_history_cmd_down(t_env *e, int fd)
+{
+	(void)e;
+	(void)fd;
+}
+
+void			ft_history_cmd(t_env *e, int fd, char c)
+{
+	if (c == ARROW_UP)
+		ft_history_cmd_up(e, fd);
+	else if (c == ARROW_DOWN)
+		ft_history_cmd_down(e, fd);
 }

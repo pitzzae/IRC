@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 16:06:49 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 17:18:52 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,17 @@
 # define FD_FREE		0
 # define FD_LOCAL		1
 # define FD_CLIENT		2
+# define ARROW_1		27
+# define ARROW_2		91
+# define ARROW_UP		65
+# define ARROW_DOWN		66
+# define ARROW_LEFT		68
+# define ARROW_RIGHT	67
+
 # define Xv(err,res,str)	(x_void(err,res,str,__FILE__,__LINE__))
 # define X(err,res,str)		(x_int(err,res,str,__FILE__,__LINE__))
 # define MAX(a,b)			((a > b) ? a : b)
+# define RB(a)				(e->fds[a].r_buffer)
 
 # define USAGE				"Usage: %s <machine> <port> | [machine [port]]\n"
 
@@ -131,5 +139,10 @@ int					ft_reset_termios(t_env *e);
 void				ft_terms_read(t_env *e, int fd);
 void				ft_terminos_clean_line(t_env *e);
 void				ft_client_prompt(t_env *e, int curs);
+void				ft_terminos_add_char(t_env *e, int fd, char c);
+void				ft_terminos_del_char(t_env *e, int fd);
+void				ft_terminos_left_arrow(t_env *e, int fd);
+void				ft_terminos_right_arrow(t_env *e, int fd);
+void				ft_history_cmd(t_env *e, int fd, char c);
 
 #endif /* !FT_IRC_CLIENT_H_ */

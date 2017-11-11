@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_terms_read.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtorresa <null>                            +#+  +:+       +#+        */
+/*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 12:21:13 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 16:37:26 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 17:28:05 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,16 @@ static int	ft_terms_buffer_char_value(char *buff, int start, int stop, char c)
 	return (1);
 }
 
+static void	ft_terms_buffer_arrow(t_env *e, int fd, char *buff)
+{
+	if (buff[2] == ARROW_LEFT)
+		ft_terminos_left_arrow(e, fd);
+	else if (buff[2] == ARROW_RIGHT)
+		ft_terminos_right_arrow(e, fd);
+	else if (buff[2] == ARROW_UP || buff[2] == ARROW_DOWN)
+		ft_history_cmd(e, fd, buff[2]);
+}
+
 static void	ft_terms_buffer_char(t_env *e, int fd, char *buff)
 {
 	char			c;
@@ -45,27 +55,13 @@ static void	ft_terms_buffer_char(t_env *e, int fd, char *buff)
 	{
 		if (c == 10)
 			c = '\n';
-		dprintf(7, "[s] e->t.cur %d e->t.p_len %d\n", e->t.cur, e->t.p_len);
 		if (c == 127 && e->t.cur > e->t.p_len)
-		{
-			ft_terminos_clean_line(e);
-			dprintf(7, "bcur %d \n", e->t.cur);
-			e->fds[fd].r_buffer = ft_delchar_intstr(e->fds[fd].r_buffer, c,
-									e->t.cur - ft_strlen(e->t.prompt));
-			e->t.cur--;
-			ft_client_prompt(e, e->t.cur);
-			e->t.cur -= e->t.p_len;
-			dprintf(7, "acur %d \n", e->t.cur);
-		}
+			ft_terminos_del_char(e, fd);
 		else if (c != 127)
-		{
-			e->fds[fd].r_buffer = ft_addchar_intstr(e->fds[fd].r_buffer, c,
-									e->t.cur - ft_strlen(e->t.prompt));
-			e->t.cur++;
-			ft_putchar(c);
-		}
-		dprintf(7, "[x] e->t.cur %d e->t.p_len %d\n", e->t.cur, e->t.p_len);
+			ft_terminos_add_char(e, fd, c);
 	}
+	else if (buff[0] == ARROW_1 && buff[1] == ARROW_2)
+		ft_terms_buffer_arrow(e, fd, buff);
 }
 
 void		ft_terms_read(t_env *e, int fd)
@@ -81,6 +77,8 @@ void		ft_terms_read(t_env *e, int fd)
 		c = buff[0];
 		ft_strncat(buff, &c, 1);
 		dprintf(7, "%d %d %d %d %d %d\n", buff[0], buff[1], buff[2], buff[3], buff[4], buff[5]);
+		dprintf(7, "[s] e->t.cur %d e->t.p_len %d\n", e->t.cur, e->t.p_len);
 		ft_terms_buffer_char(e, fd, &buff[0]);
+		dprintf(7, "[x] e->t.cur %d e->t.p_len %d\n", e->t.cur, e->t.p_len);
 	}
 }
