@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 23:06:23 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 23:59:02 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 # define USAGE				"Usage: %s <machine> <port> | [machine [port]]\n"
 # define UND_CMD			"Undefined command: \""
 # define UND_CMD_TRY		"\".  Try \"/help\".\n"
+# define NO_CONN			"Connection not found !!!\nTry \"/help\".\n"
 
 typedef struct		s_term
 {
@@ -168,5 +169,6 @@ int					ft_irc_cmd_help(t_env *e, int cs);
 size_t				ft_send(int cs, void *buff, size_t len, t_env *e);
 char				*ft_parse_irc_cmd_convert(char *s, int len);
 int					ft_irc_cmd_connect(t_env *e, int cs, int force);
+int					client_is_connected(t_env *e);
 
 #endif /* !FT_IRC_CLIENT_H_ */

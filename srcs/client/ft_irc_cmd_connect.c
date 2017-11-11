@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 22:34:37 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 23:21:52 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 23:22:49 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int			ft_irc_cmd_connect(t_env *e, int cs, int force)
 {
 	char			**tmp;
 
-	if (e->connect == 1)
+	if (e->connect == 1 && force == 0)
 	{
 		ft_irc_cmd_allrdy_connect(e);
 		return (1);
