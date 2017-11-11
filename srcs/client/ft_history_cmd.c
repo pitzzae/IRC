@@ -75,8 +75,8 @@ void			ft_history_cmd(t_env *e, int fd, char c)
 
 void			ft_history_cmd_add(t_env *e, char *cmd)
 {
-	t_list		*lst;
-	int			ocur;
+	t_list			*lst;
+	int				ocur;
 
 	ocur = ft_strfocur(cmd, '\n');
 	if (ocur >= 0)

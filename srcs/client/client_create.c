@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 14:20:06 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 23:56:07 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 23:58:16 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int				client_is_connected(t_env *e)
 
 void			client_create(t_env *e, char *ip, int port)
 {
-	int			r;
+	int				r;
 
 	e->state = "getprotoname";
 	e->sock.pe = (struct protoent*)Xv(NULL, getprotobyname("tcp"), e);
