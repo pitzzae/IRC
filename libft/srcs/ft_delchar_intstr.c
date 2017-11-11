@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_terminos_move.c                                 :+:      :+:    :+:   */
+/*   ft_delchar_intstr.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtorresa <null>                            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/11 13:31:14 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 16:26:55 by gtorresa         ###   ########.fr       */
+/*   Created: 2017/11/11 15:49:33 by gtorresa          #+#    #+#             */
+/*   Updated: 2017/11/11 15:56:05 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc_client.h"
+#include <libft.h>
 
-void		ft_terminos_clean_line(t_env *e)
+char		*ft_delchar_intstr(char *s, char c, int p)
 {
-	int			cur;
-
-	tputs(tgetstr("cb", NULL), 1, ft_myputchar);
-	tputs(tgetstr("ce", NULL), 1, ft_myputchar);
-	cur = e->t.cur;
-	while (cur > 0)
-	{
-		tputs(tgetstr("le", NULL), 1, ft_myputchar);
-		cur--;
-	}
+	(void)s;
+	(void)c;
+	(void)p;
+	s[ft_strlen(s) - 1] = '\0';
+	return (s);
 }

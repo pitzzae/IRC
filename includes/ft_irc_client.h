@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 14:03:29 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 16:06:49 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct		s_term
 	int				nb_col;
 	int				nb_row;
 	char			*prompt;
+	int				p_len;
 	int				cur;
 }					t_term;
 

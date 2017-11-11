@@ -6,11 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 14:30:19 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 15:29:41 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 15:41:28 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
 char		*ft_addchar_intstr(char *s, char c, int p)
 {
