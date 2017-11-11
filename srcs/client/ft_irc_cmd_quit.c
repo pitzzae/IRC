@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:28 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 22:47:37 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 00:17:33 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static void	client_close(t_env *e, int cs)
 {
 	close(cs);
 	clean_fd(&e->fds[cs]);
-	printf("connection #%d close\n", cs);
+	ft_terminos_clean_line(e);
+	printf("Close connection on %s:%d\n", e->host, e->port);
 	ft_history_cmd_clear(e);
 	ft_reset_termios(e);
 	exit (1);
