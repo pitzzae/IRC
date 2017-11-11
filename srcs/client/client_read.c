@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 15:42:22 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 15:37:50 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 17:29:13 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	client_read(t_env *e, int cs)
 		close(cs);
 		clean_fd(&e->fds[cs]);
 		printf("connection #%d close\n", cs);
+		ft_history_cmd_clear(e);
 		ft_reset_termios(e);
 		exit (1);
 	}

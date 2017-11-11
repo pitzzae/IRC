@@ -19,9 +19,10 @@ void	client_write(t_env *e, int cs)
 		ft_terms_read(e, cs);
 		if (ft_strocur(e->fds[cs].r_buffer, '\n') > 0)
 		{
-			send(e->sock.s, e->fds[cs].r_buffer, ft_strlen(e->fds[cs].r_buffer), 0);
+			send(e->sock.s, RB(cs), ft_strlen(RB(cs)), 0);
+			ft_history_cmd_add(e, RB(cs));
 			free(e->fds[cs].r_buffer);
-			e->fds[cs].r_buffer = ft_strnew(0);
+			RB(cs) = ft_strnew(0);
 			e->t.cur = ft_strlen(e->t.prompt);
 			ft_client_prompt(e, 0);
 		}

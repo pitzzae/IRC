@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 17:18:52 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/11 18:21:10 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,8 @@ typedef struct		s_env
 	fd_set				fd_write;
 	t_list				*chanel;
 	struct timeval		timeout;
+	t_list				*history;
+	t_list				*h_pos;
 	t_term				t;
 }					t_env;
 
@@ -144,5 +146,7 @@ void				ft_terminos_del_char(t_env *e, int fd);
 void				ft_terminos_left_arrow(t_env *e, int fd);
 void				ft_terminos_right_arrow(t_env *e, int fd);
 void				ft_history_cmd(t_env *e, int fd, char c);
+void				ft_history_cmd_add(t_env *e, char *cmd);
+void				ft_history_cmd_clear(t_env *e);
 
 #endif /* !FT_IRC_CLIENT_H_ */
