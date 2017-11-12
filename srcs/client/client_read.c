@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 15:42:22 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 20:53:15 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 12:46:51 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	client_read(t_env *e, int cs)
 		{
 			if (e->fds[i].type == FD_CLIENT)
 			{
-				ft_irc_print(e, e->fds[cs].buf_read, r, 1);
+				ft_irc_parse_return(e, cs, r);
 				FD_SET(1, &e->fd_write);
 			}
 			i++;

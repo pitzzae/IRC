@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 02:15:16 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 13:22:03 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,14 @@
 # define HELP_CMD_WHO		"\n"
 # define HELP_CMD_MSG		" <nick>|<#chan> <message>\n"
 # define HELP_CMD_FILE		" not implemented yet\n"
+
+typedef struct		s_reply
+{
+	char				*arg1;
+	char				*arg2;
+	char				*arg3;
+	char				*arg4;
+}					t_reply;
 
 typedef struct		s_term
 {
@@ -192,5 +200,7 @@ int					ft_irc_cmd_connect(t_env *e, int cs, int force);
 int					client_is_connected(t_env *e);
 void				ft_irc_cmd_error_arg(t_env *e, char *cmd, char *help);
 void				ft_irc_update_prompt(t_env *e);
+void				ft_irc_parse_return(t_env *e, int cs, int len);
+char				*ft_irc_parse_reply(t_reply *r);
 
 #endif /* !FT_IRC_CLIENT_H_ */

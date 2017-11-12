@@ -49,7 +49,8 @@ CLIENT_SRCS		= main.c init_env.c clean_fd.c get_opt.c x.c main_loop.c \
 				ft_irc_cmd_nick.c ft_irc_cmd_quit.c ft_irc_cmd_user.c \
 				ft_irc_print.c ft_irc_cmd_help.c ft_send.c \
 				ft_irc_cmd_connect.c ft_irc_cmd_error_arg.c \
-				ft_irc_update_prompt.c
+				ft_irc_update_prompt.c ft_irc_parse_return.c \
+				ft_irc_parse_reply.c
 
 
 SERVER_OBJECTS	= $(patsubst %.c, $(OBJS_DIR_SER)/%.o, $(SERVER_SRCS))
