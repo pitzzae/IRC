@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:04:44 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 20:06:22 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 20:58:39 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 /*TODO
  * Add limit to string chanel.
+ * Dont broadcast msg if client allready in chanel
  * */
 
 static void	ft_irc_join_chanel(t_chanel **c, int cs)

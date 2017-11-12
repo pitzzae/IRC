@@ -6,11 +6,15 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:16:36 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 19:23:47 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 19:29:19 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_server.h"
+
+/*TODO
+ * Dont broadcast msg if client allready leave chanel
+ * */
 
 static t_list	*ft_irc_remove_fd_chanle(t_list **c, int cs)
 {

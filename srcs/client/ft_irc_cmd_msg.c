@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:12 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 20:27:28 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 20:29:05 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,11 @@ static int	ft_irc_cmd_msg_parse(t_env *e, char *cmd, char *vcmd)
 	int			i;
 
 	tmp = ft_strsplit(cmd, ' ');
-	if (tmp[0] && tmp[1] && tmp[2] && !tmp[3])
+	if (tmp[0] && tmp[1] && tmp[2])
 	{
-		free(tmp[0]);
-		free(tmp[1]);
-		free(tmp[2]);
-		free(tmp[3]);
+		i = 0;
+		while (tmp[i])
+			free(tmp[i++]);
 		free(tmp);
 		return (1);
 	}
