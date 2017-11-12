@@ -12,6 +12,10 @@
 
 #include "ft_irc_client.h"
 
+/*TODO
+ * Fix del
+ * */
+
 static void	ft_terms_clear_buffer(t_env *e, char *buff)
 {
 	struct winsize	win;
