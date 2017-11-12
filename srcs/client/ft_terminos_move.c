@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 13:31:14 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 18:02:56 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 03:19:04 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void		ft_terminos_add_char(t_env *e, int fd, char c)
 	else
 		RB(fd) = ft_addchar_intstr(RB(fd), c, e->t.cur - e->t.p_len);
 	dprintf(7, "[u] e->t.cur %d e->t.p_len %d res: %d buff_len: %zu str: %s\n", e->t.cur, e->t.p_len, e->t.cur - e->t.p_len, ft_strlen(RB(fd)), RB(fd));
-	if (ft_strlen(RB(fd)) + e->t.p_len == e->t.cur + 1)
+	if (ft_strlen(RB(fd)) + e->t.p_len == (unsigned long)(e->t.cur + 1))
 		ft_putchar(c);
 	else
 	{
@@ -73,7 +73,7 @@ void		ft_terminos_left_arrow(t_env *e, int fd)
 
 void		ft_terminos_right_arrow(t_env *e, int fd)
 {
-	if (e->t.cur < ft_strlen(RB(fd)) + e->t.p_len)
+	if ((unsigned long)e->t.cur < ft_strlen(RB(fd)) + e->t.p_len)
 	{
 		tputs(tgetstr("nd", NULL), 1, ft_myputchar);
 		e->t.cur++;

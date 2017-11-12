@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 22:34:37 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 02:34:15 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 03:26:08 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void		ft_irc_cmd_connect_init_fd(t_env *e, int cs)
 	e->fds[cs].fct_read = client_write;
 	e->fds[cs].r_buffer = ft_strnew(0);
 	e->t.prompt = ft_strdup("IRC$>");
+	ft_irc_update_prompt(e);
 	e->t.p_len = ft_strlen(e->t.prompt);
 	e->t.cur = ft_strlen(e->t.prompt);
 	e->history = NULL;

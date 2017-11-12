@@ -14,5 +14,7 @@
 
 int				ft_irc_cmd_file(t_env *e, int cs)
 {
+	(void)e;
+	(void)cs;
 	return (0);
 }

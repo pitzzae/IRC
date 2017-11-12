@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 14:20:06 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 01:48:06 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 03:16:10 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@ static void		client_create_fail(t_env *e, char *ip, int port)
 	tmp = ft_strjoin_free(tmp, "'\n", 1);
 	ft_irc_print(e, tmp, ft_strlen(tmp), 0);
 	free(tmp);
+	if (e->host)
+		free(e->host);
+	e->host = NULL;
+	if (e->t.prompt)
+		free(e->t.prompt);
+	e->t.prompt = ft_strdup("IRC$>");
+	e->t.p_len = ft_strlen(e->t.prompt);
+	e->host = NULL;
 	e->connect = 0;
 }
 

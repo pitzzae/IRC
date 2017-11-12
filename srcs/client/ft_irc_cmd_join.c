@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:53:58 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 02:44:20 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 03:31:13 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@ static char	*ft_irc_cmd_chan_set(char *chan)
 	return (chan);
 }
 
+static void	ft_irc_cmd_join_chan_update(t_env *e, char **tmp)
+{
+	free(tmp[0]);
+	if (e->chan)
+		free(e->chan);
+	e->chan = ft_irc_cmd_chan_set(tmp[1]);
+	if (ft_strcmp(e->chan, "0") == 0)
+	{
+		free(tmp[1]);
+		e->chan = NULL;
+	}
+	free(tmp);
+}
+
 static int	ft_irc_cmd_join_parse(t_env *e, char *cmd, char *vcmd)
 {
 	char		**tmp;
@@ -30,11 +44,7 @@ static int	ft_irc_cmd_join_parse(t_env *e, char *cmd, char *vcmd)
 	tmp = ft_strsplit(cmd, ' ');
 	if (tmp[0] && tmp[1] && !tmp[2])
 	{
-		free(tmp[0]);
-		if (e->chan)
-			free(e->chan);
-		e->chan = ft_irc_cmd_chan_set(tmp[1]);
-		free(tmp);
+		ft_irc_cmd_join_chan_update(e, tmp);
 		return (1);
 	}
 	else
