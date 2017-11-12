@@ -14,7 +14,7 @@ SERVER			= server
 CLIENT			= client
 CC				= gcc
 
-CFLAGS			= -g3 -Wall -Werror -fsanitize=address -fsanitize=undefined
+CFLAGS			= -g3 -Wall -Werror -Wextra -fsanitize=address -fsanitize=undefined
 
 LIBFT_DIR		= ./libft
 LIBFT_NAME		= $(LIBFT_DIR)/libft.a
@@ -48,7 +48,8 @@ CLIENT_SRCS		= main.c init_env.c clean_fd.c get_opt.c x.c main_loop.c \
 				ft_irc_cmd_join.c ft_irc_cmd_leave.c ft_irc_cmd_msg.c \
 				ft_irc_cmd_nick.c ft_irc_cmd_quit.c ft_irc_cmd_user.c \
 				ft_irc_print.c ft_irc_cmd_help.c ft_send.c \
-				ft_irc_cmd_connect.c ft_irc_cmd_error_arg.c
+				ft_irc_cmd_connect.c ft_irc_cmd_error_arg.c \
+				ft_irc_update_prompt.c
 
 
 SERVER_OBJECTS	= $(patsubst %.c, $(OBJS_DIR_SER)/%.o, $(SERVER_SRCS))

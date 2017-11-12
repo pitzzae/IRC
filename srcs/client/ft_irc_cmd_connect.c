@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 22:34:37 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 02:33:03 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 02:34:15 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ static void	ft_irc_cmd_connect_init(t_env *e, int cs)
 		tmp = ft_strsplit(RB(cs), ' ');
 		e->port = atoi(tmp[2]);
 		e->host = tmp[1];
+		ft_irc_update_prompt(e);
 		client_create(e, e->host, e->port);
 	}
 }

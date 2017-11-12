@@ -6,11 +6,21 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:20 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 01:59:43 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 02:41:30 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
+
+static char	*ft_irc_cmd_nick_set(char *nick)
+{
+	int			i;
+
+	i = ft_strfocur(nick, '\n');
+	if (i >= 0)
+		nick[i] = '\0';
+	return (nick);
+}
 
 static int	ft_irc_cmd_nick_parse(t_env *e, char *cmd, char *vcmd)
 {
@@ -23,7 +33,8 @@ static int	ft_irc_cmd_nick_parse(t_env *e, char *cmd, char *vcmd)
 		free(tmp[0]);
 		if (e->nick)
 			free(e->nick);
-		e->nick = tmp[1];
+		e->nick = ft_irc_cmd_nick_set(tmp[1]);
+		ft_irc_update_prompt(e);
 		free(tmp);
 		return (1);
 	}

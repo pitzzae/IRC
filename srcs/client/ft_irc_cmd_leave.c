@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:05 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 02:24:54 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 02:44:30 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ static int	ft_irc_cmd_leave_parse(t_env *e, char *cmd, char *vcmd)
 	{
 		free(tmp[0]);
 		free(tmp[1]);
+		if (e->chan)
+			free(e->chan);
+		e->chan = NULL;
 		free(tmp);
 		return (1);
 	}
@@ -46,6 +49,7 @@ int			ft_irc_cmd_leave(t_env *e, int cs)
 		if (ft_irc_cmd_leave_parse(e, tmp, CMD_LEAVE))
 		{
 			ft_send(e->sock.s, tmp, ft_strlen(RB(cs)) - 1, e);
+			ft_irc_update_prompt(e);
 			ft_history_cmd_add(e, RB(cs));
 		}
 		free(tmp);
