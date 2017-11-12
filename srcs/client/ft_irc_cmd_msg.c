@@ -6,15 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:12 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 20:29:05 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 20:53:37 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
-
-/*TODO
- * Message with space dont work.
- * */
 
 static int	ft_irc_cmd_msg_parse(t_env *e, char *cmd, char *vcmd)
 {
