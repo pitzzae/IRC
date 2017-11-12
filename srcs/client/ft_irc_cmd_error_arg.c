@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_irc_cmd_file.c                                  :+:      :+:    :+:   */
+/*   ft_irc_cmd_error_arg.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gtorresa <null>                            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/11 19:53:45 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 01:26:14 by gtorresa         ###   ########.fr       */
+/*   Created: 2017/11/12 01:16:52 by gtorresa          #+#    #+#             */
+/*   Updated: 2017/11/12 01:59:14 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
 
-int			ft_irc_cmd_file(t_env *e, int cs)
+void		ft_irc_cmd_error_arg(t_env *e, char *cmd, char *help)
 {
 	char		*tmp;
 
-	if (BL(cs) > 5 && ft_strncmp(RB(cs), CMD_FILE, 5) == 0)
-	{
-		tmp = "• /file not implemented yet\n";
-		ft_irc_print(e, tmp, ft_strlen(tmp), 0);
-		ft_history_cmd_add(e, RB(cs));
-		return (1);
-	}
-	return (0);
+	tmp = ft_strjoin("Wrong argument on: ", cmd);
+	tmp = ft_strjoin_free(tmp, help, 1);
+	ft_irc_print(e, tmp, ft_strlen(tmp), 0);
+	free(tmp);
 }

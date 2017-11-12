@@ -33,7 +33,8 @@ t_list			*ft_irc_chan_user_del(t_list *l, char *cname)
 		}
 		c = c->next;
 	}
-	ft_lstdel(&l, u_del);
+	if (l)
+		ft_lstdel(&l, u_del);
 	return (new);
 }
 

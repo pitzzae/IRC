@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 22:34:37 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 00:31:38 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 02:33:03 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void		ft_irc_cmd_connect_init_fd(t_env *e, int cs)
 	e->t.cur = ft_strlen(e->t.prompt);
 	e->history = NULL;
 	e->h_pos = NULL;
-	e->connect = 0;
 	ft_client_prompt(e, ft_strlen(e->fds[cs].r_buffer));
 	e->is_init = 1;
 }
@@ -39,30 +38,60 @@ static void	ft_irc_cmd_allrdy_connect(t_env *e)
 	free(tmp);
 }
 
-int			ft_irc_cmd_connect(t_env *e, int cs, int force)
+static int	ft_irc_cmd_connect_parse(t_env *e, char *cmd, char *vcmd)
+{
+	char		**tmp;
+	int			i;
+
+	tmp = ft_strsplit(cmd, ' ');
+	if (tmp[0] && tmp[1] && tmp[2] && !tmp[3])
+	{
+		free(tmp[0]);
+		free(tmp[1]);
+		free(tmp[2]);
+		free(tmp);
+		return (1);
+	}
+	else
+	{
+		i = 0;
+		ft_irc_cmd_error_arg(e, vcmd, HELP_CMD_CONNECT);
+		while (tmp[i])
+			free(tmp[i++]);
+		free(tmp);
+		return (0);
+	}
+}
+
+static void	ft_irc_cmd_connect_init(t_env *e, int cs)
 {
 	char			**tmp;
 
+	if (ft_irc_cmd_connect_parse(e, RB(cs), CMD_CONNECT))
+	{
+		tmp = ft_strsplit(RB(cs), ' ');
+		e->port = atoi(tmp[2]);
+		e->host = tmp[1];
+		client_create(e, e->host, e->port);
+	}
+}
+
+int			ft_irc_cmd_connect(t_env *e, int cs, int force)
+{
 	if (e->connect == 1 && force == 0 && (BL(cs) > 8 &&
-			ft_strncmp(RB(cs), "/connect", 8) == 0))
+			ft_strncmp(RB(cs), CMD_CONNECT, 8) == 0))
 	{
 		ft_irc_cmd_allrdy_connect(e);
 		return (1);
 	}
-	else if ((BL(cs) > 8 && ft_strncmp(RB(cs), "/connect", 8) == 0) || force == 1)
+	else if ((BL(cs) > 8 && ft_strncmp(RB(cs), CMD_CONNECT, 8) == 0) || force == 1)
 	{
 		if (force)
 			ft_irc_cmd_connect_init_fd(e, cs);
 		else
 		{
-			if (ft_strocur(RB(cs), ' ') == 2)
-			{
-				tmp = ft_strsplit(RB(cs), ' ');
-				e->port = atoi(tmp[2]);
-				e->host = tmp[1];
-				client_create(e, e->host, e->port);
-				return (1);
-			}
+			ft_irc_cmd_connect_init(e, cs);
+			return (1);
 		}
 	}
 	return (0);

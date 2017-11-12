@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 23:59:02 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 02:03:10 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,24 @@
 # define UND_CMD			"Undefined command: \""
 # define UND_CMD_TRY		"\".  Try \"/help\".\n"
 # define NO_CONN			"Connection not found !!!\nTry \"/help\".\n"
+# define CMD_CONNECT		"/connect"
+# define CMD_HELP			"/help"
+# define CMD_NICK			"/nick"
+# define CMD_USER			"/user"
+# define CMD_JOIN			"/join"
+# define CMD_LEAVE			"/leave"
+# define CMD_WHO			"/who"
+# define CMD_MSG			"/msg"
+# define CMD_FILE			"/file"
+# define CMD_QUIT			"/quit"
+
+# define HELP_CMD_CONNECT	" <machine> [port]\n"
+# define HELP_CMD_NICK		" <nickname>\n"
+# define HELP_CMD_USER		" <username> <NaN> <NaN> <host>\n"
+# define HELP_CMD_CHAN		" <#chan>\n"
+# define HELP_CMD_WHO		"\n"
+# define HELP_CMD_MSG		" <nick>|<#chan> <message>\n"
+# define HELP_CMD_FILE		" not implemented yet\n"
 
 typedef struct		s_term
 {
@@ -128,6 +146,8 @@ typedef struct		s_env
 	int					is_init;
 	char				*state;
 	int					connect;
+	char				*nick;
+	char				*chan;
 }					t_env;
 
 int					x_int(int err, int res, t_env *e, char *file, int line);
@@ -170,5 +190,6 @@ size_t				ft_send(int cs, void *buff, size_t len, t_env *e);
 char				*ft_parse_irc_cmd_convert(char *s, int len);
 int					ft_irc_cmd_connect(t_env *e, int cs, int force);
 int					client_is_connected(t_env *e);
+void				ft_irc_cmd_error_arg(t_env *e, char *cmd, char *help);
 
 #endif /* !FT_IRC_CLIENT_H_ */
