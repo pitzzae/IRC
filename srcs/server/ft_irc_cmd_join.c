@@ -6,11 +6,15 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:04:44 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 23:11:31 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 19:28:58 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_server.h"
+
+/*TODO
+ * Add limit to string chanel
+ * */
 
 static void	ft_irc_join_chanel(t_chanel **c, int cs)
 {
@@ -75,12 +79,12 @@ int			ft_irc_cmd_join(t_env *e, int cs)
 				return (1);
 			}
 			else
-				ft_irc_error(e, cs, "403", NOT_CHAN);
+				return (ft_irc_error(e, cs, "403", NOT_CHAN));
 		}
 		else if (e->fds[cs].connect == 0)
-			ft_irc_error(e, cs, "451", NOT_REGIS);
+			return (ft_irc_error(e, cs, "451", NOT_REGIS));
 		else
-			ft_irc_error(e, cs, "461", STX_ERR);
+			return (ft_irc_error(e, cs, "461", STX_ERR));
 	}
 	return (0);
 }

@@ -51,7 +51,6 @@ int			ft_irc_cmd_msgchanel(t_env *e, int cs, t_privmsg *msg)
 		}
 		l = l->next;
 	}
-	ft_irc_error(e, cs, "404", NO_CHANEL);
 	free(msg);
-	return (0);
+	return (ft_irc_error(e, cs, "404", NO_CHANEL));
 }

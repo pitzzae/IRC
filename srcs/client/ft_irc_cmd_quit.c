@@ -6,11 +6,15 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:28 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 12:35:11 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 12:36:52 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
+
+/*TODO
+ * Add message support on QUIT
+ * */
 
 static void	client_close_free(t_env * e)
 {

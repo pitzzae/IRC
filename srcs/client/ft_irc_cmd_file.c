@@ -12,6 +12,10 @@
 
 #include "ft_irc_client.h"
 
+/*TODO
+ * Implemented FILE
+ * */
+
 int			ft_irc_cmd_file(t_env *e, int cs)
 {
 	char		*tmp;

@@ -41,7 +41,6 @@ int			ft_irc_cmd_msgpriv(t_env *e, int cs, t_privmsg *msg)
 		}
 		i++;
 	}
-	ft_irc_error(e, cs, "401", NO_NICK);
 	free(msg);
-	return (0);
+	return (ft_irc_error(e, cs, "401", NO_NICK));
 }

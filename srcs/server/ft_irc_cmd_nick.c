@@ -12,6 +12,10 @@
 
 #include "ft_irc_server.h"
 
+/*TODO
+ * Add check if nick allready use
+ * */
+
 int	ft_irc_cmd_nick(t_env *e, int cs)
 {
 	int			i;

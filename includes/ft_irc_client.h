@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 13:22:03 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 13:24:33 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@
 
 # define HELP_CMD_CONNECT	" <machine> [port]\n"
 # define HELP_CMD_NICK		" <nickname>\n"
-# define HELP_CMD_USER		" <username> <NaN> <NaN> <host>\n"
+# define HELP_CMD_USER		" <username> <host> <server_name> <real_name>\n"
 # define HELP_CMD_CHAN		" <#chan>\n"
 # define HELP_CMD_WHO		"\n"
 # define HELP_CMD_MSG		" <nick>|<#chan> <message>\n"

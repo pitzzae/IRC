@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:16:36 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 19:33:34 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 19:23:47 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,9 @@ void			ft_irc_leave(t_env *e, int cs, char *chan)
 	e->chanel = ft_irc_clear_empty_chanel(e->chanel);
 	e->fds[cs].chan_user = ft_irc_chan_user_del(e->fds[cs].chan_user, chan);
 	ft_irc_cmd_leave_print(e, cs, chan);
+	if (e->fds[cs].chanel)
+		free(e->fds[cs].chanel);
+	e->fds[cs].chanel = NULL;
 }
 
 int				ft_irc_cmd_leave(t_env *e, int cs)
@@ -96,12 +99,12 @@ int				ft_irc_cmd_leave(t_env *e, int cs)
 				return (1);
 			}
 			else
-				ft_irc_error(e, cs, "403", NOT_CHAN);
+				return (ft_irc_error(e, cs, "403", NOT_CHAN));
 		}
 		else if (e->fds[cs].connect == 0)
-			ft_irc_error(e, cs, "451", NOT_REGIS);
+			return (ft_irc_error(e, cs, "451", NOT_REGIS));
 		else
-			ft_irc_error(e, cs, "461", STX_ERR);
+			return (ft_irc_error(e, cs, "461", STX_ERR));
 	}
 	return (0);
 }

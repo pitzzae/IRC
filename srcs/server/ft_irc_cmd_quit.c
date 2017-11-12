@@ -6,11 +6,15 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 23:10:12 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/10 17:28:19 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 20:03:25 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_server.h"
+
+/*TODO
+ * Add message support on QUIT
+ * */
 
 static char	*ft_format_bsr(int b)
 {
