@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 12:45:10 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 14:55:29 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 15:25:44 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static t_reply	*ft_irc_parse_return_2(char *msg)
 		r->arg2 = &r->arg1[i + 1];
 		i = ft_strfocur(r->arg2, ' ');
 		r->arg2[i] = '\0';
-		r->arg3 = &r->arg1[i + 1];
-		r->arg3 = NULL;
+		r->arg3 = &r->arg2[i + 1];
+		r->arg4 = NULL;
 	}
 	return (r);
 }
