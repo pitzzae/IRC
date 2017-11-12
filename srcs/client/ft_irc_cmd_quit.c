@@ -6,11 +6,24 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:28 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 01:36:53 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 12:35:11 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
+
+static void	client_close_free(t_env * e)
+{
+	free(e->t.prompt);
+	free(e->fds[0].r_buffer);
+	if (e->host)
+		free(e->host);
+	if (e->nick)
+		free(e->nick);
+	if (e->chan)
+		free(e->chan);
+	free(e->fds);
+}
 
 static void	client_close(t_env *e, int cs)
 {
@@ -27,6 +40,7 @@ static void	client_close(t_env *e, int cs)
 		ft_putendl("Close IRC client");
 	ft_history_cmd_clear(e);
 	ft_reset_termios(e);
+	client_close_free(e);
 	exit (1);
 }
 

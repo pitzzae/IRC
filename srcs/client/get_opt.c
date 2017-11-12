@@ -25,7 +25,7 @@ void	get_opt(t_env *e, int ac, char **av)
 	if (ac == 3)
 	{
 		e->port = atoi(av[2]);
-		e->host = av[1];
+		e->host = ft_strdup(av[1]);
 	}
 	else if (ac == 2)
 	{

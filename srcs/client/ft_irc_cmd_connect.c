@@ -17,6 +17,8 @@ static void		ft_irc_cmd_connect_init_fd(t_env *e, int cs)
 	e->fds[cs].type = FD_LOCAL;
 	e->fds[cs].fct_read = client_write;
 	e->fds[cs].r_buffer = ft_strnew(0);
+	if (e->t.prompt)
+		free(e->t.prompt );
 	e->t.prompt = ft_strdup("IRC$>");
 	ft_irc_update_prompt(e);
 	e->t.p_len = ft_strlen(e->t.prompt);
