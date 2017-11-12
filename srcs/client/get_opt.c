@@ -24,7 +24,7 @@ void	get_opt(t_env *e, int ac, char **av)
 
 	if (ac == 3)
 	{
-		e->port = atoi(av[2]);
+		e->port = ft_atoi(av[2]);
 		e->host = ft_strdup(av[1]);
 	}
 	else if (ac == 2)
@@ -32,7 +32,7 @@ void	get_opt(t_env *e, int ac, char **av)
 		tmp = ft_strsplit(av[1], ' ');
 		if (tmp[0] && tmp[1] && !tmp[2])
 		{
-			e->port = atoi(tmp[1]);
+			e->port = ft_atoi(tmp[1]);
 			free(tmp[1]);
 			e->host = tmp[0];
 		}

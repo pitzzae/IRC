@@ -73,7 +73,7 @@ static void	ft_irc_cmd_connect_init(t_env *e, int cs)
 	if (ft_irc_cmd_connect_parse(e, RB(cs), CMD_CONNECT))
 	{
 		tmp = ft_strsplit(RB(cs), ' ');
-		e->port = atoi(tmp[2]);
+		e->port = ft_atoi(tmp[2]);
 		e->host = tmp[1];
 		ft_irc_update_prompt(e);
 		client_create(e, e->host, e->port);
