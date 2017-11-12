@@ -52,6 +52,12 @@ int				client_is_connected(t_env *e)
 		return (1);
 	else
 	{
+		if (e->t.prompt)
+		{
+			free(e->t.prompt);
+			e->t.prompt = ft_strdup("IRC$>");
+			e->t.p_len = ft_strlen(e->t.prompt);
+		}
 		ft_irc_print(e, NO_CONN, ft_strlen(NO_CONN), 0);
 		return (0);
 	}
