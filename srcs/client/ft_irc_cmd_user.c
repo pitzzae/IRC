@@ -6,11 +6,15 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:35 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 02:17:10 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 20:36:19 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
+
+/*TODO
+ * Change char* t_irc_user.mode to int
+ * */
 
 static int	ft_irc_cmd_user_parse(t_env *e, char *cmd, char *vcmd)
 {

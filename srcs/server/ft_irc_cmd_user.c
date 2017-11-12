@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 19:03:22 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 18:12:21 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 20:36:19 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static void		ft_irc_cmd_user_set(t_env *e, int cs)
 
 	tmp = ft_strsplit(&e->fds[cs].buffer[5], ' ');
 	e->fds[cs].user.user = tmp[0];
-	e->fds[cs].user.host = tmp[1];
-	e->fds[cs].user.srv_name = tmp[2];
-	e->fds[cs].user.real_user = tmp[3];
+	e->fds[cs].user.mode = tmp[1];
+	free(tmp[2]);
+	e->fds[cs].user.realname = tmp[3];
 	free(tmp);
 }
 
@@ -41,7 +41,7 @@ int				ft_irc_cmd_user(t_env *e, int cs)
 			ft_irc_error(e, cs, "462", ALLRD_REGIS);
 		else
 			ft_irc_error(e, cs, "461", STX_ERR);
-		if (ft_strlen(&e->fds[cs].username[0]) > 0 && e->fds[cs].user.host &&
+		if (ft_strlen(&e->fds[cs].username[0]) > 0 && e->fds[cs].user.user &&
 				e->fds[cs].connect == 0)
 			ft_irc_motd(e, cs);
 		return (1);

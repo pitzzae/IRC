@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 16:02:42 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 20:36:19 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,8 @@ typedef struct		s_privmsg
 typedef struct		s_irc_user
 {
 	char				*user;
-	char				*host;
-	char				*srv_name;
-	char				*real_user;
+	char				*mode;
+	char				*realname;
 }					t_irc_user;
 
 typedef struct		s_fd

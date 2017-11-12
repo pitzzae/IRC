@@ -6,14 +6,14 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:04:44 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 19:28:58 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 20:06:22 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_server.h"
 
 /*TODO
- * Add limit to string chanel
+ * Add limit to string chanel.
  * */
 
 static void	ft_irc_join_chanel(t_chanel **c, int cs)

@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 19:04:53 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 18:12:32 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 20:02:58 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_irc_cmd_nick(t_env *e, int cs)
 		}
 		else
 			ft_irc_error(e, cs, "432", NICK_ERR);
-		if (ft_strlen(&e->fds[cs].username[0]) > 0 && e->fds[cs].user.host &&
+		if (ft_strlen(&e->fds[cs].username[0]) > 0 && e->fds[cs].user.user &&
 				e->fds[cs].connect == 0)
 			ft_irc_motd(e, cs);
 		return (1);

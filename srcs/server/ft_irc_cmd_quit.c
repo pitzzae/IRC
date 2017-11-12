@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 23:10:12 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 20:03:25 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 20:36:19 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ static void	ft_irc_quit_clean_chanel(t_env *e, int cs)
 static void	ft_irc_cmd_free(t_env *e, int cs)
 {
 	free(e->fds[cs].user.user);
-	free(e->fds[cs].user.host);
-	free(e->fds[cs].user.real_user);
-	free(e->fds[cs].user.srv_name);
+	free(e->fds[cs].user.mode);
+	free(e->fds[cs].user.realname);
+	free(e->fds[cs].user.mode);
 	free(e->fds[cs].buffer);
 	e->fds[cs].buff_len = 0;
 	e->fds[cs].buffer = NULL;

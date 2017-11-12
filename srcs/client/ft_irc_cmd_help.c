@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 21:19:54 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 19:13:13 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 19:13:33 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			ft_irc_cmd_help(t_env *e, int cs)
 	{
 		tmp = "• /connect <machine> [port]\n"
 				"• /nick <nickname>\n"
-				"• /user <username> <host> <server_name> <real_name>\n"
+				"• /user <user> <mode> <unused> <realname>\n"
 				"• /join <#chan>\n"
 				"• /leave <#chan>\n"
 				"• /who\n"
