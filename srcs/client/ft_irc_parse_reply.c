@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 13:23:10 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 15:38:21 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/12 16:51:00 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ static char	*ft_irc_parse_reply_chan(t_reply *r)
 	i = ft_strfocur(tmp, '!');
 	if (i >= 0)
 		tmp[i] = '\0';
-	if (ft_strncmp(r->arg2, "JOIN", 4) == 0)
-		str = ft_strjoin(tmp, " has joined (");
-	else if (ft_strncmp(r->arg2, "PART", 4) == 0)
-		str = ft_strjoin(tmp, " has leave (");
+	if (ft_strncmp(r->arg2, "JOIN", 3) == 0)
+		str = ft_strjoin(tmp, " has joined ");
+	else if (ft_strncmp(r->arg2, "PART", 3) == 0)
+		str = ft_strjoin(tmp, " has leave ");
 	else
 		return (NULL);
 	str = ft_strjoin_free(str, &r->arg3[1], 1);
-	str = ft_strjoin_free(str, ")\n", 1);
+	str = ft_strjoin_free(str, "\n", 1);
 	return (str);
 }
 
