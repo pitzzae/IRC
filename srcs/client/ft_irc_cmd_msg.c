@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:12 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/13 22:43:12 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 23:17:18 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,29 @@ static void	ft_irc_cmd_msg_shortcut(t_env *e, int cs)
 	tmp2 = ft_strjoin("/msg", tmp);
 	ft_history_cmd_add(e, tmp2);
 	free(tmp2);
+	free(tmp);
+}
+
+static void	ft_irc_cmd_msg_display(t_env *e, char *msg, int p)
+{
+	char		*tmp;
+	char		*str;
+
+	tmp = NULL;
+	if (p == 1 && msg[1])
+		tmp = &msg[1];
+	else if (p == 0)
+		tmp = msg;
+	if (tmp)
+	{
+		str = ft_strjoin(e->nick, " <- ");
+		str = ft_strjoin_free(str, e->chan, 1);
+		str = ft_strjoin_free(str, " :", 1);
+		str = ft_strjoin_free(str, tmp, 1);
+		tputs(tgetstr("up", NULL), 1, ft_myputchar);
+		ft_irc_print(e, str, ft_strlen(str), 0);
+		free(str);
+	}
 }
 
 int			ft_irc_cmd_msg(t_env *e, int cs)
@@ -65,12 +88,14 @@ int			ft_irc_cmd_msg(t_env *e, int cs)
 			ft_send(e->sock.s, tmp, ft_strlen(RB(cs)) + 3, e);
 			ft_history_cmd_add(e, RB(cs));
 		}
+		ft_irc_cmd_msg_display(e, &RB(cs)[4], 1);
 		free(tmp);
 		return (1);
 	}
 	else if (BL(cs) > 1 && e->chan)
 	{
 		ft_irc_cmd_msg_shortcut(e, cs);
+		ft_irc_cmd_msg_display(e, &RB(cs)[0], 0);
 		return (1);
 	}
 	return (0);

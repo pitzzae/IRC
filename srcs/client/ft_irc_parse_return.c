@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 12:45:10 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 15:25:44 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 17:27:16 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ void			ft_irc_parse_return(t_env *e, int cs, int len)
 		{
 			ft_irc_parse_return_multi(e, tmp[i]);
 			free(tmp[i]);
-
 			i++;
 		}
 		free(tmp);
