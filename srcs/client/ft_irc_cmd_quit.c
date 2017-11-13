@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:28 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/13 21:48:40 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 22:22:09 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static void	client_close(t_env *e, int cs)
 		printf("Close connection on %s:%d\n", e->host, e->port);
 		free(e->host);
 		e->host = NULL;
-		ft_irc_cmd_quit_parse_argv(e, &RB(cs)[5]);
+		if (RB(cs))
+			ft_irc_cmd_quit_parse_argv(e, &RB(cs)[5]);
 		close(cs);
 		clean_fd(&e->fds[cs]);
 	}
