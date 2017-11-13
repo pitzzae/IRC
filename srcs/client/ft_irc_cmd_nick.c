@@ -6,21 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:20 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/13 12:54:34 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 15:11:51 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
-
-/*TODO
- * Dont set user name if no connected
- * IRC$>/nick gui
- * Connection not found !!!
- * Try "/help".
- * IRC$>/connect 192.168.200.162 9090
- * Connected on '192.168.200.162:9090'
- * gui@192.168.200.162$>/who
- * */
 
 static char	*ft_irc_cmd_nick_set(char *nick)
 {
@@ -32,6 +22,17 @@ static char	*ft_irc_cmd_nick_set(char *nick)
 	return (nick);
 }
 
+static void	ft_irc_cmd_nick_check_set(t_env *e, char *nick)
+{
+	if (e->connect == 1)
+	{
+		if (e->nick)
+			free(e->nick);
+		e->nick = ft_irc_cmd_nick_set(nick);
+		ft_irc_update_prompt(e);
+	}
+}
+
 static int	ft_irc_cmd_nick_parse(t_env *e, char *cmd, char *vcmd)
 {
 	char		**tmp;
@@ -41,10 +42,7 @@ static int	ft_irc_cmd_nick_parse(t_env *e, char *cmd, char *vcmd)
 	if (tmp[0] && tmp[1] && !tmp[2])
 	{
 		free(tmp[0]);
-		if (e->nick)
-			free(e->nick);
-		e->nick = ft_irc_cmd_nick_set(tmp[1]);
-		ft_irc_update_prompt(e);
+		ft_irc_cmd_nick_check_set(e, tmp[1]);
 		free(tmp);
 		return (1);
 	}
