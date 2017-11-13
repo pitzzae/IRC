@@ -6,11 +6,21 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:20 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 22:33:22 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 12:54:34 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
+
+/*TODO
+ * Dont set user name if no connected
+ * IRC$>/nick gui
+ * Connection not found !!!
+ * Try "/help".
+ * IRC$>/connect 192.168.200.162 9090
+ * Connected on '192.168.200.162:9090'
+ * gui@192.168.200.162$>/who
+ * */
 
 static char	*ft_irc_cmd_nick_set(char *nick)
 {

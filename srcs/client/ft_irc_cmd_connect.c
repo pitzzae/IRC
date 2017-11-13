@@ -69,6 +69,7 @@ static int	ft_irc_cmd_connect_parse(t_env *e, char *cmd, char *vcmd)
 static void	ft_irc_cmd_connect_init(t_env *e, int cs)
 {
 	char			**tmp;
+	int				i;
 
 	if (ft_irc_cmd_connect_parse(e, RB(cs), CMD_CONNECT))
 	{
@@ -77,6 +78,10 @@ static void	ft_irc_cmd_connect_init(t_env *e, int cs)
 		e->host = tmp[1];
 		ft_irc_update_prompt(e);
 		client_create(e, e->host, e->port);
+		i = 2;
+		while (tmp[i])
+			free(tmp[i++]);
+		free(tmp);
 	}
 }
 
