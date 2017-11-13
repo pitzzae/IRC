@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/13 17:04:46 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 17:05:23 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ typedef struct		s_sock
 typedef struct		s_irc_user
 {
 	char				*user;
-	char				*mode;
+	int					mode;
 	char				*realname;
 }					t_irc_user;
 

@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 19:03:22 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 20:36:19 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 17:49:53 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,15 @@ static void		ft_irc_cmd_user_set(t_env *e, int cs)
 
 	tmp = ft_strsplit(&e->fds[cs].buffer[5], ' ');
 	e->fds[cs].user.user = tmp[0];
-	e->fds[cs].user.mode = tmp[1];
+	if (ft_strlen(tmp[1]) == 1)
+	{
+		if (tmp[1][0] == '2')
+			e->fds[cs].user.mode = 'w';
+		else if (tmp[1][0] == '3')
+			e->fds[cs].user.mode = 'i';
+	}
+	else
+		e->fds[cs].user.mode = 0;
 	free(tmp[2]);
 	e->fds[cs].user.realname = tmp[3];
 	free(tmp);
