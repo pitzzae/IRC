@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:16:36 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 19:29:19 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 12:35:29 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,18 @@
 /*TODO
  * Dont broadcast msg if client allready leave chanel
  * */
+
+static t_list	*ft_irc_remove_one_fd(t_list *l)
+{
+	t_list			*lnext;
+
+	lnext = l->next;
+	ft_lstdelone(&l, u_del);
+	l = lnext;
+	if (l)
+		l->prev = NULL;
+	return (l);
+}
 
 static t_list	*ft_irc_remove_fd_chanle(t_list **c, int cs)
 {
@@ -30,14 +42,14 @@ static t_list	*ft_irc_remove_fd_chanle(t_list **c, int cs)
 		{
 			tmp = ft_lstnew(NULL, 0);
 			tmp->valid = l->valid;
-			ft_lstdelone(&l, u_del);
+			l = ft_irc_remove_one_fd(l);
 			if (new)
 				ft_lstaddend_free(&new, tmp, u_del);
 			else
 				new = tmp;
 		}
-		if (l)
-			l = l->next;
+		else if (l)
+			l = ft_irc_remove_one_fd(l);
 	}
 	return (new);
 }
@@ -80,8 +92,10 @@ void			ft_irc_leave(t_env *e, int cs, char *chan)
 		l = l->next;
 	}
 	e->chanel = ft_irc_clear_empty_chanel(e->chanel);
+	loop = ft_lstlen(e->fds[cs].chan_user);
 	e->fds[cs].chan_user = ft_irc_chan_user_del(e->fds[cs].chan_user, chan);
-	ft_irc_cmd_leave_print(e, cs, chan);
+	if (loop != ft_lstlen(e->fds[cs].chan_user))
+		ft_irc_cmd_leave_print(e, cs, chan);
 	if (e->fds[cs].chanel)
 		free(e->fds[cs].chanel);
 	e->fds[cs].chanel = NULL;
