@@ -35,6 +35,7 @@ void	get_opt(t_env *e, int ac, char **av)
 			e->port = ft_atoi(tmp[1]);
 			free(tmp[1]);
 			e->host = tmp[0];
+			free(tmp);
 		}
 		else
 		{

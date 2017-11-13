@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 22:34:37 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 03:26:08 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 13:00:49 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ static void	ft_irc_cmd_connect_init(t_env *e, int cs)
 	{
 		tmp = ft_strsplit(RB(cs), ' ');
 		e->port = ft_atoi(tmp[2]);
-		e->host = tmp[1];
+		e->host = ft_strdup(tmp[1]);
 		ft_irc_update_prompt(e);
 		client_create(e, e->host, e->port);
-		i = 2;
+		i = 0;
 		while (tmp[i])
 			free(tmp[i++]);
 		free(tmp);
