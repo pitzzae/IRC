@@ -56,7 +56,7 @@ t_list			*ft_irc_chan_user_add(t_list *l, char *cname)
 		if (ft_strcmp(tmp_name, (char*)c->content) == 0)
 		{
 			free(tmp_name);
-			return (l);
+			return (NULL);
 		}
 		c = c->next;
 	}
