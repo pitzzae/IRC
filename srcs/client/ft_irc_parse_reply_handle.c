@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 17:00:55 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/13 17:11:20 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 22:30:23 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ void		ft_irc_parse_reply_handle(t_env *e, int code)
 {
 	if (e->nick && code == 433)
 		ft_irc_parse_nick_allready_user(e);
-	else if (code == 403)
+	else if (code == 403 || code == 451)
 		ft_irc_parse_no_such_channel(e);
 }

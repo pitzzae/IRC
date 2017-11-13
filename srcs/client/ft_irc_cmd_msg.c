@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:12 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/13 16:48:20 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 22:43:12 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,22 @@ static int	ft_irc_cmd_msg_parse(t_env *e, char *cmd, char *vcmd)
 	}
 }
 
+static void	ft_irc_cmd_msg_shortcut(t_env *e, int cs)
+{
+	char		*tmp;
+	char		*tmp2;
+
+	tmp = ft_strjoin(" ", e->chan);
+	tmp = ft_strjoin_free(tmp, " ", 1);
+	tmp = ft_strjoin_free(tmp, RB(cs), 1);
+	tmp2 = ft_strjoin("PRIVMSG", tmp);
+	ft_send(e->sock.s, tmp2, ft_strlen(tmp2), e);
+	free(tmp2);
+	tmp2 = ft_strjoin("/msg", tmp);
+	ft_history_cmd_add(e, tmp2);
+	free(tmp2);
+}
+
 int			ft_irc_cmd_msg(t_env *e, int cs)
 {
 	char		*tmp;
@@ -50,6 +66,11 @@ int			ft_irc_cmd_msg(t_env *e, int cs)
 			ft_history_cmd_add(e, RB(cs));
 		}
 		free(tmp);
+		return (1);
+	}
+	else if (BL(cs) > 1 && e->chan)
+	{
+		ft_irc_cmd_msg_shortcut(e, cs);
 		return (1);
 	}
 	return (0);

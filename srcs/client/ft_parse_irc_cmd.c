@@ -44,9 +44,7 @@ char		*ft_parse_irc_cmd_convert(char *s, int len)
 int			ft_parse_irc_cmd(t_env *e, int cs)
 {
 	BL(cs) = ft_strlen(RB(cs));
-	if (ft_irc_cmd_msg(e, cs))
-		return (0);
-	else if (ft_irc_cmd_nick(e, cs))
+	if (ft_irc_cmd_nick(e, cs))
 		return (0);
 	else if (ft_irc_cmd_user(e, cs))
 		return (0);
@@ -63,6 +61,8 @@ int			ft_parse_irc_cmd(t_env *e, int cs)
 	else if (ft_irc_cmd_help(e, cs))
 		return (0);
 	else if (ft_irc_cmd_connect(e, cs, 0))
+		return (0);
+	else if (ft_irc_cmd_msg(e, cs))
 		return (0);
 	ft_print_usage(e, RB(cs));
 	return (1);
