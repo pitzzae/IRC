@@ -6,15 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 12:21:13 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/13 15:00:41 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 15:01:52 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
-
-/*TODO
- * Fix del
- * */
 
 static void	ft_terms_clear_buffer(t_env *e, char *buff)
 {

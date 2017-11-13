@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 20:36:19 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 15:29:09 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 
 # define USAGE			"Usage: %s port\n"
 # define NICK_ERR		" :Erroneous nickname"
+# define NICK_USE		" :Nickname already in use"
 # define STX_ERR		" :Syntax error"
 # define WEL_MSG		" :Welcome to the Internet Relay Network"
 # define ALLRD_REGIS	" :Connection already registered"

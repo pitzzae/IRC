@@ -201,6 +201,6 @@ int					client_is_connected(t_env *e);
 void				ft_irc_cmd_error_arg(t_env *e, char *cmd, char *help);
 void				ft_irc_update_prompt(t_env *e);
 void				ft_irc_parse_return(t_env *e, int cs, int len);
-char				*ft_irc_parse_reply(t_reply *r);
+char				*ft_irc_parse_reply(t_env *e, t_reply *r);
 
 #endif /* !FT_IRC_CLIENT_H_ */

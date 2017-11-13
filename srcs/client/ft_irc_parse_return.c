@@ -69,7 +69,7 @@ static void		ft_irc_parse_return_multi(t_env *e, char *cmd)
 	msg = NULL;
 	if (r)
 	{
-		msg = ft_irc_parse_reply(r);
+		msg = ft_irc_parse_reply(e, r);
 		free(r);
 	}
 	if (msg)

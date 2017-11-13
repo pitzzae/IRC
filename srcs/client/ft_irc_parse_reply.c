@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 13:23:10 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 16:51:00 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 16:22:29 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,29 @@ static char	*ft_irc_parse_reply_chan(t_reply *r)
 	return (str);
 }
 
-static char	*ft_irc_parse_reply_sys(t_reply *r)
+static void	ft_irc_parse_reply_sys_replace_cursor(int len)
+{
+	while (len > 0)
+	{
+		tputs(tgetstr("le", NULL), 1, ft_myputchar);
+		len--;
+	}
+}
+
+static char	*ft_irc_parse_reply_sys(t_env *e, t_reply *r)
 {
 	char		*str;
+	int			len;
 
+	if (e->nick && ft_atoi(r->arg2) == 433)
+	{
+		len = ft_strlen(e->nick);
+		free(e->nick);
+		e->nick = NULL;
+		ft_irc_update_prompt(e);
+		e->t.cur = ft_strlen(e->t.prompt);
+		ft_irc_parse_reply_sys_replace_cursor(len);
+	}
 	str = ft_strjoin("Reply(", r->arg2);
 	str = ft_strjoin_free(str, "): ", 1);
 	str = ft_strjoin_free(str, r->arg3, 1);
@@ -46,7 +65,7 @@ static char	*ft_irc_parse_reply_sys(t_reply *r)
 	return (str);
 }
 
-static char	*ft_irc_parse_reply_msg(t_reply *r)
+static char	*ft_irc_parse_reply_msg(t_env *e, t_reply *r)
 {
 	char		*str;
 	char		*tmp;
@@ -67,16 +86,16 @@ static char	*ft_irc_parse_reply_msg(t_reply *r)
 		str = ft_strjoin_free(str, "\n", 1);
 	}
 	else
-		str = ft_irc_parse_reply_sys(r);
+		str = ft_irc_parse_reply_sys(e, r);
 	return (str);
 }
 
-char		*ft_irc_parse_reply(t_reply *r)
+char		*ft_irc_parse_reply(t_env *e, t_reply *r)
 {
 	if (!r->arg4 && r->arg1 && r->arg2 && r->arg3)
 		return (ft_irc_parse_reply_chan(r));
 	else if (r->arg1 && r->arg2 && r->arg3 && r->arg4)
-		return (ft_irc_parse_reply_msg(r));
+		return (ft_irc_parse_reply_msg(e, r));
 	else
 		return (NULL);
 }
