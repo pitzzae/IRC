@@ -6,7 +6,7 @@
 /*   By: gtorresa <null>                            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 18:03:48 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/13 18:35:51 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 19:55:53 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ void		ft_irc_cmd_quit_broadcast(t_env *e, int cs, char *cmd)
 	char		*tmp;
 
 	l = e->chanel;
-	if (cmd[0] == '\n' || cmd[0] != ' ' )
-		tmp = "\"Leaving...\"";
-	else
-		tmp = &cmd[1];
-	if (ft_strlen(tmp) < 2)
-		tmp = "\"Leaving...\"";
+	tmp = "\"Leaving...\"";
+	if (ft_strlen(cmd) > 1)
+	{
+		if (cmd[0] != '\n' || cmd[0] != ' ' )
+			tmp = &cmd[1];
+	}
 	while (l)
 	{
 		c = l->content;
