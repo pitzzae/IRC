@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 21:19:54 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 19:13:33 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 16:54:09 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int			ft_irc_cmd_help(t_env *e, int cs)
 {
 	char			*tmp;
 
-	if (BL(cs) > 5 && ft_strncmp(RB(cs), CMD_HELP, 5) == 0)
+	if (BL(cs) > 5 && RB(cs)[5] == '\n' && ft_strncmp(RB(cs), CMD_HELP, 5) == 0)
 	{
 		tmp = "• /connect <machine> [port]\n"
 				"• /nick <nickname>\n"

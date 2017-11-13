@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:12 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 20:53:37 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 16:48:20 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			ft_irc_cmd_msg(t_env *e, int cs)
 {
 	char		*tmp;
 
-	if (BL(cs) > 4 && ft_strncmp(RB(cs), CMD_MSG, 4) == 0)
+	if (BL(cs) > 4 && RB(cs)[4] == ' ' && ft_strncmp(RB(cs), CMD_MSG, 4) == 0)
 	{
 		tmp = ft_strjoin("PRIVMSG", &RB(cs)[4]);
 		if (ft_irc_cmd_msg_parse(e, tmp, CMD_MSG))

@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:05 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 02:44:30 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 16:48:32 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int			ft_irc_cmd_leave(t_env *e, int cs)
 {
 	char		*tmp;
 
-	if (BL(cs) > 6 && ft_strncmp(RB(cs), CMD_LEAVE, 6) == 0)
+	if (BL(cs) > 6 && RB(cs)[6] == ' ' && ft_strncmp(RB(cs), CMD_LEAVE, 6) == 0)
 	{
 		tmp = ft_strjoin("PART", &RB(cs)[6]);
 		if (ft_irc_cmd_leave_parse(e, tmp, CMD_LEAVE))

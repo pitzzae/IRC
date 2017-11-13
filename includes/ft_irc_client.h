@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 19:15:33 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 17:04:46 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,8 @@ typedef struct		s_sock
 typedef struct		s_irc_user
 {
 	char				*user;
-	char				*host;
-	char				*srv_name;
-	char				*real_user;
+	char				*mode;
+	char				*realname;
 }					t_irc_user;
 
 typedef struct		s_fd
@@ -202,5 +201,6 @@ void				ft_irc_cmd_error_arg(t_env *e, char *cmd, char *help);
 void				ft_irc_update_prompt(t_env *e);
 void				ft_irc_parse_return(t_env *e, int cs, int len);
 char				*ft_irc_parse_reply(t_env *e, t_reply *r);
+void				ft_irc_parse_reply_handle(t_env *e, int code);
 
 #endif /* !FT_IRC_CLIENT_H_ */

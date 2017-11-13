@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:46 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 02:06:38 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 16:51:13 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int			ft_irc_cmd_who(t_env *e, int cs)
 {
 	char		*tmp;
 
-	if (BL(cs) > 4 && ft_strncmp(RB(cs), CMD_WHO, 4) == 0)
+	if (BL(cs) > 4 && RB(cs)[4] == '\n' && ft_strncmp(RB(cs), CMD_WHO, 4) == 0)
 	{
 		if (ft_strlen(RB(cs)) == 5)
 		{

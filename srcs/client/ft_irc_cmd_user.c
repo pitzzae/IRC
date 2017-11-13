@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:35 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 20:36:19 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 16:47:49 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int			ft_irc_cmd_user(t_env *e, int cs)
 {
 	char		*tmp;
 
-	if (BL(cs) > 5 && ft_strncmp(RB(cs), CMD_USER, 5) == 0)
+	if (BL(cs) > 5 && RB(cs)[5] == ' ' && ft_strncmp(RB(cs), CMD_USER, 5) == 0)
 	{
 		tmp = ft_parse_irc_cmd_convert(&RB(cs)[1], 4);
 		if (ft_irc_cmd_user_parse(e, tmp, CMD_USER))

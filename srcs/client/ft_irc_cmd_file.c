@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:53:45 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 20:05:11 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 16:49:16 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			ft_irc_cmd_file(t_env *e, int cs)
 {
 	char		*tmp;
 
-	if (BL(cs) > 5 && ft_strncmp(RB(cs), CMD_FILE, 5) == 0)
+	if (BL(cs) > 5 && RB(cs)[5] == ' ' && ft_strncmp(RB(cs), CMD_FILE, 5) == 0)
 	{
 		tmp = "• /file not implemented yet\n";
 		ft_irc_print(e, tmp, ft_strlen(tmp), 0);
