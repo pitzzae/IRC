@@ -6,15 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:28 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/13 14:09:57 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 21:48:40 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
-
-/*TODO
- * Add message support on QUIT
- * */
 
 static void	client_close_free(t_env * e)
 {
@@ -31,14 +27,30 @@ static void	client_close_free(t_env * e)
 		free(e->fds);
 }
 
+static void	ft_irc_cmd_quit_parse_argv(t_env *e, char *cmd)
+{
+	char		*tmp;
+
+	tmp = "\"Leaving...\"";
+	if (cmd[0] == ' ' &&  ft_strlen(cmd) > 2)
+		tmp = &cmd[1];
+	tmp = ft_strjoin("QUIT ", tmp);
+	ft_send(e->sock.s, tmp, ft_strlen(tmp), e);
+	free(tmp);
+}
+
 static void	client_close(t_env *e, int cs)
 {
+	(void)cs;
 	ft_terminos_clean_line(e);
 	if (e->host)
 	{
+		printf("Close connection on %s:%d\n", e->host, e->port);
+		free(e->host);
+		e->host = NULL;
+		ft_irc_cmd_quit_parse_argv(e, &RB(cs)[5]);
 		close(cs);
 		clean_fd(&e->fds[cs]);
-		printf("Close connection on %s:%d\n", e->host, e->port);
 	}
 	else
 		ft_putendl("Close IRC client");
@@ -52,10 +64,7 @@ int			ft_irc_cmd_quit(t_env *e, int cs, int force)
 {
 	if ((BL(cs) > 5 && ft_strncmp(RB(cs), CMD_QUIT, 4) == 0) || force == 1)
 	{
-		if (force == 1 || e->sock.s >= 0)
-			client_close(e, cs);
-		else
-			ft_send(e->sock.s, "QUIT\n", 5, e);
+		client_close(e, cs);
 		return (1);
 	}
 	return (0);
