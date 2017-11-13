@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 22:34:37 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/13 14:33:11 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 17:31:35 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,13 @@ static void	ft_irc_cmd_connect_init(t_env *e, int cs)
 
 int			ft_irc_cmd_connect(t_env *e, int cs, int force)
 {
-	if (e->connect == 1 && force == 0 && (BL(cs) > 8 &&
+	if (e->connect == 1 && force == 0 && (BL(cs) > 8 && RB(cs)[8] == ' ' &&
 			ft_strncmp(RB(cs), CMD_CONNECT, 8) == 0))
 	{
 		ft_irc_cmd_allrdy_connect(e);
 		return (1);
 	}
-	else if (force == 1 || (BL(cs) > 8 && RB(cs)[7] == ' ' &&
+	else if (force == 1 || (BL(cs) > 8 && RB(cs)[8] == ' ' &&
 			ft_strncmp(RB(cs), CMD_CONNECT, 8) == 0))
 	{
 		if (force)
