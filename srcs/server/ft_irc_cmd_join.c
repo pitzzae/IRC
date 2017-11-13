@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:04:44 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 20:58:39 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 12:37:23 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 /*TODO
  * Add limit to string chanel.
- * Dont broadcast msg if client allready in chanel
  * */
 
 static void	ft_irc_join_chanel(t_chanel **c, int cs)
@@ -43,6 +42,7 @@ static void	ft_irc_join_chanel(t_chanel **c, int cs)
 static void	ft_irc_join(t_env *e, int cs, char *name)
 {
 	t_chanel	*c;
+	t_list		*l;
 
 	c = ft_irc_get_chanel(e->chanel, name);
 	if (!c)
@@ -58,8 +58,11 @@ static void	ft_irc_join(t_env *e, int cs, char *name)
 	if (e->fds[cs].chanel)
 		free(e->fds[cs].chanel);
 	e->fds[cs].chanel = ft_strdup(c->name);
-	e->fds[cs].chan_user = ft_irc_chan_user_add(e->fds[cs].chan_user, c->name);
-	ft_irc_cmd_join_print(e, cs, name);
+	if ((l = ft_irc_chan_user_add(e->fds[cs].chan_user, c->name)) != NULL)
+	{
+		e->fds[cs].chan_user = l;
+		ft_irc_cmd_join_print(e, cs, name);
+	}
 }
 
 int			ft_irc_cmd_join(t_env *e, int cs)
