@@ -34,7 +34,6 @@ void		ft_terminos_add_char(t_env *e, int fd, char c)
 		RB(fd) = ft_addchar_intstr(RB(fd), c, ft_strlen(RB(fd)));
 	else
 		RB(fd) = ft_addchar_intstr(RB(fd), c, e->t.cur - e->t.p_len);
-	dprintf(7, "[u] e->t.cur %d e->t.p_len %d res: %d buff_len: %zu str: %s\n", e->t.cur, e->t.p_len, e->t.cur - e->t.p_len, ft_strlen(RB(fd)), RB(fd));
 	if (ft_strlen(RB(fd)) + e->t.p_len == (unsigned long)(e->t.cur + 1))
 		ft_putchar(c);
 	else
@@ -53,12 +52,9 @@ void		ft_terminos_add_char(t_env *e, int fd, char c)
 void		ft_terminos_del_char(t_env *e, int fd)
 {
 	ft_terminos_clean_line(e);
-	dprintf(7, "[j] e->t.cur %d e->t.p_len %d res: %d buff_len: %zu str: %s\n", e->t.cur, e->t.p_len, e->t.cur - e->t.p_len, ft_strlen(RB(fd)), RB(fd));
 	RB(fd) = ft_delchar_intstr(RB(fd), e->t.cur - e->t.p_len - 1);
-	dprintf(7, "[k] e->t.cur %d e->t.p_len %d res: %d buff_len: %zu str: %s\n", e->t.cur, e->t.p_len, e->t.cur - e->t.p_len, ft_strlen(RB(fd)), RB(fd));
 	e->t.cur--;
 	ft_client_prompt(e, e->t.cur - e->t.p_len);
-	dprintf(7, "[l] e->t.cur %d e->t.p_len %d res: %d buff_len: %zu str: %s\n", e->t.cur, e->t.p_len, e->t.cur - e->t.p_len, ft_strlen(RB(fd)), RB(fd));
 }
 
 void		ft_terminos_left_arrow(t_env *e, int fd)

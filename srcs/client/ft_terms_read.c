@@ -76,9 +76,6 @@ void		ft_terms_read(t_env *e, int fd)
 	{
 		c = buff[0];
 		ft_strncat(buff, &c, 1);
-		dprintf(7, "%d %d %d %d %d %d\n", buff[0], buff[1], buff[2], buff[3], buff[4], buff[5]);
-		dprintf(7, "[s] e->t.cur %d e->t.p_len %d\n", e->t.cur, e->t.p_len);
 		ft_terms_buffer_char(e, fd, &buff[0]);
-		dprintf(7, "[x] e->t.cur %d e->t.p_len %d\n", e->t.cur, e->t.p_len);
 	}
 }

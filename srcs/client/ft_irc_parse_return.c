@@ -84,7 +84,6 @@ void			ft_irc_parse_return(t_env *e, int cs, int len)
 	char			**tmp;
 	int				i;
 
-	dprintf(7, "\nbuf_read ->\n%s<- buf_read", e->fds[cs].buf_read);
 	if (len > 0)
 	{
 		i = 0;
