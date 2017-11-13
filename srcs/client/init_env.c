@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 15:41:39 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 01:35:51 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 14:10:10 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void		init_env(t_env *e)
 	struct rlimit	rlp;
 
 	e->state = "getrlimit";
+	e->history = NULL;
 	X(-1, getrlimit(RLIMIT_NOFILE, &rlp), e);
 	e->maxfd = rlp.rlim_cur;
 	e->state = "malloc";

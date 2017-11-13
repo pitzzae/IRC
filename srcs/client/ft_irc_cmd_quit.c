@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:28 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/13 13:28:24 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 14:09:57 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ static void	client_close_free(t_env * e)
 
 static void	client_close(t_env *e, int cs)
 {
-	close(cs);
-	clean_fd(&e->fds[cs]);
 	ft_terminos_clean_line(e);
 	if (e->host)
 	{

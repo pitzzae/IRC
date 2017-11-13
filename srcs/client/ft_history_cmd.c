@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 17:02:13 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 19:10:04 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 12:50:00 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void			ft_history_cmd_add(t_env *e, char *cmd)
 		cmd[ocur] = '\0';
 	if (ft_strlen(cmd) > 0)
 	{
-		lst = ft_lstnew(cmd, ft_strlen(cmd));
+		lst = ft_lstnew(cmd, ft_strlen(cmd) + 1);
 		if (!e->history)
 			e->history = lst;
 		else

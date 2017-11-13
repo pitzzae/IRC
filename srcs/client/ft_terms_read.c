@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 12:21:13 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 17:28:05 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 15:00:41 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	ft_terms_buffer_char(t_env *e, int fd, char *buff)
 			c = '\n';
 		if (c == 127 && e->t.cur > e->t.p_len)
 			ft_terminos_del_char(e, fd);
-		else if (c != 127 && c != 9)
+		else if (ft_isprint(c) || c == '\n')
 			ft_terminos_add_char(e, fd, c);
 	}
 	else if (buff[0] == ARROW_1 && buff[1] == ARROW_2)
