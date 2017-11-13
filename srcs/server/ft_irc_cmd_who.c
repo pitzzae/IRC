@@ -6,15 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 19:06:28 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 20:38:17 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/13 18:41:47 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_server.h"
-
-/*TODO
- * Show chanel only if user is in chanel
- * */
 
 static char	*ft_irc_who_chan(t_env *e, int cs)
 {
