@@ -12,6 +12,10 @@
 
 #include "ft_irc_server.h"
 
+/*TODO
+ * Show chanel only if user is in chanel
+ * */
+
 static char	*ft_irc_who_chan(t_env *e, int cs)
 {
 	char		*tmp;
