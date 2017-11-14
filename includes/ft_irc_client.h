@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 21:29:48 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 23:31:13 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define FD_FREE		0
 # define FD_LOCAL		1
 # define FD_CLIENT		2
+# define FD_FILE		3
 # define ARROW_1		27
 # define ARROW_2		91
 # define ARROW_UP		65

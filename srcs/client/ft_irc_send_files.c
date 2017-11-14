@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 16:07:29 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 20:18:19 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 20:19:35 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static int		ft_irc_send_files_data(t_env *e, t_lfile *lf)
 	}
 	else
 	{
-		FD_CLR(lf->fd, &e->fd_read);
 		close(lf->fd);
 		lf->send = 0;
 		dprintf(7, "close fd '%d'\n", lf->fd);
