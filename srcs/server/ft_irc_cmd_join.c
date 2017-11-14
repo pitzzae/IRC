@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:04:44 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/13 16:46:35 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 11:54:48 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	ft_irc_cmd_join_chanel_valid(t_env *e, int cs, char *cmd)
 {
 	size_t			i;
 
-	i = 10;
+	i = CH_LEN;
 	if (ft_strlen(cmd) > i)
 		ft_irc_error(e, cs, "403", NOT_CHAN);
 	else

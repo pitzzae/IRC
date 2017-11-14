@@ -83,7 +83,7 @@ set(SOURCE_SERVER
         srcs/server/ft_irc_chan_user.c srcs/server/ft_irc_leave_all_chan.c
         srcs/server/ft_irc_cmd_join_print.c srcs/server/ft_irc_cmd_leave_print.c
         srcs/server/ft_irc_cmd_msgpriv.c srcs/server/ft_irc_cmd_msgchanel.c
-        srcs/server/ft_irc_parse_privmsg.c srcs/server/ft_irc_cmd_file.c srcs/server/client_buffer.c srcs/server/ft_irc_user_is_master_chanel.c srcs/server/ft_irc_cmd_quit_broadcast.c)
+        srcs/server/ft_irc_parse_privmsg.c srcs/server/ft_irc_cmd_file.c srcs/server/client_buffer.c srcs/server/ft_irc_user_is_master_chanel.c srcs/server/ft_irc_cmd_quit_broadcast.c srcs/server/ft_irc_cmd_msg.c)
 
 set(SOURCE_CLIENT
         srcs/client/check_fd.c
@@ -97,7 +97,7 @@ set(SOURCE_CLIENT
         srcs/client/main.c
         srcs/client/main_loop.c
         srcs/client/client_create.c
-        srcs/client/x.c srcs/client/ft_terminos.c srcs/client/ft_terms_read.c srcs/client/ft_terminos_move.c srcs/client/ft_client_prompt.c srcs/client/ft_history_cmd.c srcs/client/ft_parse_irc_cmd.c srcs/client/ft_irc_cmd_msg.c srcs/client/ft_irc_cmd_nick.c srcs/client/ft_irc_cmd_user.c srcs/client/ft_irc_cmd_who.c srcs/client/ft_irc_cmd_quit.c srcs/client/ft_irc_cmd_join.c srcs/client/ft_irc_cmd_leave.c srcs/client/ft_irc_cmd_file.c srcs/client/ft_irc_print.c srcs/client/ft_irc_cmd_help.c srcs/client/ft_send.c srcs/client/ft_irc_cmd_connect.c srcs/client/ft_irc_cmd_error_arg.c srcs/client/ft_irc_update_prompt.c srcs/client/ft_irc_parse_return.c srcs/client/ft_irc_parse_reply.c srcs/client/ft_irc_parse_reply_handle.c)
+        srcs/client/x.c srcs/client/ft_terminos.c srcs/client/ft_terms_read.c srcs/client/ft_terminos_move.c srcs/client/ft_client_prompt.c srcs/client/ft_history_cmd.c srcs/client/ft_parse_irc_cmd.c srcs/client/ft_irc_cmd_msg.c srcs/client/ft_irc_cmd_nick.c srcs/client/ft_irc_cmd_user.c srcs/client/ft_irc_cmd_who.c srcs/client/ft_irc_cmd_quit.c srcs/client/ft_irc_cmd_join.c srcs/client/ft_irc_cmd_leave.c srcs/client/ft_irc_cmd_file.c srcs/client/ft_irc_print.c srcs/client/ft_irc_cmd_help.c srcs/client/ft_send.c srcs/client/ft_irc_cmd_connect.c srcs/client/ft_irc_cmd_error_arg.c srcs/client/ft_irc_update_prompt.c srcs/client/ft_irc_parse_return.c srcs/client/ft_irc_parse_reply.c srcs/client/ft_irc_parse_reply_handle.c srcs/client/ft_irc_file_make_packet.c srcs/client/ft_irc_open_file.c)
 
 add_executable( ${APP_SERVER} ${HEADER_FILES_SERVER} ${SOURCE_SERVER} ${SOURCE_LIBFT} )
 target_link_libraries( ${APP_SERVER} ft)

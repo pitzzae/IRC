@@ -39,7 +39,8 @@ SERVER_SRCS		= main.c init_env.c clean_fd.c get_opt.c x.c main_loop.c \
 				ft_irc_cmd_join_print.c ft_irc_cmd_leave_print.c \
 				ft_irc_cmd_msgchanel.c ft_irc_cmd_msgpriv.c \
 				ft_irc_parse_privmsg.c ft_irc_cmd_file.c client_buffer.c \
-				ft_irc_user_is_master_chanel.c ft_irc_cmd_quit_broadcast.c
+				ft_irc_user_is_master_chanel.c ft_irc_cmd_quit_broadcast.c \
+				ft_irc_cmd_msg.c
 
 CLIENT_SRCS		= main.c init_env.c clean_fd.c get_opt.c x.c main_loop.c \
 				init_fd.c do_select.c check_fd.c client_create.c \
@@ -51,7 +52,8 @@ CLIENT_SRCS		= main.c init_env.c clean_fd.c get_opt.c x.c main_loop.c \
 				ft_irc_print.c ft_irc_cmd_help.c ft_send.c \
 				ft_irc_cmd_connect.c ft_irc_cmd_error_arg.c \
 				ft_irc_update_prompt.c ft_irc_parse_return.c \
-				ft_irc_parse_reply.c ft_irc_parse_reply_handle.c
+				ft_irc_parse_reply.c ft_irc_parse_reply_handle.c \
+				ft_irc_file_make_packet.c ft_irc_open_file.c
 
 
 SERVER_OBJECTS	= $(patsubst %.c, $(OBJS_DIR_SER)/%.o, $(SERVER_SRCS))

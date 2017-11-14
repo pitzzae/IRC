@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/13 17:47:27 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 13:28:38 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # define FD_SERV		1
 # define FD_CLIENT		2
 # define MAX_CMD_SIZE	4096
+# define CH_LEN			10
+# define MSG_FILE		(BUF_SIZE - (sizeof(t_fileinfo) + 8))
 
 # define Xv(err,res,str)	(x_void(err,res,str,__FILE__,__LINE__))
 # define X(err,res,str)		(x_int(err,res,str,__FILE__,__LINE__))
@@ -55,6 +57,27 @@
 # define UNK_COMMAND	" :Unknown command"
 # define END_NAME_LIST	" :End of NAMES list\n"
 # define ERROR_CONN		"ERROR :Closing connection\n"
+
+typedef struct		s_fileinfo
+{
+	char				dest[CH_LEN + 1];
+	char				file_name[CH_LEN + 1];
+	int					p;
+	int					t;
+	int					l;
+}					t_fileinfo;
+
+typedef struct		s_file
+{
+	t_fileinfo			info;
+	char				msg[MSG_FILE];
+}					t_file;
+
+typedef struct		s_lfile
+{
+	t_fileinfo			info;
+	int					fd;
+}					t_lfile;
 
 typedef struct		s_privmsg
 {
@@ -119,6 +142,7 @@ typedef struct		s_env
 	fd_set				fd_write;
 	t_list				*chanel;
 	struct timeval		timeout;
+	t_list				*file;
 }					t_env;
 
 void				init_env(t_env *e);
@@ -152,6 +176,7 @@ void				ft_irc_cmd_join_print(t_env *e, int cs, char *name);
 int					ft_irc_cmd_leave(t_env *e, int cs);
 void				ft_irc_cmd_leave_print(t_env *e, int cs, char *name);
 void				ft_irc_leave(t_env *e, int cs, char *chan);
+int					ft_irc_cmd_msg(t_env *e, int cs);
 int					ft_irc_cmd_msgpriv(t_env *e, int cs, t_privmsg *msg);
 int					ft_irc_cmd_msgchanel(t_env *e, int cs, t_privmsg *msg);
 t_privmsg			*ft_irc_parse_privmsg(t_env *e, int cs);

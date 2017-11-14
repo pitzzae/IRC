@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/13 17:05:23 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 15:10:12 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@
 # define ARROW_DOWN		66
 # define ARROW_LEFT		68
 # define ARROW_RIGHT	67
+# define CH_LEN			10
+# define MSG_FILE		(BUF_SIZE - (sizeof(t_fileinfo) + 8))
 
 # define Xv(err,res,e)		(x_void(err,res,e,__FILE__,__LINE__))
 # define X(err,res,e)		(x_int(err,res,e,__FILE__,__LINE__))
@@ -50,6 +52,7 @@
 # define UND_CMD			"Undefined command: \""
 # define UND_CMD_TRY		"\".  Try \"/help\".\n"
 # define NO_CONN			"Connection not found !!!\nTry \"/help\".\n"
+# define NO_REGIS			" :Connection not registered\n"
 # define CMD_CONNECT		"/connect"
 # define CMD_HELP			"/help"
 # define CMD_NICK			"/nick"
@@ -67,7 +70,23 @@
 # define HELP_CMD_CHAN		" <#chan>\n"
 # define HELP_CMD_WHO		"\n"
 # define HELP_CMD_MSG		" <nick>|<#chan> <message>\n"
-# define HELP_CMD_FILE		" not implemented yet\n"
+# define HELP_CMD_FILE		" <nick>|<#chan> <path_file>\n"
+# define HELP_STATS_FILE	" cannot stat\n"
+
+typedef struct		s_fileinfo
+{
+	char				dest[CH_LEN + 1];
+	char				file_name[CH_LEN + 1];
+	int					p;
+	int					t;
+	int					l;
+}					t_fileinfo;
+
+typedef struct		s_file
+{
+	t_fileinfo			info;
+	char				msg[MSG_FILE];
+}					t_file;
 
 typedef struct		s_reply
 {
@@ -197,10 +216,14 @@ size_t				ft_send(int cs, void *buff, size_t len, t_env *e);
 char				*ft_parse_irc_cmd_convert(char *s, int len);
 int					ft_irc_cmd_connect(t_env *e, int cs, int force);
 int					client_is_connected(t_env *e);
-void				ft_irc_cmd_error_arg(t_env *e, char *cmd, char *help);
+int					ft_irc_cmd_error_arg(t_env *e, char *cmd, char *help);
 void				ft_irc_update_prompt(t_env *e);
 void				ft_irc_parse_return(t_env *e, int cs, int len);
 char				*ft_irc_parse_reply(t_env *e, t_reply *r);
 void				ft_irc_parse_reply_handle(t_env *e, int code);
+void				*ft_irc_file_make_packet(char *dest, char *file,
+											void *d, int len);
+int					ft_irc_open_file(t_env *e, int cs, char *dest,
+											char *file);
 
 #endif /* !FT_IRC_CLIENT_H_ */

@@ -64,7 +64,7 @@ static void	ft_irc_cmd_msg_display(t_env *e, char *msg, int p)
 		tmp = &msg[1];
 	else if (p == 0)
 		tmp = msg;
-	if (tmp)
+	if (tmp && e->nick && e->chan)
 	{
 		str = ft_strjoin(e->nick, " <- ");
 		str = ft_strjoin_free(str, e->chan, 1);

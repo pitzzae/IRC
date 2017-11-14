@@ -12,7 +12,7 @@
 
 #include "ft_irc_client.h"
 
-void		ft_irc_cmd_error_arg(t_env *e, char *cmd, char *help)
+int		ft_irc_cmd_error_arg(t_env *e, char *cmd, char *help)
 {
 	char		*tmp;
 
@@ -20,4 +20,5 @@ void		ft_irc_cmd_error_arg(t_env *e, char *cmd, char *help)
 	tmp = ft_strjoin_free(tmp, help, 1);
 	ft_irc_print(e, tmp, ft_strlen(tmp), 0);
 	free(tmp);
+	return (1);
 }
