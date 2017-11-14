@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:53:45 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 17:32:15 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 18:33:35 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			ft_irc_cmd_file(t_env *e, int cs)
 
 	if (BL(cs) > 5 && RB(cs)[5] == ' ' && ft_strncmp(RB(cs), CMD_FILE, 5) == 0)
 	{
-		if (e->fds[cs].connect == 2)
+		if (e->fds[cs].connect != 1 && e->file_rdy != 1)
 			return (ft_irc_cmd_error_arg(e, CMD_FILE, NO_REGIS));
 		if (BL(cs) > 6 &&
 				(tmp = ft_irc_cmd_file_parse_argv(e, cs, &RB(cs)[6])) != NULL)

@@ -23,6 +23,7 @@ void		init_env(t_env *e)
 	e->maxfd = rlp.rlim_cur;
 	e->state = "malloc";
 	e->fds = (t_fd*)Xv(NULL, malloc(sizeof(*e->fds) * e->maxfd), e);
+	e->file_rdy = 0;
 	i = 0;
 	while (i < e->maxfd)
 	{

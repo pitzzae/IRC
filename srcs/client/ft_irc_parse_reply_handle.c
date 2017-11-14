@@ -55,4 +55,6 @@ void		ft_irc_parse_reply_handle(t_env *e, int code)
 		ft_irc_parse_nick_allready_user(e);
 	else if (code == 403 || code == 451)
 		ft_irc_parse_no_such_channel(e);
+	else if (e->nick && code == 1)
+		e->file_rdy = 1;
 }
