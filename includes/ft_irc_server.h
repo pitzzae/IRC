@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 13:28:38 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 16:01:35 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@
 typedef struct		s_fileinfo
 {
 	char				dest[CH_LEN + 1];
+	char				source[CH_LEN + 1];
 	char				file_name[CH_LEN + 1];
 	int					p;
 	int					t;
@@ -72,12 +73,6 @@ typedef struct		s_file
 	t_fileinfo			info;
 	char				msg[MSG_FILE];
 }					t_file;
-
-typedef struct		s_lfile
-{
-	t_fileinfo			info;
-	int					fd;
-}					t_lfile;
 
 typedef struct		s_privmsg
 {
@@ -142,7 +137,6 @@ typedef struct		s_env
 	fd_set				fd_write;
 	t_list				*chanel;
 	struct timeval		timeout;
-	t_list				*file;
 }					t_env;
 
 void				init_env(t_env *e);

@@ -6,23 +6,19 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:53:45 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 15:16:48 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 17:32:15 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
 
-/*TODO
- * Implemented FILE
- * */
-
 static char	*ft_irc_cmd_file_add_job(t_env *e, int cs, char *dest, char *file)
 {
-	char				*pck;
+	char		*pck;
 
 	pck = NULL;
 	if (ft_irc_open_file(e, cs, dest, file))
-		pck = (char*)ft_irc_file_make_packet(dest, file, "\0", 0);
+		pck = (char*)ft_irc_file_make_ipacket(dest, file, "\0", 0);
 	else
 		ft_irc_cmd_error_arg(e, file, HELP_STATS_FILE);
 	return (pck);
@@ -30,9 +26,9 @@ static char	*ft_irc_cmd_file_add_job(t_env *e, int cs, char *dest, char *file)
 
 static char	*ft_irc_cmd_file_parse_argv(t_env *e, int cs, char *cmd)
 {
-	char				**tmp;
-	char				*pck;
-	int					i;
+	char		**tmp;
+	char		*pck;
+	int			i;
 
 	if ((i = ft_strfocur(cmd, '\n')) >= 0)
 		cmd[i] = '\0';

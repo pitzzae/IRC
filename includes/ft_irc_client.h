@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 15:10:12 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 17:25:55 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <termios.h>
 # include <term.h>
 # include <sys/ioctl.h>
+# include <sys/stat.h>
 
 # include "libft.h"
 # define FD_FREE		0
@@ -76,6 +77,7 @@
 typedef struct		s_fileinfo
 {
 	char				dest[CH_LEN + 1];
+	char				source[CH_LEN + 1];
 	char				file_name[CH_LEN + 1];
 	int					p;
 	int					t;
@@ -87,6 +89,14 @@ typedef struct		s_file
 	t_fileinfo			info;
 	char				msg[MSG_FILE];
 }					t_file;
+
+typedef struct		s_lfile
+{
+	t_fileinfo			info;
+	struct stat			st;
+	int					fd;
+	int					send;
+}					t_lfile;
 
 typedef struct		s_reply
 {
@@ -174,6 +184,7 @@ typedef struct		s_env
 	int					connect;
 	char				*nick;
 	char				*chan;
+	t_list				*file;
 }					t_env;
 
 int					x_int(int err, int res, t_env *e, char *file, int line);
@@ -221,9 +232,13 @@ void				ft_irc_update_prompt(t_env *e);
 void				ft_irc_parse_return(t_env *e, int cs, int len);
 char				*ft_irc_parse_reply(t_env *e, t_reply *r);
 void				ft_irc_parse_reply_handle(t_env *e, int code);
-void				*ft_irc_file_make_packet(char *dest, char *file,
+void				*ft_irc_file_make_packet(t_lfile *lf, char *buff, int len);
+void				*ft_irc_file_make_ipacket(char *dest, char *file,
 											void *d, int len);
 int					ft_irc_open_file(t_env *e, int cs, char *dest,
 											char *file);
+void				ft_irc_send_files(t_env *e);
+int					ft_irc_write_file(t_env *e, int cs, t_file *f);
+int					ft_irc_accept_transfert(t_env *e, int cs, t_file *f);
 
 #endif /* !FT_IRC_CLIENT_H_ */

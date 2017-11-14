@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 12:45:10 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/13 17:27:16 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 17:31:02 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static t_reply	*ft_irc_parse_return_2(char *msg)
 	int				i;
 
 	r = NULL;
-	i = ft_strocur(msg, ' ');
+	i = (int)ft_strocur(msg, ' ');
 	if (i == 2)
 	{
 		r = malloc(sizeof(*r));
@@ -40,7 +40,7 @@ static t_reply	*ft_irc_parse_return_3(char *msg)
 	int				i;
 
 	r = NULL;
-	i = ft_strocur(msg, ' ');
+	i = (int)ft_strocur(msg, ' ');
 	if (i >= 3)
 	{
 		r = malloc(sizeof(*r));
@@ -74,9 +74,30 @@ static void		ft_irc_parse_return_multi(t_env *e, char *cmd)
 	}
 	if (msg)
 	{
-		ft_irc_print(e, msg, ft_strlen(msg), 1);
+		ft_irc_print(e, msg, (int)ft_strlen(msg), 1);
 		free(msg);
 	}
+}
+
+static int		ft_irc_parse_is_file(t_env *e, int cs, int len)
+{
+	t_fileinfo		*i;
+	t_file			*f;
+
+	if (len > (int)(8 + sizeof(t_fileinfo)) &&
+		ft_strncmp(e->fds[cs].buf_read, "FILE ", 5) == 0)
+	{
+		f = (t_file*)&e->fds[cs].buf_read[8];
+		i = &f->info;
+		if (i->l >= 0 && i->l <= (int)MSG_FILE)
+		{
+			if (i->p == 0 && i->t == 0 && i->l == 0)
+				return (ft_irc_accept_transfert(e, cs, f));
+			else if (i->t > 0 && i->p <= i->t)
+				return (ft_irc_write_file(e, cs, f));
+		}
+	}
+	return (0);
 }
 
 void			ft_irc_parse_return(t_env *e, int cs, int len)
@@ -86,15 +107,18 @@ void			ft_irc_parse_return(t_env *e, int cs, int len)
 
 	if (len > 0)
 	{
-		i = 0;
-		tmp = ft_strsplit(e->fds[cs].buf_read, '\n');
-		while (tmp[i])
+		if (!ft_irc_parse_is_file(e, cs, len))
 		{
-			ft_irc_parse_return_multi(e, tmp[i]);
-			free(tmp[i]);
-			i++;
+			i = 0;
+			tmp = ft_strsplit(e->fds[cs].buf_read, '\n');
+			while (tmp[i])
+			{
+				ft_irc_parse_return_multi(e, tmp[i]);
+				free(tmp[i]);
+				i++;
+			}
+			free(tmp);
 		}
-		free(tmp);
 	}
 	ft_bzero(e->fds[cs].buf_read, len);
 }
