@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 15:44:59 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 11:58:06 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 12:05:08 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	ft_parse_irc_cmd_format(char *buff)
 	int			pos;
 
 	i = 0;
-	len = ft_strlen(buff);
+	len = (int)ft_strlen(buff);
 	while (i < len - 1)
 	{
 		if (buff[i] == ' ' && buff[i + 1] == ' ')
