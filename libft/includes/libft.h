@@ -19,6 +19,11 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
+#ifndef _UINT64_T
+#define _UINT64_T
+typedef unsigned long long uint64_t;
+#endif /* _UINT64_T */
+
 #ifndef _UINT32_T
 # define _UINT32_T
 typedef unsigned int uint32_t;

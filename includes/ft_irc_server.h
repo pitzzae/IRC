@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 16:01:35 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 21:29:53 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define MAX_CMD_SIZE	4096
 # define CH_LEN			10
 # define MSG_FILE		(BUF_SIZE - (sizeof(t_fileinfo) + 8))
+# define MH_MAGIC_FILE	(uint64_t)(0xf42ef42e)
 
 # define Xv(err,res,str)	(x_void(err,res,str,__FILE__,__LINE__))
 # define X(err,res,str)		(x_int(err,res,str,__FILE__,__LINE__))

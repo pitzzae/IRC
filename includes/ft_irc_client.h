@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 17:28:51 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 21:29:48 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@
 # define HELP_CMD_MSG		" <nick>|<#chan> <message>\n"
 # define HELP_CMD_FILE		" <nick>|<#chan> <path_file>\n"
 # define HELP_STATS_FILE	" cannot stat\n"
+# define MH_MAGIC_FILE		(uint64_t)(0xf42ef42e)
+
 
 typedef struct		s_fileinfo
 {

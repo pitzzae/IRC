@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 12:45:10 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 17:31:02 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 21:21:10 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,20 +81,24 @@ static void		ft_irc_parse_return_multi(t_env *e, char *cmd)
 
 static int		ft_irc_parse_is_file(t_env *e, int cs, int len)
 {
+	uint64_t	*magic;
 	t_fileinfo		*i;
 	t_file			*f;
 
-	if (len > (int)(8 + sizeof(t_fileinfo)) &&
-		ft_strncmp(e->fds[cs].buf_read, "FILE ", 5) == 0)
+	if (len > (int)(8 + sizeof(t_fileinfo)))
 	{
-		f = (t_file*)&e->fds[cs].buf_read[8];
-		i = &f->info;
-		if (i->l >= 0 && i->l <= (int)MSG_FILE)
+		magic = ((uint64_t*)&e->fds[cs].buf_read[0]);
+		if (magic[0] == MH_MAGIC_FILE)
 		{
-			if (i->p == 0 && i->t == 0 && i->l == 0)
-				return (ft_irc_accept_transfert(e, cs, f));
-			else if (i->t > 0 && i->p <= i->t)
-				return (ft_irc_write_file(e, cs, f));
+			f = (t_file*)&e->fds[cs].buf_read[8];
+			i = &f->info;
+			if (i->l >= 0 && i->l <= (int)MSG_FILE)
+			{
+				if (i->p == 0 && i->t == 0 && i->l == 0)
+					return (ft_irc_accept_transfert(e, cs, f));
+				else if (i->t > 0 && i->p <= i->t)
+					return (ft_irc_write_file(e, cs, f));
+			}
 		}
 	}
 	return (0);
