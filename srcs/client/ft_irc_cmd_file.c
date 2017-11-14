@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:53:45 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 18:33:35 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 18:45:26 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int			ft_irc_cmd_file(t_env *e, int cs)
 				(tmp = ft_irc_cmd_file_parse_argv(e, cs, &RB(cs)[6])) != NULL)
 		{
 			ft_send(e->sock.s, tmp, sizeof(t_file) + 8, e);
+			free(tmp);
 			ft_history_cmd_add(e, RB(cs));
 		}
 		return (1);

@@ -6,33 +6,72 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 16:07:29 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 18:59:18 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 20:18:19 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
 
-/*TODO
- * free and close fd on EOF
- * */
+static t_list	*ft_irc_send_file_update_lst(t_env *e, int fd)
+{
+	t_lfile			*lf;
+	t_list			*l;
+	t_list			*file;
+	t_list			*tmp;
 
-static void		ft_irc_send_files_data(t_env *e, t_lfile *lf)
+	l = e->file;
+	file = NULL;
+	while (l)
+	{
+		lf = l->content;
+		if (lf->fd != fd)
+		{
+			if (file == NULL)
+				file = ft_lstnew(lf, l->content_size);
+			else
+				ft_lstaddend_free(&file, ft_lstnew(lf, l->content_size), u_del);
+		}
+		tmp = l->next;
+		ft_lstdelone(&l, u_del);
+		l = tmp;
+	}
+	return (file);
+}
+
+static void		ft_irc_send_file_close(t_env *e, int fd)
+{
+	if (ft_lstlen(e->file) == 1)
+	{
+		ft_lstdel(&e->file, u_del);
+		e->file = NULL;
+	}
+	else
+		e->file = ft_irc_send_file_update_lst(e, fd);
+}
+
+static int		ft_irc_send_files_data(t_env *e, t_lfile *lf)
 {
 	char			buff[MSG_FILE + 1];
 	char			*tmp;
 	int				len;
 
-	len = read(lf->fd, &buff[0], MSG_FILE);
+	len = (int)read(lf->fd, &buff[0], MSG_FILE);
 	if (len > 0)
 	{
 		tmp = ft_irc_file_make_packet(lf, &buff[0], len);
 		ft_send(e->sock.s, tmp, sizeof(t_file) + 8, e);
+		free(tmp);
 		FD_SET(lf->fd, &e->fd_read);
+		return (0);
 	}
 	else
 	{
-		//free, close
+		FD_CLR(lf->fd, &e->fd_read);
+		close(lf->fd);
+		lf->send = 0;
 		dprintf(7, "close fd '%d'\n", lf->fd);
+		ft_irc_send_file_close(e, lf->fd);
+		return (1);
 	}
 }
 
@@ -47,8 +86,10 @@ void			ft_irc_send_files(t_env *e)
 		lf = (t_lfile*)l->content;
 		if (lf->send == 1)
 		{
-			ft_irc_send_files_data(e, lf);
+			if (ft_irc_send_files_data(e, lf) == 1)
+				return;
 		}
-		l = l->next;
+		if (l)
+			l = l->next;
 	}
 }

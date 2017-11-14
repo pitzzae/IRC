@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 22:28:11 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 19:02:10 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 19:02:58 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 /*TODO
  * Implemented FILE,
  * ft_irc_cmd_file_reply_broadcast
- * ft_irc_cmd_file_reply_init
  * */
 
 static int		ft_irc_cmd_file_reply_broadcast(t_env *e, int cs, t_file *f)
