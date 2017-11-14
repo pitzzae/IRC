@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:08:25 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/11 14:31:54 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 20:31:09 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-
-#ifndef _UINT64_T
-#define _UINT64_T
-typedef unsigned long long uint64_t;
-#endif /* _UINT64_T */
 
 #ifndef _UINT32_T
 # define _UINT32_T

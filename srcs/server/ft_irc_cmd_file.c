@@ -6,30 +6,59 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 22:28:11 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 21:16:28 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 22:29:58 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_server.h"
 
-/*TODO
- * Implemented FILE,
- * ft_irc_cmd_file_reply_broadcast
- * */
-
-static int		ft_irc_cmd_file_reply_broadcast(t_env *e, int cs, t_file *f)
+static void		ft_irc_cmd_file_reply_user(t_env *e, char *us, char *b, int len)
 {
 	int				i;
 
 	i = 0;
-	ft_bzero(f->info.source, CH_LEN + 1);
-	ft_strcat(f->info.source, e->fds[cs].username);
 	while (i < e->maxfd)
 	{
-		if (e->fds[i].type == FD_CLIENT)
-			ft_send(i, e->fds[cs].buffer, e->fds[cs].buff_len, e);
+		if (e->fds[i].type == FD_CLIENT &&
+				ft_strcmp(us, e->fds[i].username) == 0)
+			ft_send(i, b, len, e);
 		i++;
 	}
+}
+
+static void		ft_irc_cmd_file_reply_chanel(t_env *e, int cs, char *ch, int le)
+{
+	t_chanel		*c;
+	t_list			*l;
+
+	l = e->chanel;
+	while (l)
+	{
+		c = l->content;
+		if (ft_strcmp(c->name, ch) == 0)
+		{
+			l = c->s;
+			while (l)
+			{
+				if (l->valid != cs)
+					ft_send(l->valid, BF(cs), (size_t)le, e);
+				l = l->next;
+			}
+			return ;
+		}
+		l = l->next;
+	}
+}
+
+static int		ft_irc_cmd_file_reply_broadcast(t_env *e, int cs, t_file *f)
+{
+	ft_bzero(f->info.source, CH_LEN + 1);
+	ft_strcat(f->info.source, e->fds[cs].username);
+	if (f->info.dest[0] == '#')
+		ft_irc_cmd_file_reply_chanel(e, cs, f->info.dest, e->fds[cs].buff_len);
+	else
+		ft_irc_cmd_file_reply_user(e, f->info.dest,
+			  e->fds[cs].buffer, e->fds[cs].buff_len);
 	return (1);
 }
 

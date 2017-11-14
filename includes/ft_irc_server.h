@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 21:29:53 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 21:35:52 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@
 
 # define Xv(err,res,str)	(x_void(err,res,str,__FILE__,__LINE__))
 # define X(err,res,str)		(x_int(err,res,str,__FILE__,__LINE__))
-# define MAX(a,b)	((a > b) ? a : b)
+# define MAX(a,b)			((a > b) ? a : b)
+# define BF(a)				(e->fds[a].buffer)
 
 # define USAGE			"Usage: %s port\n"
 # define NICK_ERR		" :Erroneous nickname"
