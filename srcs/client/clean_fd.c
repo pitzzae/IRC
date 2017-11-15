@@ -14,9 +14,12 @@
 
 void	clean_fd(t_fd *fd)
 {
-	fd->type = FD_FREE;
-	fd->fct_read = NULL;
-	fd->fct_write = NULL;
-	ft_bzero(&fd->buf_write[0], BUF_SIZE + 1);
-	ft_bzero(&fd->buf_read[0], BUF_SIZE + 1);
+	if (fd->type != FD_FILE)
+	{
+		fd->type = FD_FREE;
+		fd->fct_read = NULL;
+		fd->fct_write = NULL;
+		ft_bzero(&fd->buf_write[0], BUF_SIZE + 1);
+		ft_bzero(&fd->buf_read[0], BUF_SIZE + 1);
+	}
 }

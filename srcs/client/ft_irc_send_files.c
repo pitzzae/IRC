@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 16:07:29 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/15 02:05:24 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/15 12:09:59 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static int		ft_irc_send_files_data(t_env *e, int cs, t_lfile *lf)
 	char			*tmp;
 	int				len;
 
-	(void)cs;
 	len = (int)read(lf->fd, &buff[0], MSG_FILE);
 	if (len > 0)
 	{
@@ -68,7 +67,8 @@ static int		ft_irc_send_files_data(t_env *e, int cs, t_lfile *lf)
 	{
 		clean_fd(&e->fds[cs]);
 		close(lf->fd);
-		dprintf(7, "close fd '%d'\n", lf->fd);
+		e->fds[lf->fd].type = FD_FREE;
+		e->fds[lf->fd].fct_read = NULL;
 		ft_irc_send_file_close(e, lf->fd);
 		return (1);
 	}
