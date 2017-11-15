@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 14:47:16 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/15 12:08:13 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/15 13:22:00 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	ft_irc_open_file_set_fdsize(t_lfile *lf, int fd)
 		lf->info.p = 0;
 		lf->info.t = ((int)lf->st.st_size / MSG_FILE) + 1;
 		lf->send = 0;
-		lf->info.id = ft_make_id((unsigned long)lf->fd);
+		lf->info.id = ft_make_id();
 		return (1);
 	}
 	close(fd);

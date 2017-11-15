@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:08:25 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 20:31:09 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/15 13:17:44 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,6 @@ uint8_t				ft_swapuint8(uint8_t u);
 void				ft_putadd(void const *p, char *buf);
 char				*ft_addchar_intstr(char *s, char c, int p);
 char				*ft_delchar_intstr(char *s, int p);
-unsigned long		ft_make_id(unsigned long u_id);
+unsigned long		ft_make_id(void);
 
 #endif /* !FT_LIBFT_H */
