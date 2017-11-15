@@ -51,7 +51,7 @@ set(SOURCE_LIBFT libft/srcs/ft_atoi.c libft/srcs/ft_bzero.c
         libft/srcs/ft_putbase.c libft/srcs/ft_puthex.c
         libft/srcs/ft_swapuint32.c libft/srcs/ft_swapuint8.c
         libft/srcs/ft_putstr_whsp.c libft/srcs/ft_pow.c libft/srcs/ft_putadd.c
-        libft/srcs/ft_strnocur.c libft/srcs/ft_addchar_intstr.c libft/srcs/ft_delchar_intstr.c)
+        libft/srcs/ft_strnocur.c libft/srcs/ft_addchar_intstr.c libft/srcs/ft_delchar_intstr.c libft/srcs/ft_make_id.c)
 
 add_library(ft STATIC ${SOURCE_LIBFT} ${HEADER_FILES})
 

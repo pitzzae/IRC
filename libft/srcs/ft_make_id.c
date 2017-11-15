@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_irc_write_file.c                                :+:      :+:    :+:   */
+/*   ft_make_id.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/14 17:24:01 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/15 13:30:59 by gtorresa         ###   ########.fr       */
+/*   Created: 2017/11/15 13:14:54 by gtorresa          #+#    #+#             */
+/*   Updated: 2017/11/15 13:17:08 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc_client.h"
+#include "libft.h"
+#include <sys/time.h>
 
-/*TODO
- * ft_irc_write_file
- * */
-
-int			ft_irc_write_file(t_env *e, int cs, t_file *f)
+unsigned long	ft_make_id(unsigned long u_id)
 {
-	(void)e;
-	(void)cs;
-	(void)f;
-	dprintf(7, "recive data: '%s' %d/%d \n", f->info.file_name, f->info.p, f->info.t);
-	dprintf(7, "id: '%lu'\n", f->info.id);
-	dprintf(7, "chunck len: %d\n", f->info.l);
-	return (0);
+	struct timeval	t;
+	unsigned long	id;
+
+	gettimeofday(&t,NULL);
+	id = (unsigned long)((t.tv_sec * 1000 * 1000) + (t.tv_usec * 1000)) << 24;
+	id |= (u_id % 16777216) << 24;
+	return id;
 }
