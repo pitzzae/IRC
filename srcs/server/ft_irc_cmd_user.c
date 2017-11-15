@@ -6,25 +6,45 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 19:03:22 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/15 01:53:45 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/15 12:43:25 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_server.h"
 
-/*TODO
- * @192.168.200.162$>/user gui s s
- * @192.168.200.162$>/nick sdf
- * Reply(001): sdf  :Welcome to the Internet Relay Network
- * sdf@192.168.200.162$>/who
- * SEGV on unknown address
- * */
+static int		ft_irc_cmd_user_check_arg(char *cmd)
+{
+	char			**tmp;
+	int				i;
+
+	tmp = ft_strsplit(cmd, ' ');
+	i = 0;
+	while (tmp[i])
+		free(tmp[i++]);
+	free(tmp);
+	return (i);
+}
+
+static char		*ft_irc_cmd_user_realname(char **tmp, char *buff)
+{
+	int				i;
+
+	i = 3;
+	while (tmp[i])
+		free(tmp[i++]);
+	free(tmp);
+	i = ft_strnocur(buff, ' ', 3);
+	if (i >= 0)
+		return (ft_strdup(&buff[i + 1]));
+	else
+		return (ft_strdup(""));
+}
 
 static void		ft_irc_cmd_user_set(t_env *e, int cs)
 {
 	char			**tmp;
 
-	tmp = ft_strsplit(&e->fds[cs].buffer[5], ' ');
+	tmp = ft_strsplit(&BF(cs)[5], ' ');
 	e->fds[cs].user.user = tmp[0];
 	if (ft_strlen(tmp[1]) == 1)
 	{
@@ -36,8 +56,7 @@ static void		ft_irc_cmd_user_set(t_env *e, int cs)
 	else
 		e->fds[cs].user.mode = 0;
 	free(tmp[2]);
-	e->fds[cs].user.realname = tmp[3];
-	free(tmp);
+	e->fds[cs].user.realname = ft_irc_cmd_user_realname(tmp, &BF(cs)[5]);
 }
 
 int				ft_irc_cmd_user(t_env *e, int cs)
@@ -45,13 +64,13 @@ int				ft_irc_cmd_user(t_env *e, int cs)
 	int				i;
 
 	if (e->fds[cs].buff_len > 6 &&
-		ft_strncmp(e->fds[cs].buffer, "USER ", 5) == 0)
+		ft_strncmp(BF(cs), "USER ", 5) == 0)
 	{
-		e->fds[cs].argv = &e->fds[cs].buffer[5];
-		i = ft_strfocur(&e->fds[cs].buffer[5], '\n');
-		e->fds[cs].buffer[i + 5] = '\0';
-		if (e->fds[cs].connect == 0 &&
-				ft_strocur(&e->fds[cs].buffer[5], ' ') == 3)
+		e->fds[cs].argv = &BF(cs)[5];
+		i = ft_strfocur(&BF(cs)[5], '\n');
+		BF(cs)[i + 5] = '\0';
+		if (e->fds[cs].connect == 0 && ft_strocur(&BF(cs)[5], ' ') >= 3 &&
+				ft_irc_cmd_user_check_arg(&BF(cs)[5]) >= 4)
 			ft_irc_cmd_user_set(e, cs);
 		else if (e->fds[cs].connect == 1)
 			ft_irc_error(e, cs, "462", ALLRD_REGIS);
