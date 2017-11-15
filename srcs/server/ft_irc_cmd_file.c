@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 22:28:11 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 22:48:36 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/15 14:33:14 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int				ft_irc_cmd_file(t_env *e, int cs)
 				else if (i->t > 0 && i->p <= i->t)
 					return (ft_irc_cmd_file_reply_broadcast(e, cs, f));
 			}
+			return (1);
 		}
 	}
 	return (0);

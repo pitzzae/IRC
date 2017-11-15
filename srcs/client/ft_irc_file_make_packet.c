@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 13:50:13 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/15 00:15:53 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/15 13:35:58 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void		*ft_irc_file_make_packet(t_lfile *lf, char *buff, int len)
 	f->info.p = lf->info.p;
 	f->info.t = lf->info.t;
 	f->info.id = lf->info.id;
+	f->info.mod = lf->st.st_mode;
 	ft_memcpy(f->msg, buff, (size_t)len);
 	f->info.l = len;
 	return ((void*)tmp);

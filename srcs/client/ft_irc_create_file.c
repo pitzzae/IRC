@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 14:27:47 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/15 17:26:55 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/15 20:05:47 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			ft_irc_create_file(t_env *e, t_file *f)
 	int			fd;
 
 	ft_bzero(&lf, sizeof(lf));
-	fd = open(f->info.file_name, O_CREAT|O_WRONLY);
+	fd = open(f->info.file_name, O_CREAT | O_WRONLY, f->info.mod);
 	if (fd != -1)
 	{
 		e->fds[fd].type = FD_WFILE;

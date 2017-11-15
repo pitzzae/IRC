@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/15 17:28:16 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/15 17:29:40 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct		s_fileinfo
 	char				dest[CH_LEN + 1];
 	char				source[CH_LEN + 1];
 	char				file_name[CH_LEN + 1];
+	mode_t				mod;
 	unsigned long		id;
 	int					p;
 	int					t;
