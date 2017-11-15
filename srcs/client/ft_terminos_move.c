@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 13:31:14 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 03:19:04 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/15 12:52:10 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void		ft_terminos_add_char(t_env *e, int fd, char c)
 	size_t			len;
 
 	if (c == '\n')
-		RB(fd) = ft_addchar_intstr(RB(fd), c, ft_strlen(RB(fd)));
+		RB(fd) = ft_addchar_intstr(RB(fd), c, (int)ft_strlen(RB(fd)));
 	else
 		RB(fd) = ft_addchar_intstr(RB(fd), c, e->t.cur - e->t.p_len);
-	if (ft_strlen(RB(fd)) + e->t.p_len == (unsigned long)(e->t.cur + 1))
+	if ((int)(ft_strlen(RB(fd)) + e->t.p_len) == (e->t.cur + 1))
 		ft_putchar(c);
 	else
 	{

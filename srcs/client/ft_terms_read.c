@@ -71,7 +71,7 @@ void		ft_terms_read(t_env *e, int fd)
 	int				len;
 
 	ft_terms_clear_buffer(e, &buff[0]);
-	len = read(fd, &buff, 6);
+	len = (int)read(fd, &buff, 6);
 	if (len > 0)
 	{
 		c = buff[0];
