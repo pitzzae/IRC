@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 16:07:29 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 20:19:35 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/15 02:05:24 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,32 +49,32 @@ static void		ft_irc_send_file_close(t_env *e, int fd)
 		e->file = ft_irc_send_file_update_lst(e, fd);
 }
 
-static int		ft_irc_send_files_data(t_env *e, t_lfile *lf)
+static int		ft_irc_send_files_data(t_env *e, int cs, t_lfile *lf)
 {
 	char			buff[MSG_FILE + 1];
 	char			*tmp;
 	int				len;
 
+	(void)cs;
 	len = (int)read(lf->fd, &buff[0], MSG_FILE);
 	if (len > 0)
 	{
 		tmp = ft_irc_file_make_packet(lf, &buff[0], len);
 		ft_send(e->sock.s, tmp, sizeof(t_file) + 8, e);
 		free(tmp);
-		FD_SET(lf->fd, &e->fd_read);
 		return (0);
 	}
 	else
 	{
+		clean_fd(&e->fds[cs]);
 		close(lf->fd);
-		lf->send = 0;
 		dprintf(7, "close fd '%d'\n", lf->fd);
 		ft_irc_send_file_close(e, lf->fd);
 		return (1);
 	}
 }
 
-void			ft_irc_send_files(t_env *e)
+void			ft_irc_send_files(t_env *e, int cs)
 {
 	t_list			*l;
 	t_lfile			*lf;
@@ -85,8 +85,8 @@ void			ft_irc_send_files(t_env *e)
 		lf = (t_lfile*)l->content;
 		if (lf->send == 1)
 		{
-			if (ft_irc_send_files_data(e, lf) == 1)
-				return;
+			if (ft_irc_send_files_data(e, cs, lf) == 1)
+				return ;
 		}
 		if (l)
 			l = l->next;

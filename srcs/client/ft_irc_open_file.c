@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 14:47:16 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 18:32:03 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/15 00:14:07 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static int	ft_irc_open_file_set_fdsize(t_lfile *lf, int fd)
 		lf->send = 0;
 		return (1);
 	}
+	close(fd);
 	return (0);
 }
 
@@ -36,9 +37,9 @@ static void	ft_irc_open_file_set_info(t_fileinfo *info,
 	tmp = file;
 	if (i >= 0 && file[i + 1])
 		tmp = &file[i + 1];
-	ft_strncat(info->dest, dest, CH_LEN);
-	ft_strncat(info->file_name, tmp, CH_LEN);
-	ft_strncat(info->source, user, CH_LEN);
+	ft_strcat(info->dest, dest);
+	ft_strcat(info->file_name, tmp);
+	ft_strcat(info->source, user);
 }
 
 static void	ft_irc_open_file_add_list(t_env *e, t_lfile *lf)

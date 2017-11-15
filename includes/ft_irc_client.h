@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 23:31:13 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 23:36:50 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,7 +241,7 @@ void				*ft_irc_file_make_ipacket(char *dest, char *file,
 											void *d, int len);
 int					ft_irc_open_file(t_env *e, int cs, char *dest,
 											char *file);
-void				ft_irc_send_files(t_env *e);
+void				ft_irc_send_files(t_env *e, int cs);
 int					ft_irc_write_file(t_env *e, int cs, t_file *f);
 int					ft_irc_accept_transfert(t_env *e, int cs, t_file *f);
 

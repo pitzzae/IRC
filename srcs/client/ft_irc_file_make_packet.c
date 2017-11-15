@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 13:50:13 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 21:12:23 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 21:17:52 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	ft_irc_file_info(t_fileinfo *info, char *dest, char *file)
 {
-	ft_strncat(info->dest, dest, CH_LEN);
-	ft_strncat(info->file_name, file, CH_LEN);
+	ft_strcat(info->dest, dest);
+	ft_strcat(info->file_name, file);
 	info->p = 0;
 	info->t = 0;
 }

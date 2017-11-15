@@ -6,11 +6,19 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 19:03:22 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/13 17:49:53 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/15 01:53:45 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_server.h"
+
+/*TODO
+ * @192.168.200.162$>/user gui s s
+ * @192.168.200.162$>/nick sdf
+ * Reply(001): sdf  :Welcome to the Internet Relay Network
+ * sdf@192.168.200.162$>/who
+ * SEGV on unknown address
+ * */
 
 static void		ft_irc_cmd_user_set(t_env *e, int cs)
 {
