@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 12:45:10 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 21:21:10 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/15 17:29:55 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void		ft_irc_parse_return_multi(t_env *e, char *cmd)
 
 static int		ft_irc_parse_is_file(t_env *e, int cs, int len)
 {
-	uint64_t	*magic;
+	uint64_t		*magic;
 	t_fileinfo		*i;
 	t_file			*f;
 
@@ -95,9 +95,9 @@ static int		ft_irc_parse_is_file(t_env *e, int cs, int len)
 			if (i->l >= 0 && i->l <= (int)MSG_FILE)
 			{
 				if (i->p == 0 && i->t == 0 && i->l == 0)
-					return (ft_irc_accept_transfert(e, cs, f));
+					return (ft_irc_accept_transfert(e, f));
 				else if (i->t > 0 && i->p <= i->t)
-					return (ft_irc_write_file(e, cs, f));
+					return (ft_irc_write_file(e, f));
 			}
 		}
 	}
@@ -124,5 +124,5 @@ void			ft_irc_parse_return(t_env *e, int cs, int len)
 			free(tmp);
 		}
 	}
-	ft_bzero(e->fds[cs].buf_read, len);
+	ft_bzero(e->fds[cs].buf_read, (size_t)len);
 }

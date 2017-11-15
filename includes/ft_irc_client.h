@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/15 13:18:57 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/15 17:28:16 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@
 # define FD_FREE		0
 # define FD_LOCAL		1
 # define FD_CLIENT		2
-# define FD_FILE		3
+# define FD_RFILE		3
+# define FD_WFILE		4
 # define ARROW_1		27
 # define ARROW_2		91
 # define ARROW_UP		65
@@ -244,7 +245,10 @@ void				*ft_irc_file_make_ipacket(char *dest, char *file,
 int					ft_irc_open_file(t_env *e, int cs, char *dest,
 											char *file);
 void				ft_irc_send_files(t_env *e, int cs);
-int					ft_irc_write_file(t_env *e, int cs, t_file *f);
-int					ft_irc_accept_transfert(t_env *e, int cs, t_file *f);
+int					ft_irc_write_file(t_env *e, t_file *f);
+int					ft_irc_accept_transfert(t_env *e, t_file *f);
+int					ft_irc_create_file(t_env *e, t_file *f);
+void				ft_irc_cat_infile(t_env *e, t_file *f);
+int					ft_irc_close_file(t_env *e, t_file *f);
 
 #endif /* !FT_IRC_CLIENT_H_ */

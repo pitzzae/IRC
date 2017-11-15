@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 14:47:16 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/15 13:57:02 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/15 14:09:26 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int			ft_irc_open_file(t_env *e, int cs, char *dest, char *file)
 	fd = open(file, O_RDONLY);
 	if (ft_irc_open_file_set_fdsize(&lf, fd))
 	{
-		e->fds[fd].type = FD_FILE;
+		e->fds[fd].type = FD_RFILE;
 		e->fds[fd].fct_read = ft_irc_send_files;
 		ft_irc_open_file_set_info(&lf.info, dest, file, e->nick);
 		ft_irc_open_file_add_list(e, &lf);

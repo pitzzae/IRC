@@ -6,18 +6,17 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 17:28:09 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 18:22:21 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/15 15:04:14 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
 
-int			ft_irc_accept_transfert(t_env *e, int cs, t_file *f)
+int		ft_irc_accept_transfert(t_env *e, t_file *f)
 {
-	t_list		*l;
-	t_lfile		*lf;
+	t_list	*l;
+	t_lfile	*lf;
 
-	(void)cs;
 	l = e->rfile;
 	while (l)
 	{

@@ -14,6 +14,8 @@
 
 void	main_loop(t_env *e)
 {
+	e->timeout.tv_sec = 1;
+	e->timeout.tv_usec = 0;
 	while (1)
 	{
 		init_fd(e);
