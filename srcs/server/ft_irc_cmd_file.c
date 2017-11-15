@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 22:28:11 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/14 22:29:58 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/14 22:48:36 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void		ft_irc_cmd_file_reply_user(t_env *e, char *us, char *b, int len)
 	{
 		if (e->fds[i].type == FD_CLIENT &&
 				ft_strcmp(us, e->fds[i].username) == 0)
-			ft_send(i, b, len, e);
+			ft_send(i, b, (size_t)len, e);
 		i++;
 	}
 }
@@ -58,7 +58,7 @@ static int		ft_irc_cmd_file_reply_broadcast(t_env *e, int cs, t_file *f)
 		ft_irc_cmd_file_reply_chanel(e, cs, f->info.dest, e->fds[cs].buff_len);
 	else
 		ft_irc_cmd_file_reply_user(e, f->info.dest,
-			  e->fds[cs].buffer, e->fds[cs].buff_len);
+			e->fds[cs].buffer, e->fds[cs].buff_len);
 	return (1);
 }
 
@@ -66,7 +66,7 @@ static int		ft_irc_cmd_file_reply_init(t_env *e, int cs, t_file *f)
 {
 	ft_bzero(f->info.source, CH_LEN + 1);
 	ft_strcat(f->info.source, e->fds[cs].username);
-	ft_send(cs, e->fds[cs].buffer, e->fds[cs].buff_len, e);
+	ft_send(cs, e->fds[cs].buffer, (size_t)e->fds[cs].buff_len, e);
 	return (1);
 }
 
