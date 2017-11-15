@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 15:46:25 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/10 15:46:25 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/15 16:30:55 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	main_loop(t_env *e)
 {
-	e->timeout.tv_sec = 1;
+	e->timeout.tv_sec = 1000;
 	e->timeout.tv_usec = 0;
 	while (1)
 	{

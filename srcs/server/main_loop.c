@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:02:40 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/09 23:11:31 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/15 17:57:54 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void sig_handler(int signo, void *ptr)
 
 void	main_loop(t_env *e)
 {
-	e->timeout.tv_sec = 1;
+	e->timeout.tv_sec = 1000;
 	e->timeout.tv_usec = 0;
 	if (signal(SIGTERM, (void (*)(int))sig_handler) == SIG_ERR)
 		printf("\ncan't catch SIGTERM\n");
