@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 16:07:29 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/15 12:09:59 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/15 12:15:54 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_list	*ft_irc_send_file_update_lst(t_env *e, int fd)
 	t_list			*file;
 	t_list			*tmp;
 
-	l = e->file;
+	l = e->rfile;
 	file = NULL;
 	while (l)
 	{
@@ -40,13 +40,13 @@ static t_list	*ft_irc_send_file_update_lst(t_env *e, int fd)
 
 static void		ft_irc_send_file_close(t_env *e, int fd)
 {
-	if (ft_lstlen(e->file) == 1)
+	if (ft_lstlen(e->rfile) == 1)
 	{
-		ft_lstdel(&e->file, u_del);
-		e->file = NULL;
+		ft_lstdel(&e->rfile, u_del);
+		e->rfile = NULL;
 	}
 	else
-		e->file = ft_irc_send_file_update_lst(e, fd);
+		e->rfile = ft_irc_send_file_update_lst(e, fd);
 }
 
 static int		ft_irc_send_files_data(t_env *e, int cs, t_lfile *lf)
@@ -79,7 +79,7 @@ void			ft_irc_send_files(t_env *e, int cs)
 	t_list			*l;
 	t_lfile			*lf;
 
-	l = e->file;
+	l = e->rfile;
 	while (l)
 	{
 		lf = (t_lfile*)l->content;

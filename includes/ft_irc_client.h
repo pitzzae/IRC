@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/15 13:16:15 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/15 13:18:57 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,8 @@ typedef struct		s_env
 	int					connect;
 	char				*nick;
 	char				*chan;
-	t_list				*file;
+	t_list				*rfile;
+	t_list				*wfile;
 	int					file_rdy;
 }					t_env;
 

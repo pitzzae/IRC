@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 14:47:16 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/15 13:22:00 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/15 13:57:02 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ static void	ft_irc_open_file_set_info(t_fileinfo *info,
 
 static void	ft_irc_open_file_add_list(t_env *e, t_lfile *lf)
 {
-	if (e->file)
-		ft_lstaddend_free(&e->file, ft_lstnew((void*)lf, sizeof(*lf)), u_del);
+	if (e->rfile)
+		ft_lstaddend_free(&e->rfile, ft_lstnew((void*)lf, sizeof(*lf)), u_del);
 	else
-		e->file = ft_lstnew((void*)lf, sizeof(*lf));
+		e->rfile = ft_lstnew((void*)lf, sizeof(*lf));
 }
 
 int			ft_irc_open_file(t_env *e, int cs, char *dest, char *file)

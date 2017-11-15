@@ -18,7 +18,7 @@ int			ft_irc_accept_transfert(t_env *e, int cs, t_file *f)
 	t_lfile		*lf;
 
 	(void)cs;
-	l = e->file;
+	l = e->rfile;
 	while (l)
 	{
 		lf = l->content;
