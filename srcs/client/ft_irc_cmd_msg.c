@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:12 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/13 23:17:18 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/16 12:06:25 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,10 @@ static void	ft_irc_cmd_msg_display(t_env *e, char *msg, int p)
 		str = ft_strjoin_free(str, e->chan, 1);
 		str = ft_strjoin_free(str, " :", 1);
 		str = ft_strjoin_free(str, tmp, 1);
+		if (p == 1)
+			str = ft_strjoin_free(str, "\n", 1);
 		tputs(tgetstr("up", NULL), 1, ft_myputchar);
-		ft_irc_print(e, str, ft_strlen(str), 0);
+		ft_irc_print(e, str, (int)ft_strlen(str), 0);
 		free(str);
 	}
 }
@@ -92,7 +94,7 @@ int			ft_irc_cmd_msg(t_env *e, int cs)
 		free(tmp);
 		return (1);
 	}
-	else if (BL(cs) > 1 && e->chan)
+	else if (BL(cs) > 1 && e->chan && RB(cs)[0] != '/')
 	{
 		ft_irc_cmd_msg_shortcut(e, cs);
 		ft_irc_cmd_msg_display(e, &RB(cs)[0], 0);
