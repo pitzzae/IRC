@@ -41,7 +41,7 @@ SERVER_SRCS		= main.c init_env.c clean_fd.c get_opt.c x.c main_loop.c \
 				ft_irc_cmd_msgchanel.c ft_irc_cmd_msgpriv.c \
 				ft_irc_parse_privmsg.c ft_irc_cmd_file.c client_buffer.c \
 				ft_irc_user_is_master_chanel.c ft_irc_cmd_quit_broadcast.c \
-				ft_irc_cmd_msg.c
+				ft_irc_cmd_msg.c client_read_is_magic.c
 
 CLIENT_SRCS		= main.c init_env.c clean_fd.c get_opt.c x.c main_loop.c \
 				init_fd.c do_select.c check_fd.c client_create.c \

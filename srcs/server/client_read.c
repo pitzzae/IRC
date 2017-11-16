@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:03:25 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/10 22:35:24 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/16 15:52:16 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ static void	ft_packet_agreg(t_env *e, int cs, int len)
 {
 	char		*tmp;
 
-	tmp = malloc(e->fds[cs].buff_len + len + 1);
-	ft_bzero(tmp, e->fds[cs].buff_len + len + 1);
-	ft_memcpy(tmp, e->fds[cs].buffer, e->fds[cs].buff_len);
-	ft_memcpy(&tmp[e->fds[cs].buff_len], e->fds[cs].buf_read, len);
+	tmp = malloc((size_t)e->fds[cs].buff_len + len + 1);
+	ft_bzero(tmp, (size_t)e->fds[cs].buff_len + len + 1);
+	ft_memcpy(tmp, e->fds[cs].buffer, (size_t)e->fds[cs].buff_len);
+	ft_memcpy(&tmp[e->fds[cs].buff_len], e->fds[cs].buf_read, (size_t)len);
 	free(e->fds[cs].buffer);
 	e->fds[cs].buffer = tmp;
 	e->fds[cs].buff_len = e->fds[cs].buff_len + len;
@@ -39,7 +39,7 @@ void		client_read(t_env *e, int cs)
 	int			r;
 	int			i;
 
-	r = recv(cs, e->fds[cs].buf_read, BUF_SIZE, 0);
+	r = (int)recv(cs, e->fds[cs].buf_read, BUF_SIZE, 0);
 	e->fds[cs].recive = r;
 	if (r <= 0)
 	{
@@ -52,8 +52,10 @@ void		client_read(t_env *e, int cs)
 		{
 			if ((e->fds[i].type == FD_CLIENT) && (i == cs))
 			{
+				printf("Read from #%d, len %d\n", cs, r);
 				e->fds[cs].b_send += r;
-				ft_packet_agreg(e, cs, r);
+				if (!client_read_is_magic(e, cs, r))
+					ft_packet_agreg(e, cs, r);
 			}
 			i++;
 		}

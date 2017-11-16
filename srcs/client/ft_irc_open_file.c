@@ -19,7 +19,7 @@ static int	ft_irc_open_file_set_fdsize(t_lfile *lf, int fd)
 	{
 		lf->fd = fd;
 		lf->info.p = 0;
-		lf->info.t = ((int)lf->st.st_size / MSG_FILE) + 1;
+		lf->info.t = ((int)lf->st.st_size / MSG_FILE(BUF_SIZE)) + 1;
 		lf->send = 0;
 		lf->info.id = ft_make_id();
 		return (1);

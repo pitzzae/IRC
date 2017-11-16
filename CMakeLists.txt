@@ -83,7 +83,7 @@ set(SOURCE_SERVER
         srcs/server/ft_irc_chan_user.c srcs/server/ft_irc_leave_all_chan.c
         srcs/server/ft_irc_cmd_join_print.c srcs/server/ft_irc_cmd_leave_print.c
         srcs/server/ft_irc_cmd_msgpriv.c srcs/server/ft_irc_cmd_msgchanel.c
-        srcs/server/ft_irc_parse_privmsg.c srcs/server/ft_irc_cmd_file.c srcs/server/client_buffer.c srcs/server/ft_irc_user_is_master_chanel.c srcs/server/ft_irc_cmd_quit_broadcast.c srcs/server/ft_irc_cmd_msg.c)
+        srcs/server/ft_irc_parse_privmsg.c srcs/server/ft_irc_cmd_file.c srcs/server/client_buffer.c srcs/server/ft_irc_user_is_master_chanel.c srcs/server/ft_irc_cmd_quit_broadcast.c srcs/server/ft_irc_cmd_msg.c srcs/server/client_read_is_magic.c)
 
 set(SOURCE_CLIENT
         srcs/client/check_fd.c

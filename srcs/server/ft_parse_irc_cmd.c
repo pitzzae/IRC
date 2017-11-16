@@ -89,6 +89,7 @@ static void	ft_parse_irc_cmd_format(char *buff)
 
 int			ft_parse_irc_cmd(t_env *e, int cs)
 {
+	printf("read command\n");
 	if (ft_irc_cmd_file(e, cs))
 		return (0);
 	ft_striteri(e->fds[cs].buffer, ft_replace_return_char);

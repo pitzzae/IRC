@@ -24,23 +24,11 @@ static void	client_buffered_command(t_env *e, int cs)
 
 void		client_write(t_env *e, int cs)
 {
-	int	i;
 	int	type;
 
 	type = ft_parse_irc_cmd(e, cs);
 	if (type)
-	{
 		ft_irc_error(e, cs, "421", UNK_COMMAND);
-		i = 0;
-		while (i < e->maxfd)
-		{
-			if ((e->fds[i].type == FD_CLIENT) && (i != cs))
-			{
-				ft_send(i, e->fds[cs].buffer, e->fds[cs].buff_len, e);
-			}
-			i++;
-		}
-	}
 	client_buffered_command(e, cs);
 	e->fds[cs].argv = NULL;
 }
