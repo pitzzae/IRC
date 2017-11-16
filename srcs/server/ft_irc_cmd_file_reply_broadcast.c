@@ -6,11 +6,15 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 18:37:51 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/16 21:07:45 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/16 22:44:06 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_server.h"
+
+/*TODO
+ * Remove debug
+ * */
 
 static void		ft_irc_cmd_file_reply_user(t_env *e, char *us, char *b, int len)
 {
@@ -88,21 +92,28 @@ int				ft_irc_cmd_file_reply_broadcast(t_env *e, int cs, t_file *f)
 	ft_bzero(f->info.source, CH_LEN + 1);
 	ft_strcat(f->info.source, e->fds[cs].username);
 	len = (int)(SIZE_SFILE(BUF_SIZE) + f->info.l + 16);
-	printf("reply_broadcast: buff_len = %d psize = %d\n",e->fds[cs].buff_len , len);
+	printf("reply_broadcast: buff_len = %d psize = %d %d/%d\n",e->fds[cs].buff_len , len, f->info.p, f->info.t);
 	ft_irc_cmd_file_reply_parse(e, cs, f);
-	if (e->fds[cs].buff_len > len && f->info.t != f->info.p)
+	if (e->fds[cs].buff_len == len)
+		return (1);
+	if ((e->fds[cs].buff_len / 2) + 1 > len && f->info.t != f->info.p)
 	{
 		magic = (uint64_t*)&BF(cs)[len];
 		printf("reply_split\n");
 		ft_irc_cmd_file_reply_split(e, cs, (void*)magic, len);
 	}
 	else if ((e->fds[cs].buff_len < len && f->info.t != f->info.p) ||
-			e->fds[cs].buff_len < (int)sizeof(t_fileinfo))
+			(e->fds[cs].buff_len - len > 0 && f->info.t != f->info.p))
 	{
-		e->fds[cs].tfile = ft_strnew((size_t)e->fds[cs].buff_len);
-		e->fds[cs].tlen = e->fds[cs].buff_len;
-		ft_memcpy(e->fds[cs].tfile, BF(cs), (size_t)e->fds[cs].buff_len);
-		printf("next is truckated, save data (%d)bits\n", e->fds[cs].buff_len);
+		e->fds[cs].tlen = e->fds[cs].buff_len - len;
+		if (e->fds[cs].tlen < 0)
+		{
+			printf("an error was ocured (%d)\n", e->fds[cs].tlen);
+			return (1);
+		}
+		printf("next is truckated, save data (%d)bits\n", e->fds[cs].tlen);
+		e->fds[cs].tfile = ft_strnew((size_t)e->fds[cs].tlen);
+		ft_memcpy(e->fds[cs].tfile, &BF(cs)[len], (size_t)e->fds[cs].tlen);
 	}
 	return (1);
 }

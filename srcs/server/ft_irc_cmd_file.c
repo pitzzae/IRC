@@ -6,11 +6,15 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 22:28:11 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/16 20:53:48 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/16 20:58:28 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_server.h"
+
+/*TODO
+ * Remove debug
+ * */
 
 static int		ft_irc_cmd_file_reply_init(t_env *e, int cs, t_file *f)
 {

@@ -14,8 +14,8 @@ SERVER			= server
 CLIENT			= client
 CC				= gcc
 
-CFLAGS			= -g3 -Wall -Werror -Wextra
-#CFLAGS			= -g3 -Wall -Werror -Wextra -fsanitize=address -fsanitize=undefined
+#CFLAGS			= -g3 -Wall -Werror -Wextra
+CFLAGS			= -g3 -Wall -Werror -Wextra -fsanitize=address -fsanitize=undefined
 
 LIBFT_DIR		= ./libft
 LIBFT_NAME		= $(LIBFT_DIR)/libft.a
