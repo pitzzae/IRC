@@ -58,7 +58,7 @@ CLIENT_SRCS		= main.c init_env.c clean_fd.c get_opt.c x.c main_loop.c \
 				ft_irc_file_make_packet.c ft_irc_open_file.c \
 				ft_irc_send_files.c ft_irc_accept_transfert.c \
 				ft_irc_write_file.c ft_irc_cat_infile.c ft_irc_close_file.c \
-				ft_irc_create_file.c
+				ft_irc_create_file.c ft_irc_parse_is_file.c
 
 
 SERVER_OBJECTS	= $(patsubst %.c, $(OBJS_DIR_SER)/%.o, $(SERVER_SRCS))

@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/16 16:10:56 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/16 23:39:08 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # define ARROW_RIGHT	67
 # define CH_LEN			10
 # define MSG_FILE(a)	((a) - (sizeof(t_fileinfo) + 16))
+# define SIZE_SFILE(bs)	(16 + sizeof(t_file) - MSG_FILE((bs)))
 
 # define Xv(err,res,e)		(x_void(err,res,e,__FILE__,__LINE__))
 # define X(err,res,e)		(x_int(err,res,e,__FILE__,__LINE__))
@@ -168,6 +169,7 @@ typedef struct		s_fd
 	int					recive;
 	char				*chanel;
 	t_list				*chan_user;
+	int					r;
 }						t_fd;
 
 typedef struct		s_env
@@ -249,10 +251,11 @@ void				*ft_irc_file_make_ipacket(char *dest, char *file,
 int					ft_irc_open_file(t_env *e, int cs, char *dest,
 											char *file);
 void				ft_irc_send_files(t_env *e, int cs);
-int					ft_irc_write_file(t_env *e, t_file *f);
+int					ft_irc_write_file(t_env *e, int cs, t_file *f);
 int					ft_irc_accept_transfert(t_env *e, t_file *f, int len);
 int					ft_irc_create_file(t_env *e, t_file *f);
 void				ft_irc_cat_infile(t_env *e, t_file *f);
 int					ft_irc_close_file(t_env *e, t_file *f);
+int					ft_irc_parse_is_file(t_env *e, int cs, int len);
 
 #endif /* !FT_IRC_CLIENT_H_ */

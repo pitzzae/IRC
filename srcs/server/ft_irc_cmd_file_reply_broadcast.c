@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 18:37:51 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/16 22:44:06 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/16 23:33:02 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ static void		ft_irc_cmd_file_reply_split(t_env *e, int cs, void *ptr, int l)
 	int				new_len;
 
 	magic = (uint64_t*)ptr;
-	(void)e;
-	(void)cs;
 	new_len = e->fds[cs].buff_len - l;
 	if (magic[0] == MH_MAGIC_FILE || magic[0] == MH_MAGIC_MTU)
 	{
@@ -91,7 +89,7 @@ int				ft_irc_cmd_file_reply_broadcast(t_env *e, int cs, t_file *f)
 
 	ft_bzero(f->info.source, CH_LEN + 1);
 	ft_strcat(f->info.source, e->fds[cs].username);
-	len = (int)(SIZE_SFILE(BUF_SIZE) + f->info.l + 16);
+	len = (int)(SIZE_SFILE(BUF_SIZE) + f->info.l);
 	printf("reply_broadcast: buff_len = %d psize = %d %d/%d\n",e->fds[cs].buff_len , len, f->info.p, f->info.t);
 	ft_irc_cmd_file_reply_parse(e, cs, f);
 	if (e->fds[cs].buff_len == len)
