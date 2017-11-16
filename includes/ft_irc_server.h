@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/16 15:52:16 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/16 20:36:51 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define FD_CLIENT		2
 # define MAX_CMD_SIZE	4096
 # define CH_LEN			10
-# define MSG_FILE(a)	((a) - (sizeof(t_fileinfo) + 16))
+# define MSG_FILE(bs)	((bs) - (sizeof(t_fileinfo) + 16))
 # define MH_MAGIC_FILE	(uint64_t)(0xf42ef42e)
 # define MH_MAGIC_MTU	(uint64_t)(0x042e042e)
 
@@ -44,6 +44,7 @@
 # define X(err,res,str)		(x_int(err,res,str,__FILE__,__LINE__))
 # define MAX(a,b)			((a > b) ? a : b)
 # define BF(a)				(e->fds[a].buffer)
+# define SIZE_SFILE(bs)		(sizeof(t_file) - MSG_FILE((bs)))
 
 # define USAGE			"Usage: %s port\n"
 # define NICK_ERR		" :Erroneous nickname"
@@ -115,6 +116,8 @@ typedef struct		s_fd
 	char				*chanel;
 	t_list				*chan_user;
 	int					mtu_test;
+	char				*tfile;
+	int					tlen;
 }						t_fd;
 
 typedef struct		s_sock
@@ -192,6 +195,8 @@ int					ft_irc_cmd_file(t_env *e, int cs);
 char				*ft_irc_user_is_master_chanel(t_list *l, char *user);
 void				ft_irc_cmd_quit_broadcast(t_env *e, int cs, char *cmd);
 int					client_read_is_magic(t_env *e, int cs, int len);
+int					ft_irc_cmd_file_reply_broadcast(t_env *e, int cs,
+							t_file *f);
 
 void	ft_irc_debug_show_chanel(t_list *lst);
 
