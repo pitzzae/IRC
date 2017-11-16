@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 14:27:47 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/15 20:05:47 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/16 11:15:37 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,20 @@ static void		ft_irc_create_file_get_info(t_lfile *lf, t_file *f)
 	lf->info.p = f->info.p;
 }
 
+static void	ft_irc_create_file_print(t_env *e, t_file *f)
+{
+	char		*msg;
+
+	msg = ft_strjoin("Recive file '", f->info.file_name);
+	msg = ft_strjoin_free(msg, "' from: '", 1);
+	msg = ft_strjoin_free(msg, f->info.source, 1);
+	msg = ft_strjoin_free(msg, "' size ~", 1);
+	msg = ft_strjoin_free(msg, ft_itoa(f->info.l * f->info.t), 3);
+	msg = ft_strjoin_free(msg, "b\n", 1);
+	ft_irc_print(e, msg, (int)ft_strlen(msg), 1);
+	free(msg);
+}
+
 int			ft_irc_create_file(t_env *e, t_file *f)
 {
 	t_lfile		lf;
@@ -44,6 +58,7 @@ int			ft_irc_create_file(t_env *e, t_file *f)
 	fd = open(f->info.file_name, O_CREAT | O_WRONLY, f->info.mod);
 	if (fd != -1)
 	{
+		ft_irc_create_file_print(e, f);
 		e->fds[fd].type = FD_WFILE;
 		e->fds[fd].fct_write = NULL;
 		lf.fd = fd;

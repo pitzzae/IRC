@@ -193,6 +193,7 @@ typedef struct		s_env
 	t_list				*rfile;
 	t_list				*wfile;
 	int					file_rdy;
+	int					display_f;
 }					t_env;
 
 int					x_int(int err, int res, t_env *e, char *file, int line);

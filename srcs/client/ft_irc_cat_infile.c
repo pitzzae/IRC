@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 14:30:09 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/15 19:18:23 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/16 11:52:28 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,33 @@ static int	ft_irc_cat_infile_find_fd(t_env *e, t_file *f)
 	return (-1);
 }
 
+static void	ft_irc_cat_infile_print(t_env *e, t_file *f)
+{
+	char		*msg;
+
+	msg = ft_strjoin("Chuck recive, file '", f->info.file_name);
+	msg = ft_strjoin_free(msg, "' from: '", 1);
+	msg = ft_strjoin_free(msg, f->info.source, 1);
+	msg = ft_strjoin_free(msg, "' status ", 1);
+	msg = ft_strjoin_free(msg, ft_itoa(f->info.p), 3);
+	msg = ft_strjoin_free(msg, "/", 1);
+	msg = ft_strjoin_free(msg, ft_itoa(f->info.t), 3);
+	msg = ft_strjoin_free(msg, "\n", 1);
+	ft_irc_print(e, msg, (int)ft_strlen(msg), 1);
+	free(msg);
+}
+
 void		ft_irc_cat_infile(t_env *e, t_file *f)
 {
 	int			fd;
 
 	fd = ft_irc_cat_infile_find_fd(e, f);
 	if (fd)
+	{
+		ft_irc_cat_infile_print(e, f);
+		e->display_f = 1;
 		write(fd, f->msg, (size_t)f->info.l);
+	}
 	e->fds[fd].type = FD_WFILE;
 	e->fds[fd].fct_read = NULL;
 	e->fds[fd].fct_write = NULL;

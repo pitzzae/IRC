@@ -14,6 +14,11 @@
 
 void			ft_irc_print(t_env *e, char *msg, int len, int prompt)
 {
+	if (e->display_f == 1)
+	{
+		tputs(tgetstr("up", NULL), 1, ft_myputchar);
+		e->display_f = 0;
+	}
 	ft_terminos_clean_line(e);
 	write(1, msg, len);
 	if (prompt == 1)

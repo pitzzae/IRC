@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 14:31:29 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/15 17:30:38 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/16 11:18:59 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,18 @@ static int		ft_irc_close_file_clean(t_env *e, unsigned long id)
 	return (1);
 }
 
+static void	ft_irc_close_file_print(t_env *e, t_file *f)
+{
+	char		*msg;
+
+	msg = ft_strjoin("Transfert file '", f->info.file_name);
+	msg = ft_strjoin_free(msg, "' from: '", 1);
+	msg = ft_strjoin_free(msg, f->info.source, 1);
+	msg = ft_strjoin_free(msg, "' is complete\n", 1);
+	ft_irc_print(e, msg, (int)ft_strlen(msg), 1);
+	free(msg);
+}
+
 int				ft_irc_close_file(t_env *e, t_file *f)
 {
 	t_lfile			*lf;
@@ -61,6 +73,7 @@ int				ft_irc_close_file(t_env *e, t_file *f)
 		lf = l->content;
 		if (lf->info.id == f->info.id)
 		{
+			ft_irc_close_file_print(e, f);
 			clean_fd(&e->fds[lf->fd]);
 			close(lf->fd);
 			e->fds[lf->fd].type = FD_FREE;
