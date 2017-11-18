@@ -24,7 +24,8 @@ void	check_fd(t_env *e)
 			e->fds[i].fct_read(e, i);
 		if (FD_ISSET(i, &e->fd_write) && e->fds[i].fct_write)
 			e->fds[i].fct_write(e, i);
-		if (e->fds[i].buff_len > 0 && e->fds[i].fct_write)
+		if (e->fds[i].buff_len > 0 && e->fds[i].fct_write &&
+				e->fds[i].cmd == 0)
 			e->fds[i].fct_buffer(e, i);
 		if (FD_ISSET(i, &e->fd_read) ||
 			FD_ISSET(i, &e->fd_write))

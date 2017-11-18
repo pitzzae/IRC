@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/16 23:39:08 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/17 17:22:52 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@
 # define HELP_STATS_FILE	" cannot stat\n"
 # define MH_MAGIC_FILE		(uint64_t)(0xf42ef42e)
 # define MH_MAGIC_MTU		(uint64_t)(0x042e042e)
+# define MH_MAGIC_REPLY		(uint64_t)(0xd42ed42e)
 
 typedef struct		s_fileinfo
 {
@@ -85,7 +86,7 @@ typedef struct		s_fileinfo
 	char				source[CH_LEN + 1];
 	char				file_name[CH_LEN + 1];
 	mode_t				mod;
-	unsigned long		id;
+	int					id;
 	int					p;
 	int					t;
 	int					l;
@@ -170,6 +171,8 @@ typedef struct		s_fd
 	char				*chanel;
 	t_list				*chan_user;
 	int					r;
+	char				*tfile;
+	int					tlen;
 }						t_fd;
 
 typedef struct		s_env
@@ -248,13 +251,14 @@ void				ft_irc_parse_reply_handle(t_env *e, int code);
 void				*ft_irc_file_make_packet(t_lfile *lf, char *buff, int len);
 void				*ft_irc_file_make_ipacket(char *dest, char *file,
 											void *d, int len);
+void				*ft_irc_file_make_rpacket(t_file *f);
 int					ft_irc_open_file(t_env *e, int cs, char *dest,
 											char *file);
 void				ft_irc_send_files(t_env *e, int cs);
 int					ft_irc_write_file(t_env *e, int cs, t_file *f);
 int					ft_irc_accept_transfert(t_env *e, t_file *f, int len);
 int					ft_irc_create_file(t_env *e, t_file *f);
-void				ft_irc_cat_infile(t_env *e, t_file *f);
+void				ft_irc_cat_infile(t_env *e, int cs, t_file *f);
 int					ft_irc_close_file(t_env *e, t_file *f);
 int					ft_irc_parse_is_file(t_env *e, int cs, int len);
 

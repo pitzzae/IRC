@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 16:07:29 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/16 17:09:57 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/17 18:26:13 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static int		ft_irc_send_files_data(t_env *e, int cs, t_lfile *lf)
 		dprintf(7, "send_files_data, msg_size = %d\n", len);
 		tmp = ft_irc_file_make_packet(lf, &buff[0], len);
 		ft_send(e->sock.s, tmp, (size_t)lf->mtu, e);
+		lf->send = 0;
 		free(tmp);
 		return (0);
 	}

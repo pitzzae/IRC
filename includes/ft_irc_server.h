@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/16 20:43:33 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/17 17:40:03 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define MSG_FILE(bs)	((bs) - (sizeof(t_fileinfo) + 16))
 # define MH_MAGIC_FILE	(uint64_t)(0xf42ef42e)
 # define MH_MAGIC_MTU	(uint64_t)(0x042e042e)
+# define MH_MAGIC_REPLY	(uint64_t)(0xd42ed42e)
 
 # define Xv(err,res,str)	(x_void(err,res,str,__FILE__,__LINE__))
 # define X(err,res,str)		(x_int(err,res,str,__FILE__,__LINE__))
@@ -68,7 +69,7 @@ typedef struct		s_fileinfo
 	char				source[CH_LEN + 1];
 	char				file_name[CH_LEN + 1];
 	mode_t				mod;
-	unsigned long		id;
+	int					id;
 	int					p;
 	int					t;
 	int					l;
@@ -94,6 +95,14 @@ typedef struct		s_irc_user
 	char				*realname;
 }					t_irc_user;
 
+typedef struct		s_ackf
+{
+	int					fd;
+	int					id;
+	int					*cli;
+	int					len;
+}					t_ackf;
+
 typedef struct		s_fd
 {
 	int					cs;
@@ -118,6 +127,10 @@ typedef struct		s_fd
 	int					mtu_test;
 	char				*tfile;
 	int					tlen;
+	t_list				*ack;
+	char				*cmd_mtu;
+	int					cmd_mtu_len;
+	int					cmd;
 }						t_fd;
 
 typedef struct		s_sock
@@ -197,6 +210,9 @@ void				ft_irc_cmd_quit_broadcast(t_env *e, int cs, char *cmd);
 int					client_read_is_magic(t_env *e, int cs, int len);
 int					ft_irc_cmd_file_reply_broadcast(t_env *e, int cs,
 							t_file *f);
+void				ft_irc_cmd_file_reply_chanel(t_env *e, int cs,
+							char *ch, int len);
+int					ft_irc_cmd_file_reply_ack(t_env *e, int cs, t_file *f);
 
 void	ft_irc_debug_show_chanel(t_list *lst);
 

@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 13:50:13 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/16 15:10:50 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/17 16:26:55 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,27 @@ void		*ft_irc_file_make_ipacket(char *dest, char *file, void *d, int len)
 	ft_memcpy(f->msg, d, (size_t)len);
 	f->info.l = len;
 	f->magic = MH_MAGIC_MTU;
+	return ((void*)tmp);
+}
+
+void		*ft_irc_file_make_rpacket(t_file *f)
+{
+	uint64_t	*magic;
+	t_file		*tmp_f;
+	char		*tmp;
+
+	tmp = (char*)malloc(sizeof(*tmp_f) + 8);
+	ft_bzero(tmp, sizeof(*tmp_f) + 8);
+	magic = ((uint64_t*)&tmp[0]);
+	magic[0] = MH_MAGIC_REPLY;
+	tmp_f = (t_file*)&tmp[8];
+	ft_irc_file_info(&tmp_f->info, f->info.dest, f->info.file_name);
+	tmp_f->info.l = 0;
+	tmp_f->info.p = f->info.p;
+	tmp_f->info.t = f->info.t;
+	tmp_f->info.id = f->info.id;
+	tmp_f->info.mod = f->info.mod;
+	tmp_f->magic = MH_MAGIC_REPLY;
 	return ((void*)tmp);
 }
 

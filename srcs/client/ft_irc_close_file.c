@@ -6,13 +6,13 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 14:31:29 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/16 11:18:59 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/17 15:06:41 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
 
-static t_list	*ft_irc_close_file_clean_lst(t_env *e, unsigned long id)
+static t_list	*ft_irc_close_file_clean_lst(t_env *e, int id)
 {
 	t_lfile			*lf;
 	t_list			*l;
@@ -38,7 +38,7 @@ static t_list	*ft_irc_close_file_clean_lst(t_env *e, unsigned long id)
 	return (file);
 }
 
-static int		ft_irc_close_file_clean(t_env *e, unsigned long id)
+static int		ft_irc_close_file_clean(t_env *e, int id)
 {
 	if (ft_lstlen(e->wfile) == 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 12:45:10 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/16 16:16:59 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/17 11:29:21 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,11 @@ void			ft_irc_parse_return(t_env *e, int cs, int len)
 	char			**tmp;
 	int				i;
 
+	if (RB(cs))
+	{
+		free(RB(cs));
+		RB(cs) = NULL;
+	}
 	if (len > 0)
 	{
 		if (!ft_irc_parse_is_file(e, cs, len))

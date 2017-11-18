@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 15:50:57 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/16 16:00:54 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/17 19:55:48 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,19 @@ static int	client_read_magic_mtu_check(t_env *e, int cs, int len)
 		e->fds[cs].mtu_test = 1;
 	tmp = malloc((size_t)len);
 	ft_memcpy(tmp, e->fds[cs].buf_read, (size_t)len);
-	free(e->fds[cs].buffer);
-	e->fds[cs].buffer = tmp;
-	e->fds[cs].buff_len = len;
-	FD_COPY(&e->fd_read, &e->fd_write);
+	printf("buff_len %d BF %d res = %d\n",len, BUF_SIZE, len == BUF_SIZE);
+	if (len == BUF_SIZE)
+	{
+		free(e->fds[cs].buffer);
+		e->fds[cs].buffer = tmp;
+		e->fds[cs].buff_len = len;
+		FD_COPY(&e->fd_read, &e->fd_write);
+	}
+	else
+	{
+		e->fds[cs].cmd_mtu = tmp;
+		e->fds[cs].cmd_mtu_len = len;
+	}
 	printf("magic_mtu command\n");
 	FT_FD_ZERO(&e->fds[cs].buf_read);
 	return (1);
@@ -58,11 +67,18 @@ static int	client_read_magic_mtu_stop(t_env *e, int cs, int len)
 
 	magic_end = ((uint64_t *) &e->fds[cs].buf_read[len - 8]);
 	if (magic_end[0] == MH_MAGIC_MTU)
+	{
 		e->fds[cs].mtu_test = 0;
+		free(e->fds[cs].buffer);
+		e->fds[cs].buffer = e->fds[cs].cmd_mtu;
+		e->fds[cs].buff_len = e->fds[cs].cmd_mtu_len;
+		FD_COPY(&e->fd_read, &e->fd_write);
+	}
 	FT_FD_ZERO(&e->fds[cs].buf_read);
 	printf("magic_mtu command find mtu stop -> %d\n", e->fds[cs].mtu_test);
 	return (1);
 }
+
 
 static int	client_read_magic_mtu(t_env *e, int cs, int len)
 {
