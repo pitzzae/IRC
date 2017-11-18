@@ -6,17 +6,16 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/17 17:22:52 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/18 15:29:48 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_IRC_CLIENT_H_
-# define FT_IRC_CLIENT_H_
+#ifndef FT_IRC_CLIENT_H
+# define FT_IRC_CLIENT_H
 
+# include "libft.h"
 # include <signal.h>
 # include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
 # include <string.h>
 # include <arpa/inet.h>
 # include <netdb.h>
@@ -30,7 +29,6 @@
 # include <sys/ioctl.h>
 # include <sys/stat.h>
 
-# include "libft.h"
 # define FD_FREE		0
 # define FD_LOCAL		1
 # define FD_CLIENT		2
@@ -46,7 +44,7 @@
 # define MSG_FILE(a)	((a) - (sizeof(t_fileinfo) + 16))
 # define SIZE_SFILE(bs)	(16 + sizeof(t_file) - MSG_FILE((bs)))
 
-# define Xv(err,res,e)		(x_void(err,res,e,__FILE__,__LINE__))
+# define XV(err,res,e)		(x_void(err,res,e,__FILE__,__LINE__))
 # define X(err,res,e)		(x_int(err,res,e,__FILE__,__LINE__))
 # define MAX(a,b)			(((a) > (b)) ? (a) : (b))
 # define RB(a)				(e->fds[a].r_buffer)
@@ -173,7 +171,7 @@ typedef struct		s_fd
 	int					r;
 	char				*tfile;
 	int					tlen;
-}						t_fd;
+}					t_fd;
 
 typedef struct		s_env
 {
@@ -262,4 +260,4 @@ void				ft_irc_cat_infile(t_env *e, int cs, t_file *f);
 int					ft_irc_close_file(t_env *e, t_file *f);
 int					ft_irc_parse_is_file(t_env *e, int cs, int len);
 
-#endif /* !FT_IRC_CLIENT_H_ */
+#endif

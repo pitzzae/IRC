@@ -6,17 +6,12 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/17 17:40:03 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/18 15:31:22 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_IRC_SERVER_H_
-# define FT_IRC_SERVER_H_
-
-
-#ifndef FD_ZERO
-# define	FD_ZERO(p)	ft_bzero(p, sizeof(*(p)))
-#endif /* FD_ZERO */
+#ifndef FT_IRC_SERVER_H
+# define FT_IRC_SERVER_H
 
 # include <signal.h>
 # include <stdio.h>
@@ -41,7 +36,7 @@
 # define MH_MAGIC_MTU	(uint64_t)(0x042e042e)
 # define MH_MAGIC_REPLY	(uint64_t)(0xd42ed42e)
 
-# define Xv(err,res,str)	(x_void(err,res,str,__FILE__,__LINE__))
+# define XV(err,res,str)	(x_void(err,res,str,__FILE__,__LINE__))
 # define X(err,res,str)		(x_int(err,res,str,__FILE__,__LINE__))
 # define MAX(a,b)			((a > b) ? a : b)
 # define BF(a)				(e->fds[a].buffer)
@@ -131,7 +126,7 @@ typedef struct		s_fd
 	char				*cmd_mtu;
 	int					cmd_mtu_len;
 	int					cmd;
-}						t_fd;
+}					t_fd;
 
 typedef struct		s_sock
 {
@@ -185,7 +180,7 @@ int					ft_irc_motd(t_env *e, int cs);
 int					ft_irc_error(t_env *e, int cs, char *code, char *msg);
 void				ft_irc_print(char *buff, t_env *e, int cs, char *code);
 void				ft_irc_print_header(char *buff, t_env *e, char *code);
-void 				ft_irc_print_header_msg(char *buff, t_env *e, int cs);
+void				ft_irc_print_header_msg(char *buff, t_env *e, int cs);
 int					ft_irc_cmd_who(t_env *e, int cs);
 int					ft_irc_cmd_quit(t_env *e, int cs, int force);
 int					ft_irc_cmd_join(t_env *e, int cs);
@@ -213,7 +208,6 @@ int					ft_irc_cmd_file_reply_broadcast(t_env *e, int cs,
 void				ft_irc_cmd_file_reply_chanel(t_env *e, int cs,
 							char *ch, int len);
 int					ft_irc_cmd_file_reply_ack(t_env *e, int cs, t_file *f);
+void				ft_irc_debug_show_chanel(t_list *lst);
 
-void	ft_irc_debug_show_chanel(t_list *lst);
-
-#endif /* !FT_IRC_SERVER_H_ */
+#endif
