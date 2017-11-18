@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:08:25 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/15 13:17:44 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/18 15:23:33 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-#ifndef _UINT32_T
-# define _UINT32_T
-typedef unsigned int uint32_t;
-#endif /* _UINT32_T */
-
-#ifndef _UINT8_T
-# define _UINT8_T
-typedef unsigned char uint8_t;
-#endif /* _UINT8_T */
-
-#ifndef FD_COPY
-# define FD_COPY(n, p)	ft_memcpy(n, p, sizeof(*(n)))
-#endif /* FT_FD_COPY */
-
-#ifndef FT_FD_ZERO
-# define FT_FD_ZERO(p)	ft_bzero(p, sizeof(*(p)))
-#endif /* FT_FD_ZERO */
+# define FT_FD_ZERO(p) ft_bzero(p, sizeof(*(p)))
 
 typedef struct		s_list
 {
@@ -177,4 +161,4 @@ char				*ft_addchar_intstr(char *s, char c, int p);
 char				*ft_delchar_intstr(char *s, int p);
 unsigned long		ft_make_id(void);
 
-#endif /* !FT_LIBFT_H */
+#endif
