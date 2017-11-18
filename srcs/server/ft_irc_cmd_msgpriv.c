@@ -31,7 +31,7 @@ int			ft_irc_cmd_msgpriv(t_env *e, int cs, t_privmsg *msg)
 	int			i;
 
 	i = 0;
-	while (i< e->maxfd)
+	while (i < e->maxfd)
 	{
 		if (ft_strcmp(e->fds[i].username, msg->dest) == 0)
 		{

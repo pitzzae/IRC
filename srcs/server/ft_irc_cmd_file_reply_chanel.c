@@ -33,12 +33,20 @@ static void		ft_irc_cmd_file_reply_mkpk(t_env *e, int cs, t_list *l, int len)
 	ft_send(l->valid, BF(cs), (size_t)len, e);
 }
 
-static int	get_id_pckt(t_file *f)
+static int		get_id_pckt(t_file *f)
 {
-	return f->info.id;
+	return (f->info.id);
 }
 
-static void	reply_chanel_for_charnel(t_env *e, int cs, t_list *l, int len)
+static void		reply_chanel_for_charnel1(t_env *e, int cs, t_list *l)
+{
+	if (e->fds[cs].ack)
+		ft_lstaddend_free(&e->fds[cs].ack, l, u_del);
+	else
+		e->fds[cs].ack = l;
+}
+
+static void		reply_chanel_for_charnel(t_env *e, int cs, t_list *l, int len)
 {
 	size_t			i;
 	t_ackf			t;
@@ -62,13 +70,11 @@ static void	reply_chanel_for_charnel(t_env *e, int cs, t_list *l, int len)
 	t.id = get_id_pckt((t_file*)&BF(cs)[8]);
 	l = ft_lstnew(&t, size + sizeof(t_ackf));
 	((t_ackf*)(l->content))->cli = t.cli;
-	if (e->fds[cs].ack)
-		ft_lstaddend_free(&e->fds[cs].ack, l, u_del);
-	else
-		e->fds[cs].ack = l;
+	reply_chanel_for_charnel1(e, cs, l);
 }
 
-void		ft_irc_cmd_file_reply_chanel(t_env *e, int cs, char *ch, int len)
+void			ft_irc_cmd_file_reply_chanel(t_env *e, int cs,
+											char *ch, int len)
 {
 	t_chanel		*c;
 	t_list			*l;

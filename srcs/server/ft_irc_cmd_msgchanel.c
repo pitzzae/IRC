@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "ft_irc_server.h"
 
 static void	ft_irc_cmd_msgchanel_fd(t_env *e, int cs, t_chanel *c, char *msg)

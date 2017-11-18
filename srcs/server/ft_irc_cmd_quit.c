@@ -30,7 +30,6 @@ static char	*ft_format_bsr(int b)
 			ft_strcat(tmp, "0");
 		if (b < 10)
 			ft_strcat(tmp, "0");
-
 		tmp = ft_strjoin_free(tmp, ft_itoa(b), 3);
 		tmp = ft_strjoin_free(tmp, " kb", 1);
 	}

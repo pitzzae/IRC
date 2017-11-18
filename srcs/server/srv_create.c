@@ -17,7 +17,7 @@ void			srv_create(t_env *e, int port)
 	int				yes;
 
 	yes = 1;
-	e->sock.pe = (struct protoent*)Xv(NULL, getprotobyname("tcp"),
+	e->sock.pe = (struct protoent*)XV(NULL, getprotobyname("tcp"),
 				"getprotoname");
 	e->sock.s = X(-1, socket(PF_INET, SOCK_STREAM, e->sock.pe->p_proto),
 				"socket");

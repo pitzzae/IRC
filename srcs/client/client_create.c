@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 14:20:06 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/12 03:16:10 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/18 15:27:02 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,16 @@ void			client_create(t_env *e, char *ip, int port)
 	int				r;
 
 	e->state = "getprotoname";
-	e->sock.pe = (struct protoent*)Xv(NULL, getprotobyname("tcp"), e);
+	e->sock.pe = (struct protoent*)XV(NULL, getprotobyname("tcp"), e);
 	e->state = "socket";
 	e->sock.s = X(-1, socket(PF_INET, SOCK_STREAM, e->sock.pe->p_proto), e);
 	e->state = "gethostbyname";
-	e->sock.hi = (struct hostent*)Xv(NULL, gethostbyname(ip), e);
+	e->sock.hi = (struct hostent*)XV(NULL, gethostbyname(ip), e);
 	e->sock.sin.sin_family = AF_INET;
 	e->sock.sin.sin_addr.s_addr = inet_addr(e->sock.hi->h_name);
 	e->sock.sin.sin_port = htons(port);
 	e->state = "connect";
-	r = X(-1, connect(e->sock.s,(struct sockaddr*)&e->sock.sin,
+	r = X(-1, connect(e->sock.s, (struct sockaddr*)&e->sock.sin,
 				sizeof(e->sock.sin)), e);
 	if (r != -1)
 	{

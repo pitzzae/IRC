@@ -57,7 +57,6 @@ void		client_read(t_env *e, int cs)
 		{
 			if ((e->fds[i].type == FD_CLIENT) && (i == cs))
 			{
-				printf("Read from #%d, len %d\n", cs, r);
 				e->fds[cs].b_send += r;
 				if (!client_read_is_magic(e, cs, r))
 					ft_packet_agreg(e, cs, r);

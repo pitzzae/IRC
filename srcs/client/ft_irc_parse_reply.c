@@ -16,7 +16,7 @@ static char	*ft_irc_parse_reply_chan(t_reply *r)
 {
 	char		*str;
 	char		*tmp;
-	int 		i;
+	int			i;
 
 	tmp = &r->arg1[1];
 	i = ft_strfocur(tmp, '!');

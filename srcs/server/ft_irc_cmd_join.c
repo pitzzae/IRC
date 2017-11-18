@@ -83,7 +83,7 @@ int			ft_irc_cmd_join(t_env *e, int cs)
 		if (ft_strlen(e->fds[cs].buffer) >= 7 && e->fds[cs].connect == 1)
 		{
 			cmd = &e->fds[cs].buffer[5];
-			if (ft_strcmp(cmd , "0\n") == 0)
+			if (ft_strcmp(cmd, "0\n") == 0)
 				ft_irc_leave_all_chan(e, cs);
 			else if (cmd[0] == '#')
 			{

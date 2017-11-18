@@ -12,10 +12,6 @@
 
 #include "ft_irc_client.h"
 
-/*TODO
- * check write file right
- * */
-
 static int	ft_irc_cat_infile_find_fd(t_env *e, t_file *f)
 {
 	t_list		*l;

@@ -17,7 +17,7 @@ int		ft_irc_cmd_msg(t_env *e, int cs)
 	t_privmsg	*msg;
 
 	if ((e->fds[cs].buff_len >= 7 && e->fds[cs].connect &&
-		 ft_strncmp(e->fds[cs].buffer, "PRIVMSG", 7) == 0))
+		ft_strncmp(e->fds[cs].buffer, "PRIVMSG", 7) == 0))
 	{
 		msg = ft_irc_parse_privmsg(e, cs);
 		if (msg)

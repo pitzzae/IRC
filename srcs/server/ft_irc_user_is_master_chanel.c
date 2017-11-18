@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_irc_user_is_master_chanel.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtorresa <null>                            +#+  +:+       +#+        */
+/*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 16:02:06 by gtorresa          #+#    #+#             */
 /*   Updated: 2017/11/12 16:11:44 by gtorresa         ###   ########.fr       */

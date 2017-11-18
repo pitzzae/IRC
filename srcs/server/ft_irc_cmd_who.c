@@ -65,9 +65,8 @@ static void	ft_irc_cmd_who_send(t_env *e, int cs, char *buff)
 	who = ft_strnew(0);
 	while (i < e->maxfd)
 	{
-		if ((e->fds[i].type == FD_CLIENT) && e->fds[i].connect == 1) {
+		if ((e->fds[i].type == FD_CLIENT) && e->fds[i].connect == 1)
 			who = ft_strjoin_free(who, ft_irc_who_user(e, i, &buff[0]), 1);
-		}
 		i++;
 	}
 	ft_irc_cmd_return(e, cs, who, &buff[0]);

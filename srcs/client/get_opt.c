@@ -18,7 +18,7 @@ static void	ft_irc_print_usage(char **av)
 	exit(1);
 }
 
-void	get_opt(t_env *e, int ac, char **av)
+void		get_opt(t_env *e, int ac, char **av)
 {
 	char		**tmp;
 

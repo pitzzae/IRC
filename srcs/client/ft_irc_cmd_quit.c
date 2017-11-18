@@ -6,13 +6,13 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:28 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/13 22:22:09 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/18 15:36:31 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
 
-static void	client_close_free(t_env * e)
+static void	client_close_free(t_env *e)
 {
 	free(e->t.prompt);
 	if (e->fds[0].r_buffer)
@@ -32,7 +32,7 @@ static void	ft_irc_cmd_quit_parse_argv(t_env *e, char *cmd)
 	char		*tmp;
 
 	tmp = "\"Leaving...\"";
-	if (cmd[0] == ' ' &&  ft_strlen(cmd) > 2)
+	if (cmd[0] == ' ' && ft_strlen(cmd) > 2)
 		tmp = &cmd[1];
 	tmp = ft_strjoin("QUIT ", tmp);
 	ft_send(e->sock.s, tmp, ft_strlen(tmp), e);
@@ -58,7 +58,7 @@ static void	client_close(t_env *e, int cs)
 	ft_history_cmd_clear(e);
 	ft_reset_termios(e);
 	client_close_free(e);
-	exit (1);
+	exit(1);
 }
 
 int			ft_irc_cmd_quit(t_env *e, int cs, int force)

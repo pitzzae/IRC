@@ -36,8 +36,8 @@
 # define MH_MAGIC_MTU	(uint64_t)(0x042e042e)
 # define MH_MAGIC_REPLY	(uint64_t)(0xd42ed42e)
 
-# define XV(err,res,str)	(x_void(err,res,str,__FILE__,__LINE__))
-# define X(err,res,str)		(x_int(err,res,str,__FILE__,__LINE__))
+# define XV(err,res,str)	(x_void(err,res,str))
+# define X(err,res,str)		(x_int(err,res,str))
 # define MAX(a,b)			((a > b) ? a : b)
 # define BF(a)				(e->fds[a].buffer)
 # define SIZE_SFILE(bs)		(16 + sizeof(t_file) - MSG_FILE((bs)))
@@ -166,9 +166,8 @@ void				client_read(t_env *e, int cs);
 void				client_write(t_env *e, int cs);
 void				client_buffer(t_env *e, int cs);
 void				clean_fd(t_fd *fd);
-int					x_int(int err, int res, char *str, char *file, int line);
-void				*x_void(void *err, void *res, char *str, char *file,
-							int line);
+int					x_int(int err, int res, char *str);
+void				*x_void(void *err, void *res, char *str);
 void				init_fd(t_env *e);
 void				do_select(t_env *e);
 void				check_fd(t_env *e);

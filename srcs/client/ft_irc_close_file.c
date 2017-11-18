@@ -50,7 +50,7 @@ static int		ft_irc_close_file_clean(t_env *e, int id)
 	return (1);
 }
 
-static void	ft_irc_close_file_print(t_env *e, t_file *f)
+static void		ft_irc_close_file_print(t_env *e, t_file *f)
 {
 	char		*msg;
 

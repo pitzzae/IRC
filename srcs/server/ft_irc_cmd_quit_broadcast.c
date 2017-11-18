@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_irc_cmd_quit_broadcast.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtorresa <null>                            +#+  +:+       +#+        */
+/*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 18:03:48 by gtorresa          #+#    #+#             */
 /*   Updated: 2017/11/13 19:55:53 by gtorresa         ###   ########.fr       */
@@ -29,7 +29,6 @@ void		ft_irc_cmd_quit_broadcast_print(t_env *e, int cs, char *m, char *n)
 	ft_send(cs, buff, ft_strlen(buff), e);
 }
 
-
 static int	ft_irc_cmd_quit_broadcast_find_fd(t_list *lfd, int cs)
 {
 	t_list		*l;
@@ -44,8 +43,8 @@ static int	ft_irc_cmd_quit_broadcast_find_fd(t_list *lfd, int cs)
 	return (0);
 }
 
-static void	ft_irc_cmd_quit_broadcast_chanel(
-		t_env *e, t_list *lfd, int cs, char *msg)
+static void	ft_irc_cmd_quit_broadcast_chanel(t_env *e, t_list *lfd,
+												int cs, char *msg)
 {
 	t_list		*l;
 
@@ -71,7 +70,7 @@ void		ft_irc_cmd_quit_broadcast(t_env *e, int cs, char *cmd)
 	tmp = "\"Leaving...\"";
 	if (ft_strlen(cmd) > 1)
 	{
-		if (cmd[0] != '\n' || cmd[0] != ' ' )
+		if (cmd[0] != '\n' || cmd[0] != ' ')
 			tmp = &cmd[1];
 	}
 	while (l)

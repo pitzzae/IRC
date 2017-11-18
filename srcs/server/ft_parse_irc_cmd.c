@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_irc_server.h"
+#include "ft_irc_server.h"
 
 static void	ft_split_buff_multi_cmd_valid(t_env *e, int cs, char *b, int len)
 {
@@ -21,7 +21,6 @@ static void	ft_split_buff_multi_cmd_valid(t_env *e, int cs, char *b, int len)
 		e->fds[cs].buff_len = len - (int)ft_strlen(e->fds[cs].buffer);
 		free(e->fds[cs].buffer);
 		e->fds[cs].buffer = ft_strdup(&b[len - e->fds[cs].buff_len]);
-
 	}
 	free(b);
 }
@@ -89,7 +88,6 @@ static void	ft_parse_irc_cmd_format(char *buff)
 
 int			ft_parse_irc_cmd(t_env *e, int cs)
 {
-	printf("read command\n");
 	if (ft_irc_cmd_file(e, cs))
 		return (0);
 	ft_striteri(e->fds[cs].buffer, ft_replace_return_char);
@@ -112,8 +110,6 @@ int			ft_parse_irc_cmd(t_env *e, int cs)
 	else if (ft_irc_cmd_join(e, cs))
 		return (0);
 	else if (ft_irc_cmd_leave(e, cs))
-		return (0);
-	else if (ft_irc_cmd_chanel(e, cs))
 		return (0);
 	return (1);
 }

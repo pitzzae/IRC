@@ -14,7 +14,7 @@
 
 void		init_env(t_env *e)
 {
-	int		i;
+	int				i;
 	struct rlimit	rlp;
 
 	e->state = "getrlimit";
@@ -22,7 +22,7 @@ void		init_env(t_env *e)
 	X(-1, getrlimit(RLIMIT_NOFILE, &rlp), e);
 	e->maxfd = rlp.rlim_cur;
 	e->state = "malloc";
-	e->fds = (t_fd*)Xv(NULL, malloc(sizeof(*e->fds) * e->maxfd), e);
+	e->fds = (t_fd*)XV(NULL, malloc(sizeof(*e->fds) * e->maxfd), e);
 	e->file_rdy = 0;
 	i = 0;
 	while (i < e->maxfd)

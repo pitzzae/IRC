@@ -12,7 +12,7 @@
 
 #include "ft_irc_server.h"
 
-void sig_handler(int signo, void *ptr)
+void	sig_handler(int signo, void *ptr)
 {
 	static t_env		*saved = NULL;
 	int					i;

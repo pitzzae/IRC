@@ -6,17 +6,13 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 14:27:47 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/16 11:15:37 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/18 15:36:13 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_irc_client.h"
 
-/*TODO
- * Check stats file
- * */
-
-static void		ft_irc_create_file_add_list(t_env *e, t_lfile *lf)
+static void	ft_irc_create_file_add_list(t_env *e, t_lfile *lf)
 {
 	if (e->wfile)
 		ft_lstaddend_free(&e->wfile, ft_lstnew((void*)lf, sizeof(*lf)), u_del);
@@ -24,7 +20,7 @@ static void		ft_irc_create_file_add_list(t_env *e, t_lfile *lf)
 		e->wfile = ft_lstnew((void*)lf, sizeof(*lf));
 }
 
-static void		ft_irc_create_file_get_info(t_lfile *lf, t_file *f)
+static void	ft_irc_create_file_get_info(t_lfile *lf, t_file *f)
 {
 	ft_strcat(lf->info.dest, f->info.dest);
 	ft_strcat(lf->info.source, f->info.source);

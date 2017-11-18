@@ -21,7 +21,7 @@ void		ft_irc_print_header(char *buff, t_env *e, char *code)
 	ft_strcat(buff, " ");
 }
 
-void 		ft_irc_print_header_msg(char *buff, t_env *e, int cs)
+void		ft_irc_print_header_msg(char *buff, t_env *e, int cs)
 {
 	ft_strcat(buff, ":");
 	ft_strcat(buff, e->fds[cs].username);

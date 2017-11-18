@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/18 15:29:48 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/18 15:43:24 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@
 # define MSG_FILE(a)	((a) - (sizeof(t_fileinfo) + 16))
 # define SIZE_SFILE(bs)	(16 + sizeof(t_file) - MSG_FILE((bs)))
 
-# define XV(err,res,e)		(x_void(err,res,e,__FILE__,__LINE__))
-# define X(err,res,e)		(x_int(err,res,e,__FILE__,__LINE__))
+# define XV(err,res,e)		(x_void(err,res,e))
+# define X(err,res,e)		(x_int(err,res,e))
 # define MAX(a,b)			(((a) > (b)) ? (a) : (b))
 # define RB(a)				(e->fds[a].r_buffer)
 # define BL(a)				(e->fds[a].buff_len)
@@ -201,9 +201,8 @@ typedef struct		s_env
 	int					display_f;
 }					t_env;
 
-int					x_int(int err, int res, t_env *e, char *file, int line);
-void				*x_void(void *err, void *res, t_env *e, char *file,
-							int line);
+int					x_int(int err, int res, t_env *e);
+void				*x_void(void *err, void *res, t_env *e);
 void				init_env(t_env *e);
 void				get_opt(t_env *e, int ac, char **av);
 void				main_loop(t_env *e);

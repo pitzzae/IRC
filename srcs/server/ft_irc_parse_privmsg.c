@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_irc_parse_privmsg.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtorresa <null>                            +#+  +:+       +#+        */
+/*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 20:17:36 by gtorresa          #+#    #+#             */
 /*   Updated: 2017/11/09 21:06:15 by gtorresa         ###   ########.fr       */
