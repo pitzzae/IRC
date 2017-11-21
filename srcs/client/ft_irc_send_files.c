@@ -58,8 +58,6 @@ static int		ft_irc_send_files_data(t_env *e, int cs, t_lfile *lf)
 	len = (int)read(lf->fd, &buff[0], MSG_FILE(lf->mtu - 8));
 	if (len > 0)
 	{
-		dprintf(7, "send_files_data, mtu = %d\n", lf->mtu);
-		dprintf(7, "send_files_data, msg_size = %d\n", len);
 		tmp = ft_irc_file_make_packet(lf, &buff[0], len);
 		ft_send(e->sock.s, tmp, (size_t)lf->mtu, e);
 		lf->send = 0;

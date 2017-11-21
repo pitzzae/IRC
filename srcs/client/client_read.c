@@ -28,7 +28,6 @@ void	client_read(t_env *e, int cs)
 			if (e->fds[i].type == FD_CLIENT)
 			{
 				e->fds[cs].r = r;
-				dprintf(7, "Read from #%d, len %d\n", cs, r);
 				ft_irc_parse_return(e, cs, r);
 				FD_SET(1, &e->fd_write);
 			}
