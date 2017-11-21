@@ -65,7 +65,10 @@ int			ft_irc_cmd_quit(t_env *e, int cs, int force)
 {
 	if ((BL(cs) > 5 && ft_strncmp(RB(cs), CMD_QUIT, 4) == 0) || force == 1)
 	{
-		client_close(e, cs);
+		if (force == 1)
+			client_close(e, cs);
+		else
+			ft_send(e->sock.s, "QUIT\n", 5, e);
 		return (1);
 	}
 	return (0);
