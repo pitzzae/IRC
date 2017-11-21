@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 23:10:12 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/21 14:13:56 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/21 14:30:09 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ static void	ft_irc_quit_clean_chanel(t_env *e, int cs)
 static void	ft_irc_cmd_quit_processing(t_env *e, int cs, char *buff)
 {
 	ft_strcat(buff, ERROR_CONN);
-	ft_send(cs, buff, ft_strlen(buff), e);
+	if (e->fds[cs].err_code == 0)
+		ft_send(cs, buff, ft_strlen(buff), e);
 	clean_fd(&e->fds[cs]);
 	if (e->fds[cs].chan_user)
 		ft_irc_quit_clean_chanel(e, cs);
