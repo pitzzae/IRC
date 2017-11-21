@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 17:00:55 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/13 22:30:23 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/21 15:05:13 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	ft_irc_parse_no_such_channel(t_env *e)
 	ft_irc_parse_reply_sys_replace_cursor(len);
 }
 
-void		ft_irc_parse_reply_handle(t_env *e, int code)
+void		ft_irc_parse_reply_handle(t_env *e, int code, t_reply *r)
 {
 	if (e->nick && code == 433)
 		ft_irc_parse_nick_allready_user(e);
@@ -57,4 +57,6 @@ void		ft_irc_parse_reply_handle(t_env *e, int code)
 		ft_irc_parse_no_such_channel(e);
 	else if (e->nick && code == 1)
 		e->file_rdy = 1;
+	else if (e->nick && ft_strcmp(r->arg2, "NOTICE") == 0)
+		dprintf(7, "%s %s %s %s", r->arg1, r->arg2, r->arg3, r->arg4);
 }

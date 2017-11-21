@@ -37,7 +37,7 @@ static char	*ft_irc_parse_reply_sys(t_env *e, t_reply *r)
 {
 	char		*str;
 
-	ft_irc_parse_reply_handle(e, ft_atoi(r->arg2));
+	ft_irc_parse_reply_handle(e, ft_atoi(r->arg2), r);
 	str = ft_strjoin("Reply(", r->arg2);
 	str = ft_strjoin_free(str, "): ", 1);
 	str = ft_strjoin_free(str, r->arg3, 1);

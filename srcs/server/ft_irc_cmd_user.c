@@ -22,6 +22,8 @@ static int		ft_irc_cmd_user_check_arg(char *cmd)
 	while (tmp[i])
 		free(tmp[i++]);
 	free(tmp);
+	if (ft_strlen(cmd) > 200)
+		return (0);
 	return (i);
 }
 
