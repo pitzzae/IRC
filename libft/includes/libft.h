@@ -19,7 +19,15 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-# define FT_FD_ZERO(p) ft_bzero(p, sizeof(*(p)))
+#ifndef _UINT32_T
+# define _UINT32_T
+typedef unsigned int uint32_t;
+#endif /* _UINT32_T */
+
+#ifndef _UINT8_T
+# define _UINT8_T
+typedef unsigned char uint8_t;
+#endif /* _UINT8_T */
 
 typedef struct		s_list
 {
