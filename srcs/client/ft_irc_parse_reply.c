@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 13:23:10 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/13 17:06:25 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/21 15:03:17 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	*ft_irc_parse_reply_sys(t_env *e, t_reply *r)
 {
 	char		*str;
 
-	ft_irc_parse_reply_handle(e, ft_atoi(r->arg2), r);
+	ft_irc_parse_reply_handle(e, ft_atoi(r->arg2));
 	str = ft_strjoin("Reply(", r->arg2);
 	str = ft_strjoin_free(str, "): ", 1);
 	str = ft_strjoin_free(str, r->arg3, 1);

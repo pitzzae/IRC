@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/21 14:13:56 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/21 15:03:17 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,7 +244,7 @@ int					ft_irc_cmd_error_arg(t_env *e, char *cmd, char *help);
 void				ft_irc_update_prompt(t_env *e);
 void				ft_irc_parse_return(t_env *e, int cs, int len);
 char				*ft_irc_parse_reply(t_env *e, t_reply *r);
-void				ft_irc_parse_reply_handle(t_env *e, int code, t_reply *r);
+void				ft_irc_parse_reply_handle(t_env *e, int code);
 void				*ft_irc_file_make_packet(t_lfile *lf, char *buff, int len);
 void				*ft_irc_file_make_ipacket(char *dest, char *file,
 											void *d, int len);

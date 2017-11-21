@@ -69,8 +69,4 @@ void		ft_irc_cat_infile(t_env *e, int cs, t_file *f)
 		e->fds[fd].fct_read = NULL;
 		e->fds[fd].fct_write = NULL;
 	}
-	else
-	{
-		dprintf(7, "file open error!!!\n");
-	}
 }
