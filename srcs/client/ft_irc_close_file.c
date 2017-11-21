@@ -50,16 +50,19 @@ static int		ft_irc_close_file_clean(t_env *e, int id)
 	return (1);
 }
 
-static void		ft_irc_close_file_print(t_env *e, t_file *f)
+static void		ft_irc_close_file_print(t_env *e, t_file *f, int fd)
 {
 	char		*msg;
 
-	msg = ft_strjoin("Transfert file '", f->info.file_name);
-	msg = ft_strjoin_free(msg, "' from: '", 1);
-	msg = ft_strjoin_free(msg, f->info.source, 1);
-	msg = ft_strjoin_free(msg, "' is complete\n", 1);
-	ft_irc_print(e, msg, (int)ft_strlen(msg), 1);
-	free(msg);
+	if (fd != -1)
+	{
+		msg = ft_strjoin("Transfert file '", f->info.file_name);
+		msg = ft_strjoin_free(msg, "' from: '", 1);
+		msg = ft_strjoin_free(msg, f->info.source, 1);
+		msg = ft_strjoin_free(msg, "' is complete\n", 1);
+		ft_irc_print(e, msg, (int)ft_strlen(msg), 1);
+		free(msg);
+	}
 }
 
 int				ft_irc_close_file(t_env *e, t_file *f)
@@ -73,7 +76,7 @@ int				ft_irc_close_file(t_env *e, t_file *f)
 		lf = l->content;
 		if (lf->info.id == f->info.id)
 		{
-			ft_irc_close_file_print(e, f);
+			ft_irc_close_file_print(e, f, lf->fd);
 			clean_fd(&e->fds[lf->fd]);
 			close(lf->fd);
 			e->fds[lf->fd].type = FD_FREE;

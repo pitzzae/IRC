@@ -38,7 +38,7 @@ static void	ft_irc_cat_get_next(t_env *e, int cs, t_file *f)
 	free(tmp);
 }
 
-static void	ft_irc_cat_infile_print(t_env *e, int cs, t_file *f)
+static void	ft_irc_cat_infile_print(t_env *e, t_file *f)
 {
 	char		*msg;
 
@@ -52,7 +52,6 @@ static void	ft_irc_cat_infile_print(t_env *e, int cs, t_file *f)
 	msg = ft_strjoin_free(msg, "\n", 1);
 	ft_irc_print(e, msg, (int)ft_strlen(msg), 1);
 	free(msg);
-	ft_irc_cat_get_next(e, cs, f);
 }
 
 void		ft_irc_cat_infile(t_env *e, int cs, t_file *f)
@@ -60,13 +59,14 @@ void		ft_irc_cat_infile(t_env *e, int cs, t_file *f)
 	int			fd;
 
 	fd = ft_irc_cat_infile_find_fd(e, f);
-	if (fd)
+	if (fd != -1)
 	{
-		ft_irc_cat_infile_print(e, cs, f);
+		ft_irc_cat_infile_print(e, f);
 		e->display_f = 1;
 		write(fd, f->msg, (size_t)f->info.l);
 		e->fds[fd].type = FD_WFILE;
 		e->fds[fd].fct_read = NULL;
 		e->fds[fd].fct_write = NULL;
 	}
+	ft_irc_cat_get_next(e, cs, f);
 }

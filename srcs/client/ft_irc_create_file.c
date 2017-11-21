@@ -45,19 +45,42 @@ static void	ft_irc_create_file_print(t_env *e, t_file *f)
 	free(msg);
 }
 
+static int	ft_irc_create_file_stats(t_env *e, t_file *f, int fd, size_t size)
+{
+	char		*msg;
+
+	if (size == 0)
+	{
+		ft_irc_create_file_print(e, f);
+		e->fds[fd].type = FD_WFILE;
+		e->fds[fd].fct_write = NULL;
+		return (1);
+	}
+	else
+	{
+		msg = ft_strjoin("Recive file '", f->info.file_name);
+		msg = ft_strjoin_free(msg, "' [stop] /!\\ file allready exist\n", 1);
+		ft_irc_print(e, msg, (int)ft_strlen(msg), 1);
+		free(msg);
+	}
+	return (0);
+}
+
 int			ft_irc_create_file(t_env *e, t_file *f)
 {
 	t_lfile		lf;
 	int			fd;
+	struct stat	st;
 
 	ft_bzero(&lf, sizeof(lf));
 	fd = open(f->info.file_name, O_CREAT | O_WRONLY, f->info.mod);
 	if (fd != -1)
 	{
-		ft_irc_create_file_print(e, f);
-		e->fds[fd].type = FD_WFILE;
-		e->fds[fd].fct_write = NULL;
-		lf.fd = fd;
+		if (fstat(fd, &st) == 0 &&
+				ft_irc_create_file_stats(e, f, fd, (size_t)st.st_size) == 1)
+			lf.fd = fd;
+		else
+			lf.fd = -1;
 		ft_irc_create_file_get_info(&lf, f);
 		ft_irc_create_file_add_list(e, &lf);
 		return (1);
