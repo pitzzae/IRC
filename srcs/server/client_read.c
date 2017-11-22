@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:03:25 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/22 10:19:58 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/22 10:22:20 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void		client_read(t_env *e, int cs)
 	e->fds[cs].recive = r;
 	if (r <= 0)
 	{
+		e->fds[cs].err_code = (unsigned int)r;
 		ft_irc_cmd_quit(e, cs, 1);
 	}
 	else
