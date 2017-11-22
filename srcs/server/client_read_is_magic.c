@@ -26,7 +26,7 @@ static int	client_read_magic_file(t_env *e, int cs, int len)
 		e->fds[cs].buffer = tmp;
 		e->fds[cs].buff_len = len;
 		FD_COPY(&e->fd_read, &e->fd_write);
-		FT_FD_ZERO(&e->fds[cs].buf_read);
+		FD_ZERO(&e->fds[cs].buf_read);
 		e->fds[cs].cmd = 1;
 		return (1);
 	}
@@ -35,7 +35,7 @@ static int	client_read_magic_file(t_env *e, int cs, int len)
 		e->fds[cs].f_support = 1;
 		if (magic[0] == MH_MAGIC_STOP)
 			e->fds[cs].f_support = 0;
-		FT_FD_ZERO(&e->fds[cs].buf_read);
+		FD_ZERO(&e->fds[cs].buf_read);
 		return (1);
 	}
 	return (0);
@@ -64,7 +64,7 @@ static int	client_read_magic_mtu_check(t_env *e, int cs, int len)
 		e->fds[cs].cmd_mtu = tmp;
 		e->fds[cs].cmd_mtu_len = len;
 	}
-	FT_FD_ZERO(&e->fds[cs].buf_read);
+	FD_ZERO(&e->fds[cs].buf_read);
 	return (1);
 }
 
@@ -82,7 +82,7 @@ static int	client_read_magic_mtu_stop(t_env *e, int cs, int len)
 		FD_COPY(&e->fd_read, &e->fd_write);
 		e->fds[cs].cmd = 1;
 	}
-	FT_FD_ZERO(&e->fds[cs].buf_read);
+	FD_ZERO(&e->fds[cs].buf_read);
 	return (1);
 }
 

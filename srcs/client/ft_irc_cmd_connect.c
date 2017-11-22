@@ -95,11 +95,6 @@ static void	ft_irc_cmd_allrdy_connect(t_env *e, int cs)
 		free(e->nick);
 		e->nick = NULL;
 	}
-	if (e->chan)
-	{
-		free(e->chan);
-		e->chan = NULL;
-	}
 	ft_irc_cmd_connect_init(e, cs);
 }
 
@@ -109,6 +104,11 @@ int			ft_irc_cmd_connect(t_env *e, int cs, int force)
 			ft_strncmp(RB(cs), CMD_CONNECT, 8) == 0))
 	{
 		ft_irc_cmd_allrdy_connect(e, cs);
+		if (e->chan)
+		{
+			free(e->chan);
+			e->chan = NULL;
+		}
 		return (1);
 	}
 	else if (force == 1 || (BL(cs) > 8 && RB(cs)[8] == ' ' &&

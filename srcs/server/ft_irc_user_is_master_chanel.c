@@ -17,7 +17,7 @@ static char	ft_irc_user_is_master_chanel1(t_list *lst, int fd)
 	t_list		*l;
 
 	l = lst;
-	while(l)
+	while (l)
 	{
 		if (l->valid == fd)
 			return ('@');
@@ -39,7 +39,7 @@ char		*ft_irc_user_is_master_chanel(t_list *chan, char *user, int fd)
 	{
 		c = l->content;
 		if (ft_strcmp(c->owner, user) == 0)
-			res[0] = ft_irc_user_is_master_chanel1(c->s,fd);
+			res[0] = ft_irc_user_is_master_chanel1(c->s, fd);
 		l = l->next;
 	}
 	return (res);

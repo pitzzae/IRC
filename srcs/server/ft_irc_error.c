@@ -17,7 +17,6 @@ int	ft_irc_error(t_env *e, int cs, char *code, char *msg)
 	char		buff[1024];
 	size_t		len;
 
-
 	ft_irc_print(&buff[0], e, cs, code);
 	if (e->fds[cs].argv)
 	{

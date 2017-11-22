@@ -19,24 +19,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-#ifndef _UINT32_T
-# define _UINT32_T
-typedef unsigned int uint32_t;
-#endif /* _UINT32_T */
-
-#ifndef _UINT8_T
-# define _UINT8_T
-typedef unsigned char uint8_t;
-#endif /* _UINT8_T */
-
-#ifndef FD_COPY
-# define FD_COPY(n, p)	ft_memcpy(n, p, sizeof(*(n)))
-#endif /* FT_FD_COPY */
-
-#ifndef FT_FD_ZERO
-# define FT_FD_ZERO(p)	ft_bzero(p, sizeof(*(p)))
-#endif /* FT_FD_ZERO */
-
 typedef struct		s_list
 {
 	void			*content;
