@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:54:35 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/21 14:13:56 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/22 14:05:01 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	ft_irc_cmd_user_parse(t_env *e, char *cmd, char *vcmd)
 	int			i;
 
 	tmp = ft_strsplit(cmd, ' ');
-	if (tmp[0] && tmp[1] && tmp[2] && tmp[3] && tmp[4] && !tmp[5])
+	if (tmp[0] && tmp[1] && tmp[2] && tmp[3] && tmp[4])
 	{
 		i = 0;
 		while (tmp[i])

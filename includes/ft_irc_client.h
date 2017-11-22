@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 23:07:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/21 15:03:17 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/22 14:07:12 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define ARROW_DOWN		66
 # define ARROW_LEFT		68
 # define ARROW_RIGHT	67
-# define CH_LEN			10
+# define CH_LEN			20
 # define MSG_FILE(a)	((a) - (sizeof(t_fileinfo) + 16))
 # define SIZE_SFILE(bs)	(16 + sizeof(t_file) - MSG_FILE((bs)))
 
@@ -78,6 +78,7 @@
 # define MH_MAGIC_MTU		(uint64_t)(0x042e042e)
 # define MH_MAGIC_REPLY		(uint64_t)(0xd42ed42e)
 # define MH_MAGIC_INIT		(uint64_t)(0xb42eb42e)
+# define MH_MAGIC_STOP		(uint64_t)(0xe42ee42e)
 
 typedef struct		s_fileinfo
 {

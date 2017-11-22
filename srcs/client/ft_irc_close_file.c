@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 14:31:29 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/21 20:46:10 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/22 15:28:35 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ static void		ft_irc_close_file_print(t_env *e, t_file *f, int fd)
 		msg = ft_strjoin_free(msg, "' is complete\n", 1);
 		ft_irc_print(e, msg, (int)ft_strlen(msg), 1);
 		free(msg);
+		clean_fd(&e->fds[fd]);
+		close(fd);
+		e->fds[fd].type = FD_FREE;
+		e->fds[fd].fct_read = NULL;
 	}
 }
 
@@ -77,10 +81,6 @@ int				ft_irc_close_file(t_env *e, t_file *f)
 		if (lf->info.id == f->info.id)
 		{
 			ft_irc_close_file_print(e, f, lf->fd);
-			clean_fd(&e->fds[lf->fd]);
-			close(lf->fd);
-			e->fds[lf->fd].type = FD_FREE;
-			e->fds[lf->fd].fct_read = NULL;
 			return (ft_irc_close_file_clean(e, f->info.id));
 		}
 		l = l->next;

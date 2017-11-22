@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/22 12:10:56 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/22 14:07:17 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,13 @@
 # define FD_SERV		1
 # define FD_CLIENT		2
 # define MAX_CMD_SIZE	4096
-# define CH_LEN			10
+# define CH_LEN			20
 # define MSG_FILE(bs)	((bs) - (sizeof(t_fileinfo) + 16))
 # define MH_MAGIC_FILE	(uint64_t)(0xf42ef42e)
 # define MH_MAGIC_MTU	(uint64_t)(0x042e042e)
 # define MH_MAGIC_REPLY	(uint64_t)(0xd42ed42e)
 # define MH_MAGIC_INIT	(uint64_t)(0xb42eb42e)
+# define MH_MAGIC_STOP	(uint64_t)(0xe42ee42e)
 
 # define XV(err,res,str)	(x_void(err,res,str))
 # define X(err,res,str)		(x_int(err,res,str))

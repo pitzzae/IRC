@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 13:31:14 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/22 13:03:32 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/22 14:05:01 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void		ft_terminos_right_arrow(t_env *e, int fd)
 	if ((unsigned long)e->t.cur < ft_strlen(RB(fd)) + e->t.p_len)
 	{
 		c = RB(fd)[e->t.cur - e->t.p_len];
-		tputs(&c, 1, ft_myputchar);
+		ft_putchar(c);
 		e->t.cur++;
 	}
 }
