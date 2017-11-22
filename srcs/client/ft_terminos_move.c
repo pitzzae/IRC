@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 13:31:14 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/21 14:13:56 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/22 13:03:32 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void		ft_terminos_clean_line(t_env *e)
 	cur = e->t.cur;
 	while (cur > 0)
 	{
+		tputs(tgetstr("le", NULL), 1, ft_myputchar);
+		tputs(tgetstr(" ", NULL), 1, ft_myputchar);
 		tputs(tgetstr("le", NULL), 1, ft_myputchar);
 		cur--;
 	}

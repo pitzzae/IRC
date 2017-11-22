@@ -23,21 +23,21 @@ static void		ft_history_cmd_up(t_env *e, int fd)
 			lst = lst->next;
 		e->h_pos = lst;
 		ft_terminos_clean_line(e);
-		free(e->fds[fd].r_buffer);
+		free(RB(fd));
 		RB(fd) = ft_strdup((char*)e->h_pos->content);
-		e->t.cur = ft_strlen(e->t.prompt) + ft_strlen(RB(fd));
+		e->t.cur = (int)(ft_strlen(e->t.prompt) + ft_strlen(RB(fd)));
 		ft_client_prompt(e, e->t.cur);
-		e->t.cur = ft_strlen(e->t.prompt) + ft_strlen(RB(fd));
+		e->t.cur = (int)(ft_strlen(e->t.prompt) + ft_strlen(RB(fd)));
 	}
 	else if (e->h_pos && e->h_pos->prev)
 	{
 		e->h_pos = e->h_pos->prev;
-		free(e->fds[fd].r_buffer);
+		free(RB(fd));
 		ft_terminos_clean_line(e);
 		RB(fd) = ft_strdup((char*)e->h_pos->content);
-		e->t.cur = ft_strlen(e->t.prompt) + ft_strlen(RB(fd));
+		e->t.cur = (int)(ft_strlen(e->t.prompt) + ft_strlen(RB(fd)));
 		ft_client_prompt(e, e->t.cur);
-		e->t.cur = ft_strlen(e->t.prompt) + ft_strlen(RB(fd));
+		e->t.cur = (int)(ft_strlen(e->t.prompt) + ft_strlen(RB(fd)));
 	}
 }
 
@@ -46,22 +46,22 @@ static void		ft_history_cmd_down(t_env *e, int fd)
 	if (e->h_pos && e->h_pos->next)
 	{
 		e->h_pos = e->h_pos->next;
-		free(e->fds[fd].r_buffer);
+		free(RB(fd));
 		ft_terminos_clean_line(e);
 		RB(fd) = ft_strdup((char*)e->h_pos->content);
-		e->t.cur = ft_strlen(e->t.prompt) + ft_strlen(RB(fd));
+		e->t.cur = (int)(ft_strlen(e->t.prompt) + ft_strlen(RB(fd)));
 		ft_client_prompt(e, e->t.cur);
-		e->t.cur = ft_strlen(e->t.prompt) + ft_strlen(RB(fd));
+		e->t.cur = (int)(ft_strlen(e->t.prompt) + ft_strlen(RB(fd)));
 	}
 	else if (e->h_pos)
 	{
 		e->h_pos = NULL;
-		free(e->fds[fd].r_buffer);
+		free(RB(fd));
 		ft_terminos_clean_line(e);
 		RB(fd) = ft_strnew(0);
-		e->t.cur = ft_strlen(e->t.prompt) + ft_strlen(RB(fd));
+		e->t.cur = (int)(ft_strlen(e->t.prompt) + ft_strlen(RB(fd)));
 		ft_client_prompt(e, e->t.cur);
-		e->t.cur = ft_strlen(e->t.prompt) + ft_strlen(RB(fd));
+		e->t.cur = (int)(ft_strlen(e->t.prompt) + ft_strlen(RB(fd)));
 	}
 }
 
