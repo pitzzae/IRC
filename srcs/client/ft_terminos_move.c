@@ -22,8 +22,8 @@ void		ft_terminos_clean_line(t_env *e)
 	while (cur > 0)
 	{
 		tputs(tgetstr("le", NULL), 1, ft_myputchar);
-		tputs(tgetstr(" ", NULL), 1, ft_myputchar);
-		tputs(tgetstr("le", NULL), 1, ft_myputchar);
+		tputs(tgetstr("cb", NULL), 1, ft_myputchar);
+		tputs(tgetstr("ce", NULL), 1, ft_myputchar);
 		cur--;
 	}
 }
@@ -71,9 +71,12 @@ void		ft_terminos_left_arrow(t_env *e, int fd)
 
 void		ft_terminos_right_arrow(t_env *e, int fd)
 {
+	char		c;
+
 	if ((unsigned long)e->t.cur < ft_strlen(RB(fd)) + e->t.p_len)
 	{
-		tputs(tgetstr("nd", NULL), 1, ft_myputchar);
+		c = RB(fd)[e->t.cur - e->t.p_len];
+		tputs(&c, 1, ft_myputchar);
 		e->t.cur++;
 	}
 }

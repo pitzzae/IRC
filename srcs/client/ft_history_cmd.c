@@ -67,6 +67,8 @@ static void		ft_history_cmd_down(t_env *e, int fd)
 
 void			ft_history_cmd(t_env *e, int fd, char c)
 {
+	while ((unsigned long)e->t.cur < ft_strlen(RB(fd)) + e->t.p_len)
+		ft_terminos_right_arrow(e, fd);
 	if (c == ARROW_UP)
 		ft_history_cmd_up(e, fd);
 	else if (c == ARROW_DOWN)
