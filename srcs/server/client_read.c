@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:03:25 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/21 14:13:56 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/22 10:19:58 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,8 @@ static void	ft_packet_agreg(t_env *e, int cs, int len)
 	e->fds[cs].buffer = tmp;
 	e->fds[cs].buff_len = e->fds[cs].buff_len + len;
 	if (ft_strocur(e->fds[cs].buffer, '\n') > 0)
-	{
 		FD_COPY(&e->fd_read, &e->fd_write);
-		e->fds[cs].cmd = 1;
-	}
-	else
-		e->fds[cs].cmd = 0;
+	e->fds[cs].cmd = 1;
 	if (e->fds[cs].buff_len > MAX_CMD_SIZE)
 	{
 		free(e->fds[cs].buffer);
@@ -58,6 +54,7 @@ void		client_read(t_env *e, int cs)
 			if ((e->fds[i].type == FD_CLIENT) && (i == cs))
 			{
 				e->fds[cs].b_send += r;
+				e->fds[cs].cmd = 0;
 				if (!client_read_is_magic(e, cs, r))
 					ft_packet_agreg(e, cs, r);
 			}

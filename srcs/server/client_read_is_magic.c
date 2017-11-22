@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 15:50:57 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/17 19:55:48 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/22 11:32:18 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	client_read_magic_file(t_env *e, int cs, int len)
 	void		*tmp;
 
 	magic = ((uint64_t *)&e->fds[cs].buf_read[0]);
-	if (magic[0] == MH_MAGIC_FILE)
+	if (magic[0] == MH_MAGIC_FILE || magic[0] == MH_MAGIC_REPLY)
 	{
 		tmp = malloc((size_t)len);
 		ft_memcpy(tmp, e->fds[cs].buf_read, (size_t)len);
@@ -27,6 +27,7 @@ static int	client_read_magic_file(t_env *e, int cs, int len)
 		e->fds[cs].buff_len = len;
 		FD_COPY(&e->fd_read, &e->fd_write);
 		FT_FD_ZERO(&e->fds[cs].buf_read);
+		e->fds[cs].cmd = 1;
 		return (1);
 	}
 	return (0);
@@ -48,6 +49,7 @@ static int	client_read_magic_mtu_check(t_env *e, int cs, int len)
 		e->fds[cs].buffer = tmp;
 		e->fds[cs].buff_len = len;
 		FD_COPY(&e->fd_read, &e->fd_write);
+		e->fds[cs].cmd = 1;
 	}
 	else
 	{
@@ -70,6 +72,7 @@ static int	client_read_magic_mtu_stop(t_env *e, int cs, int len)
 		e->fds[cs].buffer = e->fds[cs].cmd_mtu;
 		e->fds[cs].buff_len = e->fds[cs].cmd_mtu_len;
 		FD_COPY(&e->fd_read, &e->fd_write);
+		e->fds[cs].cmd = 1;
 	}
 	FT_FD_ZERO(&e->fds[cs].buf_read);
 	return (1);

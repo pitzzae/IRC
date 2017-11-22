@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:02:51 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/21 14:13:56 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/22 11:28:30 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	do_select(t_env *e)
 {
-	e->r = select(e->max + 1, &e->fd_read, &e->fd_write, NULL, &e->timeout);
+	e->r = select(e->max + 1, &e->fd_read, &e->fd_write, NULL, NULL);
 }
