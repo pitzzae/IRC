@@ -103,12 +103,12 @@ int			ft_irc_cmd_connect(t_env *e, int cs, int force)
 	if (e->connect == 1 && force == 0 && (BL(cs) > 8 && RB(cs)[8] == ' ' &&
 			ft_strncmp(RB(cs), CMD_CONNECT, 8) == 0))
 	{
-		ft_irc_cmd_allrdy_connect(e, cs);
 		if (e->chan)
 		{
 			free(e->chan);
 			e->chan = NULL;
 		}
+		ft_irc_cmd_allrdy_connect(e, cs);
 		return (1);
 	}
 	else if (force == 1 || (BL(cs) > 8 && RB(cs)[8] == ' ' &&
