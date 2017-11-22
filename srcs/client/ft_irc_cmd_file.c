@@ -34,7 +34,7 @@ static char	*ft_irc_cmd_file_parse_argv(t_env *e, int cs, char *cmd)
 		cmd[i] = '\0';
 	tmp = ft_strsplit(cmd, ' ');
 	pck = NULL;
-	if (tmp[0] && tmp[1] && !tmp[2] &&
+	if (tmp[0] && tmp[1] && !tmp[2] && ft_strocur(tmp[1], '/') == 0 &&
 			ft_strlen(tmp[0]) < CH_LEN && ft_strlen(tmp[1]) < CH_LEN)
 		pck = ft_irc_cmd_file_add_job(e, cs, tmp[0], tmp[1]);
 	else
