@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:59:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/21 14:14:00 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/22 12:10:56 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define MH_MAGIC_FILE	(uint64_t)(0xf42ef42e)
 # define MH_MAGIC_MTU	(uint64_t)(0x042e042e)
 # define MH_MAGIC_REPLY	(uint64_t)(0xd42ed42e)
+# define MH_MAGIC_INIT	(uint64_t)(0xb42eb42e)
 
 # define XV(err,res,str)	(x_void(err,res,str))
 # define X(err,res,str)		(x_int(err,res,str))
@@ -128,6 +129,7 @@ typedef struct		s_fd
 	int					cmd;
 	unsigned int		err_code;
 	unsigned int		err_size;
+	int					f_support;
 }					t_fd;
 
 typedef struct		s_sock

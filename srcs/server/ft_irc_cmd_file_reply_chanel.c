@@ -36,7 +36,7 @@ static void		reply_chanel_for_charnel(t_env *e, int cs, t_list *l, int len)
 	i = 0;
 	while (l)
 	{
-		if (l->valid != cs)
+		if (l->valid != cs && e->fds[l->valid].f_support == 1)
 		{
 			t.cli[i] = l->valid;
 			i++;

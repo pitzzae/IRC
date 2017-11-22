@@ -77,6 +77,7 @@
 # define MH_MAGIC_FILE		(uint64_t)(0xf42ef42e)
 # define MH_MAGIC_MTU		(uint64_t)(0x042e042e)
 # define MH_MAGIC_REPLY		(uint64_t)(0xd42ed42e)
+# define MH_MAGIC_INIT		(uint64_t)(0xb42eb42e)
 
 typedef struct		s_fileinfo
 {

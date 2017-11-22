@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 15:50:57 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/22 11:32:18 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/22 12:25:16 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ static int	client_read_magic_file(t_env *e, int cs, int len)
 		FD_COPY(&e->fd_read, &e->fd_write);
 		FT_FD_ZERO(&e->fds[cs].buf_read);
 		e->fds[cs].cmd = 1;
+		return (1);
+	}
+	else if (magic[0] == MH_MAGIC_INIT)
+	{
+		FT_FD_ZERO(&e->fds[cs].buf_read);
+		e->fds[cs].f_support = 1;
 		return (1);
 	}
 	return (0);
