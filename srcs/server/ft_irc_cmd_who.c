@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 19:06:28 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/11/21 14:13:56 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/11/22 15:54:35 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	*ft_irc_who_user(t_env *e, int cs, char *buff)
 	ft_strcat(buff, e->fds[cs].username);
 	ft_strcat(buff, " H");
 	ft_strcat(buff, ft_irc_user_is_master_chanel(e->chanel,
-												e->fds[cs].user.realname));
+												e->fds[cs].username, cs));
 	ft_strcat(buff, " :0 ");
 	ft_strcat(buff, e->fds[cs].user.realname);
 	ft_strcat(buff, "\n");
